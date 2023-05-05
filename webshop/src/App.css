@@ -1,9 +1,6 @@
-<<<<<<< HEAD
-/*# sourceMappingURL=App.css.map */
-=======
 .footer {
   font-family: sans-serif;
-  position: absolute;
+  position: inherit;
   bottom: 0;
   width: 100%;
 }
@@ -11,6 +8,7 @@
 .footer-top {
   display: flex;
   justify-content: center;
+  padding-top: 2rem;
   gap: 5rem;
 }
 
@@ -34,10 +32,12 @@
 }
 
 .footer-bottom {
+  position: relative;
+  bottom: 0;
+  width: 100%;
   text-align: center;
   padding: 3rem;
   background-color: #292929;
-  color: #A5A5A5;
+  color: #a5a5a5;
   font-weight: bold;
-}/*# sourceMappingURL=App.css.map */
->>>>>>> 4a1a4150e6c99b3212ec20885355822927e3bad0
+} /*# sourceMappingURL=App.css.map */

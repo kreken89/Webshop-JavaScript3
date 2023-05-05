@@ -1,0 +1,14 @@
+.container{
+  display: grid;
+  place-items: center;
+  background-color: #e6e6e6;
+  height: 600px;
+  width: 100vw;
+}
+
+.row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
