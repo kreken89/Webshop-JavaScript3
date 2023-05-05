@@ -1,16 +1,27 @@
 import React from 'react'
-<<<<<<< HEAD
-import Footer from './components/Footer'
-=======
-import './App.scss'
+import Header from './components/Header'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import Home from './pages/home/Home'
+import Contact from './pages/contact/Contact'
 
->>>>>>> 100dd74a316ddeb3dc3b42a410931ca57be4a679
 
 const App = () => {
   
   return (
-    <div>App aaaaaa</div>
+
+    <>
+ <Router>
+    <Header/>
+    <Routes>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/' element={<Contact/>}/>
+
+
+    </Routes>
+  </Router>
+    </>
   )
+  
 }
 
 export default App
