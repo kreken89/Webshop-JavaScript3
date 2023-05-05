@@ -5,44 +5,5 @@
   box-sizing: border-box;
 }
 
-.footer{
-  font-family:sans-serif;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
 
-.footer-top{
-  display: flex;
-  justify-content: center;
-  gap: 5rem;
-}
-
-.footer-top > *{
-  display: flex;
-  flex-direction: column;
-}
-
-.footer-content-container{
-  max-width: 23rem;
-}
-
-.footer-content-container > *{
-  margin-bottom: 1rem;
-}
-
-.footer-top h3{
-  margin-bottom: 2rem;
-  font-size: 24px;
-  
-  font-weight: bolder;
-}
-
-.footer-bottom{
-  text-align: center;
-  padding: 3rem;
-  background-color: #292929;
-  color: #A5A5A5;
-  font-weight: bold;
-}
 
