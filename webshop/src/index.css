@@ -1,0 +1,9 @@
+:root {
+  --clr-primary: #6d2aaa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
