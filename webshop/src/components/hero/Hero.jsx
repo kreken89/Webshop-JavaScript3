@@ -5,7 +5,7 @@ import './Hero.scss'
 
 const Hero = () => {
   return (
-    <div className="container">
+    <div className="container_hero">
       <div className="row">
         <div className="CTA">
           <span>WELLCOME TO BMARKETO SHOP</span>
