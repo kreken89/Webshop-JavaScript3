@@ -1,12 +1,27 @@
 import React from 'react'
-import './App.scss'
+import Header from './components/Header'
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import Home from './pages/home/Home'
+import Contact from './pages/contact/Contact'
 
 
 const App = () => {
   
   return (
-    <div>App aaaaaa</div>
+
+    <>
+ <Router>
+    <Header/>
+    <Routes>
+    <Route path='/' element={<Home/>}/>
+    <Route path='/' element={<Contact/>}/>
+
+
+    </Routes>
+  </Router>
+    </>
   )
+  
 }
 
 export default App
