@@ -4,7 +4,7 @@ import BestCollection from '../../components/bestCollection/BestCollection'
 
 const Home = () => {
   return (
-    <div>
+    <div className="home_container">
       <Hero />
       <BestCollection />
     </div>
