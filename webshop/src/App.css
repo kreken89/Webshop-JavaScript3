@@ -1,1 +1,43 @@
-/*# sourceMappingURL=App.css.map */
+.footer {
+  font-family: sans-serif;
+  position: inherit;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  padding-top: 2rem;
+  gap: 5rem;
+}
+
+.footer-top > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-content-container {
+  max-width: 23rem;
+}
+
+.footer-content-container > * {
+  margin-bottom: 1rem;
+}
+
+.footer-top h3 {
+  margin-bottom: 2rem;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.footer-bottom {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 3rem;
+  background-color: #292929;
+  color: #a5a5a5;
+  font-weight: bold;
+} /*# sourceMappingURL=App.css.map */
