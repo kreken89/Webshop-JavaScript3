@@ -7,6 +7,7 @@ const BestCollection = () => {
     <div className="best_collection-container">
       <h2 className="best_collection-title">Best Collection</h2>
       <div className="best_collection_categories">
+
         <li>All</li> /<li>Bags</li> /<li>Dress</li> /<li>Decoration</li> /
         <li>Essentials</li> /<li>Interior</li> /<li>Laptop</li> /<li>Mobile</li>{' '}
         /<li>Beauty</li>
