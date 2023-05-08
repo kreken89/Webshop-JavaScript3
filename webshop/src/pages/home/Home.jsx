@@ -13,7 +13,6 @@ const Home = () => {
         <BestCollection />
       </div>
       <Campaign />
-
       <Carousel />
     </div>
   )
