@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from '../styles/Header.module.scss'
-import logo from "../assets/placeholders/Logo.svg"
+import styles from './Header.module.scss'
+import logo from "../../assets/placeholders/Logo.svg"
 import {Link, } from 'react-router-dom'
 import {FaShoppingCart} from "react-icons/fa"
 
-const Header = () => {
+const Header = ({user}) => {
   return (
     <>
     <header>
@@ -19,11 +19,24 @@ const Header = () => {
             <Link to="/contact">Contact</Link>
           </li>
         </ul>
+       
         <div className={styles["header-right"]}>
           <span className={styles.links}>
+          {user ? (
+          <>
+          <Link to="/orders">My orders</Link>
+          </>
+          ) : (
+            <>
+            
             <Link to="/login">Login</Link>
             <Link to="/register"> Register</Link>
-            <Link to="/orders">My orders</Link>
+            </>
+
+        )}
+      
+
+            
           </span>
           <span className={styles.cart}>
           <Link to="/cart"><FaShoppingCart/></Link>

@@ -1,5 +1,7 @@
 
-$bg-navbar: #333;
+$bg-navbar: #fff;
+$font-color: #333;
+$border-color: #333;
 
 
 
@@ -14,7 +16,7 @@ $bg-navbar: #333;
   header {
     width: 100%;
     background-color: $bg-navbar;
-    color: #fff;
+    color: $font-color;
   
     .header {
       width: 100%;
@@ -30,7 +32,7 @@ $bg-navbar: #333;
   
     .logo a h2 {
       width: 25%;
-      color: #fff;
+      color: $font-color;
       cursor: pointer;
       span {
         color: orangered;
@@ -38,13 +40,15 @@ $bg-navbar: #333;
     }
   
     nav {
-      width: 75%;
+      // width: 75%;
       display: flex;
       justify-content: space-between;
+      
       ul {
         display: flex;
         justify-content: space-between;
         list-style: none;
+        
   
         .logo-mobile {
           display: none;
@@ -52,8 +56,10 @@ $bg-navbar: #333;
   
         li {
           margin: 0 5px;
+          text-decoration: none;
           a {
-            color: #fff;
+            color: $font-color;
+            text-decoration: none;
             &:hover {
               color: orangered;
             }
@@ -64,10 +70,11 @@ $bg-navbar: #333;
   
     .header-right {
       display: flex;
+      float: right;
   
       .cart a {
         display: flex;
-        color: #fff;
+        color: $font-color;
         position: relative;
         &:hover {
           color: orangered;
@@ -87,13 +94,14 @@ $bg-navbar: #333;
         margin: 0 5px;
   
         p {
-          color: #fff;
+          color: $font-color;
         }
       }
   
       .links a {
         margin: 0 5px;
-        color: #fff;
+        color: $font-color;
+        text-decoration: none;
         &:hover {
           color: orangered;
         }
@@ -116,7 +124,7 @@ $bg-navbar: #333;
         left: 0;
         width: 50%;
         height: 100vh;
-        background-color: var(--dark-blue);
+        background-color: $bg-navbar;
         padding: 1rem;
         z-index: 999;
         transform: translateX(-200%);
@@ -149,7 +157,7 @@ $bg-navbar: #333;
           }
           li {
             padding: 5px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid $font-color;
             a {
               display: block;
             }
@@ -161,7 +169,7 @@ $bg-navbar: #333;
           .cart {
             // display: block;
             // padding: 5px 0;
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid $border-color;
             // a {
             //   position: relative;
             //   p {
@@ -179,7 +187,7 @@ $bg-navbar: #333;
               display: block;
               margin: 0;
               padding: 5px 0;
-              border-bottom: 1px solid #333;
+              border-bottom: 1px solid $border-color;
             }
           }
         }
@@ -187,9 +195,9 @@ $bg-navbar: #333;
       .cart {
         display: block;
         padding: 5px 0;
-        // border-bottom: 1px solid #333;
+        // border-bottom: 1px solid $border-color;
         a {
-          color: #fff;
+          color: $font-color;
           position: relative;
           &:hover {
             color: orangered;
@@ -199,7 +207,7 @@ $bg-navbar: #333;
             top: -1rem;
             left: 5rem;
             font-weight: 500;
-            color: #fff;
+            color: $font-color;
           }
         }
       }
@@ -230,5 +238,5 @@ $bg-navbar: #333;
     bottom: -3px;
     width: 100%;
     height: 2px;
-    background-color: #fff;
+    background-color: $bg-navbar;
   }
