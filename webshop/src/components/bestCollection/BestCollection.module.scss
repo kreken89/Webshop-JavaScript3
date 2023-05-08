@@ -1,0 +1,79 @@
+.best_collection-container{
+  margin: 3rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .best_collection-title{
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+  }
+  
+  .best_collection_nav-links{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    font-weight: lighter;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  // Display products four in the row on large screens
+  .best_collection-products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2rem;
+  }
+
+  .load_more{
+    margin: 2rem 0;
+  }
+
+  .load_more-btn{
+    padding: 0.5rem 2rem;
+    border-radius: 0.1rem;
+    border: 1px solid black;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.5s ease-in-out;
+  }
+  
+  .load_more-btn:hover{
+    color: white;
+    background-color: black;
+  }
+}
+
+// BestCollectionCard styles
+
+.product_name{
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.product_card-bottom{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.product_btn{
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.product_btn:hover{
+  background-color: var(--dark-color);
+}
