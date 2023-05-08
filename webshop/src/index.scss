@@ -2,22 +2,25 @@
 
 :root{
   --font-family: Poppins, sans-serif;
-
+  
 } 
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-.body {
   font-family: var(--font-family);
 }
 
+<<<<<<< HEAD
 header {
   font-family: var(--font-family);
 }
+=======
+// .body {
+//   font-family: var(--font-family);
+// }
+>>>>>>> 990c2ad1e1332dd4e9dd2a6c53647c0041e4121a
 
 .main_container{
   max-width: 1024px;
