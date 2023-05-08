@@ -1,8 +1,8 @@
-import React from 'react'
-
 const BestCollection = () => {
   return (
-    <div>BestCollection</div>
+    <div className='container'>
+      <h2>Best Collection</h2>
+    </div>
   )
 }
 

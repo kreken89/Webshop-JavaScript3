@@ -1,15 +1,22 @@
-import React from 'react'
-<<<<<<< HEAD
-import Footer from './components/Footer'
-=======
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Header from './components/Header'
+import Home from './pages/home/Home'
+import Contact from './pages/contact/Contact'
+import Footer from './components/footer/Footer'
 import './App.scss'
 
->>>>>>> 100dd74a316ddeb3dc3b42a410931ca57be4a679
-
 const App = () => {
-  
   return (
-    <div>App aaaaaa</div>
+    <>
+      <Router>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+        <Footer />
+      </Router>
+    </>
   )
 }
 
