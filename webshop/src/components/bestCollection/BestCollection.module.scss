@@ -11,7 +11,7 @@
     margin-bottom: 2rem;
   }
   
-  .best_collection_nav-links{
+  .best_collection_categories{
     display: flex;
     flex-direction: row;
     list-style: none;
@@ -55,6 +55,12 @@
   font-weight: 500;
 }
 
+.product_category{
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: grey;
+}
+
 .product_card-bottom{
   display: flex;
   justify-content: space-between;
@@ -76,4 +82,8 @@
 
 .product_btn:hover{
   background-color: var(--dark-color);
+}
+
+.loader{
+  margin-left: .2rem;
 }
