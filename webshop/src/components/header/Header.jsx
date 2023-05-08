@@ -25,6 +25,7 @@ const Header = ({user}) => {
           {user ? (
           <>
           <Link to="/orders">My orders</Link>
+          <Link to="/">Logout</Link>
           </>
           ) : (
             <>
