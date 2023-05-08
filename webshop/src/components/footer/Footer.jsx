@@ -1,6 +1,4 @@
 import React from 'react'
-import '../App.css'
-
 import { FaFacebook, FaLinkedinIn } from 'react-icons/fa';
 import { BsTwitter, BsPinterest } from 'react-icons/bs'
 
