@@ -8,9 +8,9 @@ const ProductDetails = () => {
       <div className="description_container">
         <div className="description_box">
           <div className="description_title">Description</div>
-          <div className="related_product_btn">
-            <a href="#related_products">Related Products</a>
-          </div>
+            <a href="#related_products" className="related_product_btn">
+              Related Products
+            </a>
         </div>
         <div className="description_info">
           <div className="product_details-info">
