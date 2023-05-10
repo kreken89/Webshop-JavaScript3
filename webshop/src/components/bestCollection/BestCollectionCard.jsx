@@ -11,9 +11,10 @@ const BestCollectionCard = () => {
         <img src={productImg} alt="" />
       </div>
       <h3 className="product_name">First product</h3>
+      <span className="product_category">Category</span>
       <div className="product_card-bottom">
         <span className="product_price">$ 100</span>
-        <button className="product_btn"><MdAddShoppingCart /></button>
+        <button className="product_btn"><MdAddShoppingCart/></button>
       </div>
     </div>
   )
