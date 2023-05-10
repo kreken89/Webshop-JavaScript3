@@ -3,6 +3,7 @@ import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import './App.scss'
 import Subscription from './components/subscribe/Subscription'
+import ProductDetails from './pages/productDetails/ProductDetails'
 
 
 // Pages
@@ -19,6 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/productDetails" element={<ProductDetails />} />
         </Routes>
         <Subscription />
         <Footer />
