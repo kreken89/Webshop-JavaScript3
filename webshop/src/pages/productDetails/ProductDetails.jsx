@@ -1,5 +1,6 @@
-import React from 'react'
-import image from '../../assets/placeholders/469x356.svg'
+import Image from '../../assets/placeholders/469x356.svg'
+import Carousel from '../../components/slider/Carousel'
+import SmallIcons from '../../components/smallIcons/SmallIcons'
 
 const ProductDetails = () => {
   return (
@@ -28,14 +29,18 @@ const ProductDetails = () => {
             </div>
           </div>
           <div className="description_img">
-            <img src={image} alt="" />
+            <img src={Image} alt="" />
           </div>
         </div>
         <section id="related_products" className="related_products">
           <div className="related_products-title">
             <h4>Related Products</h4>
+            <Carousel />
           </div>
         </section>
+        <div className="icon_boxes">
+          <SmallIcons />
+        </div>
       </div>
     </div>
   )
