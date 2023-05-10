@@ -1,41 +1,13 @@
+.login-wrap {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0;
 
-$input-color: #f3f3f3;
-$red: #fa3150;
-
-.contact-wrap{
-    max-width: 1138px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1em;
-    // border: 1px solid red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 25px 30px;
-
-    h3{
-        font-size: 25px;
-        font-weight: 500;
-        position: relative;
-    }
-
-    .title::before{
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        height: 3px;
-        width: 30px;
-        background-color: $red;
-    }
-
-    .user-details{
+  .user-details{
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-between;
-        align-items: center;
-        
-
+      
         .input-box{
             margin: 1rem 0 1rem 0;
             width: calc(100% / 2 - 20px);
@@ -69,11 +41,6 @@ $red: #fa3150;
 
             }
 
-            textarea{
-                width: calc(200% + 40px);
-                background-color: $input-color;
-            }
-
             .terms {
                 display: inline-block;
                 width: calc(200%);
@@ -105,5 +72,3 @@ $red: #fa3150;
       transition: all 0.3s ease-in-out;
     }
 }
-
-

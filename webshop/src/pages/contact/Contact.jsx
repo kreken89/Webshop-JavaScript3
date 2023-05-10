@@ -32,7 +32,7 @@ const Contact = () => {
             </div>
             <div class="input-box">
               <label for="company">
-                Company <span className="optinal">(optinal)</span>
+                Company <span className="optional">(optional)</span>
               </label>
               <input type="text" id="company" class="form-control" />
             </div>
