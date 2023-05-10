@@ -1,0 +1,61 @@
+.footer {
+  font-family: sans-serif;
+  position: inherit;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin-bottom: 4rem;
+}
+
+.footer-content-container {
+  max-width: 23rem;
+}
+
+.social-icons {
+  font-size: 32px;
+  display: flex;
+  justify-content: start;
+  gap: 1.25rem;
+}
+
+.social-icons svg:hover {
+  color: black;
+}
+
+.footer-content-container > * {
+  margin-bottom: 1rem;
+  text-decoration: none;
+  color: #757575;
+  font-weight: lighter;
+}
+
+.footer-top h3, .footer-top img {
+  color: #292929;
+  margin-bottom: 2rem;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.footer-bottom {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  padding: 3rem;
+  background-color: #292929;
+  color: #A5A5A5;
+  font-weight: bold;
+}
+
+.footer-top > * {
+  display: flex;
+  flex-direction: column;
+}
+.footer-top > * img {
+  width: 177px;
+  margin-bottom: 1.5rem;
+}/*# sourceMappingURL=Footer.module.css.map */
