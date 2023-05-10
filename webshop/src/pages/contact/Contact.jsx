@@ -61,8 +61,7 @@ const Contact = () => {
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.770547547894!2d18.0689213160021!3d59.332394980544!2m3!1f0!2f39.99999857731487!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1e3!2sKungsgatan%2033!5e0!3m2!1sda!2sdk!4v1623349128809!5m2!1sda!2sdk"
           width="100%"
           height="450"
-          allowfullscreen="Yes"
-          loading="lazy"></iframe>
+          allowfullscreen="Yes"></iframe>
       </section>
     </>
   )
