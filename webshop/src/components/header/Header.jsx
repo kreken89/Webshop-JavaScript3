@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './Header.module.scss'
 import logo from "../../assets/placeholders/Logo.svg"
-import {Link, } from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import {FaShoppingCart} from "react-icons/fa"
 
 const Header = ({user}) => {
@@ -13,10 +13,10 @@ const Header = ({user}) => {
        <nav >
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <NavLink to="/">Home</NavLink>
           </li>
           <li>
-            <Link to="/contact">Contact</Link>
+            <NavLink to="/contact">Contact</NavLink>
           </li>
         </ul>
        
@@ -24,8 +24,8 @@ const Header = ({user}) => {
           <span className={styles.links}>
           {user ? (
           <>
-          <Link to="/orders">My orders</Link>
-          <Link to="/">Logout</Link>
+          <NavLink to="/orders">My orders</NavLink>
+          <NavLink to="/">Logout</NavLink>
           </>
           ) : (
             <>
