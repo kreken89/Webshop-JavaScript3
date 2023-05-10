@@ -18,6 +18,9 @@ const Header = ({user}) => {
           <li>
             <Link to="/contact">Contact</Link>
           </li>
+          <li>
+            <Link to="/products">Products</Link>
+          </li>
         </ul>
        
         <div className={styles["header-right"]}>
