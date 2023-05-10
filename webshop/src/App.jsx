@@ -5,6 +5,7 @@ import Contact from './pages/contact/Contact'
 import Footer from './components/footer/Footer'
 import './App.scss'
 import Subscription from './components/subscribe/Subscription'
+import ProductDetails from './pages/productDetails/ProductDetails'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/productDetails" element={<ProductDetails />} />
         </Routes>
         <Subscription />
         <Footer />
