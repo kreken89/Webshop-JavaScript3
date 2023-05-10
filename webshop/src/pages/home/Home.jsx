@@ -15,13 +15,8 @@ const Home = () => {
       <div className="best_collection">
         <BestCollection />
       </div>
-
       <Campaign />
       <Carousel />
-
-      <div className="subscription">
-        <Subscription />
-      </div>
     </div>
   )
 }
