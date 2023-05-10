@@ -1,60 +1,109 @@
-//colors
-$primary-color   : #FF512F;
-$secondary-color : #333;
-$form-bg         : #fff;
 
+$input-color: #f3f3f3;
+$red: #fa3150;
 
-//contact form
-.contact-form{
-    margin-top: 30px;
-    .input-block{
-        background-color: rgba(white, .8);
-        border: solid 1px $primary-color;
-        width: 100%;
-        height: 60px;
-        padding: 25px;
+.contact-wrap{
+    max-width: 1138px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px 30px;
+
+    h3{
+        font-size: 25px;
+        font-weight: 500;
         position: relative;
-        margin-bottom: 20px;
-        // @include transition(all 0.3s ease-out);
-        &.focus{
-            background-color: $form-bg;
-            border: solid 1px darken($primary-color, 10%);
-        }
-        &.textarea{
-            height: auto;
-            .form-control{
-                height: auto;
-                resize: none;
+    }
+
+    .title::before{
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        height: 3px;
+        width: 30px;
+        background-color: $red;
+    }
+
+    .user-details{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        
+
+        .input-box{
+            margin: 1rem 0 1rem 0;
+            width: calc(100% / 2 - 20px);
+
+            label {
+                display: block;
+                font-weight: 300;
+                margin-bottom: .3rem;
             }
-        }
-        label{
-            position: absolute;
-            left: 25px;
-            top: 25px;
-            display: block;
-            margin: 0;
-            font-weight: 300;
-            z-index: 1;
-            color: $secondary-color;
-            font-size: 18px;
-            line-height: 10px;
-        }
-        .form-control{
-            background-color: transparent;
-            padding: 0;
-            border: none;
-            // @include border-radius(0);
-            // @include box-shadow(none);
-            height: auto;
-            position: relative;
-            z-index: 2;
-            font-size: 18px;
-            color: $secondary-color;
-        }
-        .form-control:focus{
-            label{
-                top: 0;
+
+            span{
+                color: $red;
+                font-size: 1rem;
+            }
+
+            .optinal {
+                color: rgb(165, 164, 164);
+                font-size: 1rem;
+                font-style: italic;
+            }
+            
+            input{
+                height: 45px;
+                width: 100%;
+                border: transparent;
+                padding-left: 1rem;
+                background-color: $input-color;
+                font-size: 1rem;
+                align-items: center;
+                
+
+            }
+
+            textarea{
+                width: calc(200% + 40px);
+                background-color: $input-color;
+            }
+
+            .terms {
+                display: inline-block;
+                width: calc(200%);
+               
+                input {
+                    height: 1rem;
+                    margin-top: 1rem;
+                    padding-right: .5rem;
+                    
+                }
+                p{
+                    font-size: .7rem;
+                    
+                }
             }
         }
     }
+   
+
+    button {
+      margin: 1rem 0;
+      background-color: rgb(250, 49, 80);
+      color: #fff;
+      border: none;
+      border-radius: .1rem;
+      padding: 1rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
 }
+
+
