@@ -1,6 +1,6 @@
 .container_campaign {
   background-color: rgb(250, 239, 239);
-  padding: 3rem 9rem;
+  padding: 3rem 0.1rem;
   display: flex;
   justify-content: center;
 }
