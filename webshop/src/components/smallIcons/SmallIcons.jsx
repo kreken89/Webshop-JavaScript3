@@ -10,7 +10,6 @@ const SmallIcons = () => {
         <img src={IconImg} alt="" />
         <img src={IconImg} alt="" />
         <img src={IconImg} alt="" />
-        <img src={IconImg} alt="" />
       </div>
     </div>
   )
