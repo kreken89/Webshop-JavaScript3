@@ -1,9 +1,12 @@
 import React from 'react'
+import Details from '../../components/details/Details'
 import image from '../../assets/placeholders/469x356.svg'
 
 const ProductDetails = () => {
   return (
+    
     <div>
+     <Details/>
       <div className="description_container">
         <div className="description_box">
           <div className="description_title">Description</div>
