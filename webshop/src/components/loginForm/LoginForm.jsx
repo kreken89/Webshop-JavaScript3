@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Login = () => {
+const Login = (props) => {
   return (
     <section class="login-wrap">
-      <form action="#" class="contact-form">
+      <form class="contact-form">
         <div class="user-details">
           <div class="input-box">
             <label for="email">
@@ -22,15 +22,26 @@ const Login = () => {
             />
           </div>
         </div>
-        
+
         <div className="terms">
           <input type="checkbox" />
-          <label htmlFor=""> Please keep me logged in</label>
-          <a href="#" className='required'> Forgot Your Password ?</a>
+          <label htmlFor=""> Please keep me logged in /</label>
+          <a href="#" className="required">
+            {' '}
+            Forgot Your Password ?
+          </a>
+          <br />
+          <br />
+          <p>
+            You don't have account? /
+            <a href="/register" className="required">
+              {' '}
+              Register here
+            </a>
+          </p>
         </div>
 
         <button class="submit-btn">Login</button>
-        
       </form>
     </section>
   )

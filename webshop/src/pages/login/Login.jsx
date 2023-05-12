@@ -1,6 +1,6 @@
 import LoginForm from "../../components/loginForm/LoginForm"
 
-const LoginSignIn = () => {
+const Login = ( props ) => {
   return (
     <div className="login_sign_container">
       <div className="login_container">
@@ -14,4 +14,4 @@ const LoginSignIn = () => {
   )
 }
 
-export default LoginSignIn
+export default Login
