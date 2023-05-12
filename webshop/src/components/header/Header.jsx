@@ -4,7 +4,7 @@ import logo from '../../assets/placeholders/Logo.svg'
 import { Link, NavLink } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
-const Header = ({ user }) => {
+const Header = ( props ) => {
   return (
     <>
       <header>
