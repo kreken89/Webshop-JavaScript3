@@ -14,4 +14,9 @@
 .main_container {
   max-width: 1224px;
   margin: 0 auto;
+}
+
+.active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
 }/*# sourceMappingURL=index.css.map */

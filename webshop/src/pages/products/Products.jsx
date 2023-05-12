@@ -1,9 +1,11 @@
 import React from 'react'
 import ProductCard from './ProductCard'
+import SmallHero from '../../components/smallHero/SmallHero'
 
 const Products = () => {
   return (
     <div className='products_container'>
+        <SmallHero page="Products" description="Look your best!"/>
         <h2 className="products-title">All our products</h2>
 
         <div className="products-categories">

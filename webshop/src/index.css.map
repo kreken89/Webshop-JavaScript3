@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-{"version":3,"sources":["index.scss","index.css"],"names":[],"mappings":"AAAQ,iGAAA;AAER;EACE,kCAAA;ACAF;;ADIA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;EACA,+BAAA;EACA,uBAAA;ACDF;;ADIA;EACE,iBAAA;EACA,cAAA;ACDF","file":"index.css"}
-=======
-{"version":3,"sources":["index.scss","index.css"],"names":[],"mappings":"AAAQ,iGAAA;AAER;EACE,kCAAA;ACAF;;ADIA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;EACA,+BAAA;ACDF;;ADIA;EACE,iBAAA;EACA,cAAA;ACDF","file":"index.css"}
->>>>>>> b0a8af89e9676727b85a05469ac7723ca97d94bc
+{"version":3,"sources":["index.scss","index.css"],"names":[],"mappings":"AAAQ,iGAAA;AAER;EACE,kCAAA;ACAF;;ADIA;EACE,SAAA;EACA,UAAA;EACA,sBAAA;EACA,+BAAA;EACA,uBAAA;ACDF;;ADIA;EACE,iBAAA;EACA,cAAA;ACDF;;ADIA;EACE,0BAAA;EACA,8BAAA;ACDF","file":"index.css"}

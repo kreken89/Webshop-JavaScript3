@@ -12,6 +12,7 @@ import LoginSignIn from './pages/loginSignIn/LoginSignIn'
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Subscription from './components/subscribe/Subscription'
+import SmallHero from './components/smallHero/SmallHero'
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
     <>
       <Router>
         <Header />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
