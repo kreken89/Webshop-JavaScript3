@@ -1,50 +1,70 @@
-import React from 'react'
+import React, { Component } from 'react'
+import FormsBtn from './FormsBtn'
+import { FaFacebookF, FaGoogle } from 'react-icons/fa'
+import { signInWithGoogle } from '../../firebase/utils'
+import { auth, provider } from '../../firebase/utils'
 
-const Login = (props) => {
-  return (
-    <section class="login-wrap">
-      <form class="contact-form">
-        <div class="user-details">
-          <div class="input-box">
-            <label for="email">
-              Your Email <span className="required">*</span>
-            </label>
-            <input type="email" id="email" class="form-control" required />
+class Login extends Component {
 
-            <label for="password">
-              Password <span className="required">*</span>
-            </label>
-            <input
-              type="password"
-              id="password"
-              class="form-control"
-              required
-            />
+  handleSubmit = async (e) => {
+  }
+
+  render() {
+    return (
+      <section className="login-wrap">
+        <form onSubmit={this.handleSubmit} className="contact-form">
+          <div className="user-details">
+            <div className="input-box">
+              <label htmlFor="email">
+                Your Email <span className="required">*</span>
+              </label>
+              <input type="email" id="email" className="form-control" required />
+
+              <label htmlFor="password">
+                Password <span className="required">*</span>
+              </label>
+              <input
+                type="password"
+                id="password"
+                className="form-control"
+
+              />
+              <div className="social_login">
+                <h3>Login with</h3>
+                <FormsBtn
+                  onClick={signInWithGoogle}
+                  className="social_login_btn">
+                  <FaGoogle />
+                </FormsBtn>
+                <FormsBtn className="social_login_btn_fb">
+                  <FaFacebookF />
+                </FormsBtn>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="terms">
-          <input type="checkbox" />
-          <label htmlFor=""> Please keep me logged in /</label>
-          <a href="#" className="required">
-            {' '}
-            Forgot Your Password ?
-          </a>
-          <br />
-          <br />
-          <p>
-            You don't have account? /
-            <a href="/register" className="required">
+          <div className="terms">
+            <input type="checkbox" />
+            <label htmlFor=""> Please keep me logged in /</label>
+            <a href="#">
               {' '}
-              Register here
+              Forgot Your Password ?
             </a>
-          </p>
-        </div>
+            <br />
+            <br />
+            <p>
+              You don't have account? /
+              <a href="/register">
+                {' '}
+                Register here
+              </a>
+            </p>
+          </div>
 
-        <button class="submit-btn">Login</button>
-      </form>
-    </section>
-  )
+          <button className="submit-btn">Login</button>
+        </form>
+      </section>
+    )
+  }
 }
 
 export default Login

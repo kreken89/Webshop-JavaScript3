@@ -1,6 +1,6 @@
-import LoginForm from "../../components/loginForm/LoginForm"
+import LoginForm from '../../components/loginForm/LoginForm'
 
-const Login = ( props ) => {
+const Login = (props) => {
   return (
     <div className="login_sign_container">
       <div className="login_container">

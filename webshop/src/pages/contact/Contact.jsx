@@ -3,48 +3,48 @@ import React from 'react'
 const Contact = () => {
   return (
     <>
-      <section class="contact-wrap">
-        <form action="#" class="contact-form">
+      <section className="contact-wrap">
+        <form action="#" className="contact-form">
           <h3 className="title">Contact us!</h3>
-          <div class="user-details">
-            <div class="input-box">
-              <label for="fullName">
+          <div className="user-details">
+            <div className="input-box">
+              <label htmlFor="fullName">
                 Your Name <span className="required">*</span>
               </label>
-              <input type="text" id="fullName" class="form-control" required />
+              <input type="text" id="fullName" className="form-control" required />
             </div>
-            <div class="input-box">
-              <label for="email">
+            <div className="input-box">
+              <label htmlFor="email">
                 Your Email <span className="required">*</span>
               </label>
-              <input type="email" id="email" class="form-control" required />
+              <input type="email" id="email" className="form-control" required />
             </div>
-            <div class="input-box">
-              <label for="phoneNumber">
+            <div className="input-box">
+              <label htmlFor="phoneNumber">
                 Phone Number <span className="required">*</span>
               </label>
               <input
                 type="number"
                 id="phoneNumber"
-                class="form-control"
+                className="form-control"
                 required
               />
             </div>
-            <div class="input-box">
-              <label for="company">
+            <div className="input-box">
+              <label htmlFor="company">
                 Company <span className="optional">(optional)</span>
               </label>
-              <input type="text" id="company" class="form-control" />
+              <input type="text" id="company" className="form-control" />
             </div>
-            <div class="input-box">
-              <label for="message">
+            <div className="input-box">
+              <label htmlFor="message">
                 Write something <span className="required">*</span>
               </label>
               <textarea
                 rows="6"
                 type="text"
                 id="message"
-                class="form-control text-area"
+                className="form-control text-area"
                 required></textarea>
             </div>
           </div>
@@ -53,7 +53,7 @@ const Contact = () => {
             <label htmlFor=""> I accept to save my personal details</label>
           </div>
 
-          <button class="submit-btn">Submit</button>
+          <button className="submit-btn">Submit</button>
         </form>
       </section>
       <section className="map">

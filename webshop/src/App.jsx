@@ -15,6 +15,11 @@ import Footer from './components/footer/Footer'
 import Subscription from './components/subscribe/Subscription'
 import SmallHero from './components/smallHero/SmallHero'
 
+// Import firebase
+import { auth } from './firebase/utils'
+
+
+
 
 
 const App = () => {
