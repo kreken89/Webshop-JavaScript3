@@ -1,6 +1,7 @@
 import React from 'react'
 import productImg from '../../assets/placeholders/270x295.svg'
 import tshirt from '../../assets/tshirts/t-shirt-red.jpeg'
+import img from '../../assets/images/p1.webp'
 import './Products.module.scss'
 import { MdAddShoppingCart } from 'react-icons/md'
 
@@ -9,7 +10,7 @@ const ProductCard = () => {
     
     <div className="product_item">
       <div className="product_img">
-        <img src={tshirt} alt="" />
+        <img src={img} alt="" />
       </div>
       <h3 className="product_name">First product</h3>
       <span className="product_category">Category</span>
