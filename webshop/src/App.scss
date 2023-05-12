@@ -7,6 +7,7 @@
 @import './pages/contact/Contact.module.scss';
 @import './pages/products/Products.module.scss';
 @import './pages/loginSignIn/LoginSignIn.module.scss';
+@import './pages/register/Register.module.scss';
 
 // components
 @import './components/hero/Hero.scss';
@@ -16,5 +17,5 @@
 @import './components/slider/Carousel.module.scss';
 @import './components/smallIcons/SmallIcons.module.scss';
 @import './components/header/Header.module.scss';
-@import './components/signIn/SignIn.module.scss';
-@import './components/login/Login.module.scss';
+@import './components/registerForm/RegisterForm.module.scss';
+@import './components/loginForm/Login.module.scss';

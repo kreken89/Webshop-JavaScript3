@@ -7,6 +7,7 @@ import Products from './pages/products/Products'
 import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import LoginSignIn from './pages/loginSignIn/LoginSignIn'
+import Register from './pages/register/Register'
 
 // Components
 import Header from './components/header/Header'
@@ -26,6 +27,7 @@ const App = () => {
           <Route path="/productDetails" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
           <Route path="/login" element={<LoginSignIn />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
         <Subscription />
         <Footer />
