@@ -10,7 +10,9 @@ const Header = ( props ) => {
       <header>
         <nav className="nav_container">
           <div className="logo_div">
+            <Link to="/">
             <img src={logo} alt="" />
+            </Link>
           </div>
           <div className="nav_links_div">
             <ul>
