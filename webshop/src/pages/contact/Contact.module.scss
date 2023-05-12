@@ -2,16 +2,20 @@
 $input-color: #f3f3f3;
 $red: #fa3150;
 
+form{
+    padding: 3rem;
+}
+
 .contact-wrap{
-    max-width: 1138px;
+    
     margin-left: auto;
     margin-right: auto;
-    padding: 1em;
     // border: 1px solid red;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 25px 30px;
+    
 
     h3{
         font-size: 25px;

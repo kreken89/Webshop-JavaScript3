@@ -1,9 +1,11 @@
 import React from 'react'
+import SmallHero from '../../components/smallHero/SmallHero'
 
 const Contact = () => {
   return (
     <>
       <section class="contact-wrap">
+        <SmallHero page="Contact" description="bmerketo"/>
         <form action="#" class="contact-form">
           <h3 className="title">Contact us!</h3>
           <div class="user-details">
