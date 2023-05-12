@@ -36,9 +36,6 @@ class Login extends Component {
                   className="social_login_btn">
                   <FaGoogle />
                 </FormsBtn>
-                <FormsBtn className="social_login_btn_fb">
-                  <FaFacebookF />
-                </FormsBtn>
               </div>
             </div>
           </div>

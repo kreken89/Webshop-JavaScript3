@@ -43,7 +43,7 @@
 
         .social_login_btn {
           margin-top: 0.5rem;
-          width: 50%;
+          width: 100%;
           color: rgb(250, 49, 80);
           background-color: #fff;
           border: 1px solid rgb(250, 49, 80);
@@ -57,25 +57,6 @@
         .social_login_btn:hover {
           background-color: rgb(250, 49, 80);
           color: #fff;
-        }
-
-        .social_login_btn_fb {
-          margin-top: 0.5rem;
-          width: 50%;
-          color: #fff;
-          background-color: rgb(59, 89, 152);
-          border: 1px solid rgb(59, 89, 152);
-          border-radius: 0.1rem;
-          padding: 0.5rem 2rem;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: all 0.5s ease-in-out;
-        }
-
-        .social_login_btn_fb:hover {
-          background-color: #fff;
-          border: 1px solid rgb(59, 89, 152);
-          color: rgb(59, 89, 152);
         }
       }
 
