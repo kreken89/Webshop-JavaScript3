@@ -6,8 +6,9 @@ import Home from './pages/home/Home'
 import Products from './pages/products/Products'
 import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
-import LoginSignIn from './pages/login/Login'
+import Login from './pages/login/Login'
 import Register from './pages/register/Register'
+import LogOut from './pages/login/LogOut'
 
 // Components
 import Header from './components/header/Header'
@@ -33,8 +34,9 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/productDetails" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/login" element={<LoginSignIn />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/logout" element={<LogOut />} />
         </Routes>
         <Subscription />
         <Footer />
