@@ -28,4 +28,16 @@ a{
   color: red;
 }
 
+svg{
+  width: 1.3rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+  transition: all 0.5s ease-in-out;
+}
+
+svg:hover{
+  cursor: pointer;
+  color: black;
+}
+
 
