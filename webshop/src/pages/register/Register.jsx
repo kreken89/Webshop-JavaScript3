@@ -7,7 +7,7 @@ const register = () => {
     <div className="login_sign_container">
       <div className="login_container">
         <h2>Register</h2>
-        <div className="info_sign_in">
+        <div className="register_info">
           <span>Please Register Your new Account</span>
         </div>
         <RegisterForm />
