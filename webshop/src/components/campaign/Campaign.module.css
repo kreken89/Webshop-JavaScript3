@@ -1,0 +1,36 @@
+.container_campaign {
+  background-color: rgb(250, 239, 239);
+  padding: 3rem 0.1rem;
+  display: flex;
+  justify-content: center;
+}
+.container_campaign .campaign_image1 {
+  margin-right: 2rem;
+}
+.container_campaign .campaign_text {
+  background-color: white;
+  padding: 1rem;
+  border-bottom: 1px solid lightgray;
+  margin-top: -4px;
+}
+.container_campaign .campaign_price {
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+.container_campaign .campaign_price .price_line_through {
+  text-decoration: line-through;
+  color: gray;
+}
+.container_campaign .campaign_price .price_sale {
+  color: gray;
+  margin-right: 9rem;
+}
+.container_campaign .campaign_price .fa-shopping-cart {
+  color: gray;
+}
+.container_campaign .campaign_price .fa-shopping-cart:hover {
+  color: black;
+  cursor: pointer;
+}/*# sourceMappingURL=Campaign.module.css.map */

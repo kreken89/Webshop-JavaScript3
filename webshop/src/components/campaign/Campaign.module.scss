@@ -1,0 +1,36 @@
+.container_campaign {
+   background-color: rgb(250, 239, 239);
+    padding: 3rem .1rem;
+    display: flex;
+    justify-content: center;
+    .campaign_image1{
+        margin-right: 2rem;
+    }
+    .campaign_text {
+        background-color: white;
+        padding: 1rem;
+        border-bottom: 1px solid lightgray;
+        margin-top: -4px;
+    }
+    .campaign_price {
+        background-color: white;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        .price_line_through{
+            text-decoration: line-through;
+            color: gray;
+        }
+        .price_sale {
+            color: gray;
+            margin-right: 9rem;
+        }
+        .fa-shopping-cart {
+            color: gray;
+        }
+        .fa-shopping-cart:hover {
+            color: black;
+            cursor: pointer;
+        }
+    }
+}

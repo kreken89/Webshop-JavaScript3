@@ -1,0 +1,84 @@
+.contact-wrap {
+  max-width: 1138px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px 30px;
+}
+.contact-wrap h3 {
+  font-size: 25px;
+  font-weight: 500;
+  position: relative;
+}
+.contact-wrap .title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: #fa3150;
+}
+.contact-wrap .user-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.contact-wrap .user-details .input-box {
+  margin: 1rem 0 1rem 0;
+  width: calc(50% - 20px);
+}
+.contact-wrap .user-details .input-box label {
+  display: block;
+  font-weight: 300;
+  margin-bottom: 0.3rem;
+}
+.contact-wrap .user-details .input-box span {
+  color: #fa3150;
+  font-size: 1rem;
+}
+.contact-wrap .user-details .input-box .optional {
+  color: rgb(165, 164, 164);
+  font-size: 1rem;
+  font-style: italic;
+}
+.contact-wrap .user-details .input-box input {
+  height: 45px;
+  width: 100%;
+  border: transparent;
+  padding-left: 1rem;
+  background-color: #f3f3f3;
+  font-size: 1rem;
+  align-items: center;
+}
+.contact-wrap .user-details .input-box textarea {
+  width: calc(200% + 40px);
+  background-color: #f3f3f3;
+}
+.contact-wrap .user-details .input-box .terms {
+  display: inline-block;
+  width: 200%;
+}
+.contact-wrap .user-details .input-box .terms input {
+  height: 1rem;
+  margin-top: 1rem;
+  padding-right: 0.5rem;
+}
+.contact-wrap .user-details .input-box .terms p {
+  font-size: 0.7rem;
+}
+.contact-wrap button {
+  margin: 1rem 0;
+  background-color: rgb(250, 49, 80);
+  color: #fff;
+  border: none;
+  border-radius: 0.1rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}/*# sourceMappingURL=Contact.module.css.map */

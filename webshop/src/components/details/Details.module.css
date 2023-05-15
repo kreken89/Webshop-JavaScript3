@@ -1,0 +1,78 @@
+.container-details {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1224px;
+  margin: 2rem auto;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  margin-left: 2rem;
+}
+
+.detailsTextInfo {
+  color: #333;
+  font-family: var(--font-family);
+  margin-bottom: 1.5rem;
+}
+
+.quantity-decrement {
+  padding: 0.5rem;
+}
+
+.quantity-increment {
+  padding: 0.5rem;
+}
+
+.text-box {
+  border-bottom: 1px solid lightgrey;
+}
+
+.quantity {
+  padding: 0.4rem;
+  border: 0.1rem solid rgb(144, 133, 133);
+}
+
+.quantity-group {
+  display: flex;
+}
+
+.quantityButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  line-height: 1.2;
+}
+.quantityButton .addToCart-bnt {
+  background-color: rgb(250, 49, 80);
+  color: #fff;
+  font-family: var(--font-family);
+  margin-left: 1rem;
+  padding: 0.5rem 2.5rem 0.5rem 3.5rem;
+  border: none;
+  font-size: 1rem;
+}
+.quantityButton .addToCart-bnt .fa-shopping-cart {
+  margin-top: 3px;
+  color: fff;
+  margin-left: 1.2rem;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
+
+.price {
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 2rem 0rem 2rem 0rem;
+}
+
+.dropDown-box {
+  margin-bottom: 2rem;
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+}/*# sourceMappingURL=Details.module.css.map */
