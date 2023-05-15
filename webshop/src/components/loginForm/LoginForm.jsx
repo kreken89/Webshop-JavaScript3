@@ -15,7 +15,6 @@ class LoginForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault()
     
-    const history = useHistory()
     const { email, password } = this.state
     try {
       await signInWithEmailAndPassword(auth, email, password)
