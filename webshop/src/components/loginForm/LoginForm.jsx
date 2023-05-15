@@ -18,7 +18,7 @@ class LoginForm extends Component {
     const { email, password } = this.state
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      history.pust('/')
+      history.push('/')
     } catch (error) {
       this.setState({ error: error.message })
     }
