@@ -72,6 +72,7 @@ $red: #fa3150;
             textarea{
                 width: calc(200% + 40px);
                 background-color: $input-color;
+               border: transparent;
             }
 
             .terms {

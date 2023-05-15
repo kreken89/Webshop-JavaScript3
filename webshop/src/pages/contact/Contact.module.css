@@ -58,6 +58,7 @@
 .contact-wrap .user-details .input-box textarea {
   width: calc(200% + 40px);
   background-color: #f3f3f3;
+  border: transparent;
 }
 .contact-wrap .user-details .input-box .terms {
   display: inline-block;
