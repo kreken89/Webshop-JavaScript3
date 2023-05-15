@@ -20,9 +20,6 @@ import SmallHero from './components/smallHero/SmallHero'
 import { auth } from './firebase/utils'
 
 
-
-
-
 const App = () => {
   return (
     <>

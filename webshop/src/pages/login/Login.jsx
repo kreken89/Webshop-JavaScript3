@@ -20,6 +20,8 @@ const Login = () => {
       const result = await auth.signInWithPopup(provider)
       const user = result.user
       // Here you can store the new user in Firebase
+
+      navigate('/') // Navigate to home page after successful Google sign-in
     } catch (error) {
       console.log(error.message)
     }
