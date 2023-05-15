@@ -1,7 +1,0 @@
-.icon_box {
-  max-width: 1224;
-  display: grid;
-  place-items: center;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1rem;
-}/*# sourceMappingURL=SmallIcons.module.css.map */
