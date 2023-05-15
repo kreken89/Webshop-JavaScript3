@@ -57,14 +57,6 @@ class LoginForm extends Component {
                 onChange={this.handleChange}
                 required
               />
-              <div className="social_login">
-                <h3>Login with</h3>
-                <FormsBtn
-                  onClick={signInWithGoogle}
-                  className="social_login_btn">
-                  <FaGoogle />
-                </FormsBtn>
-              </div>
             </div>
           </div>
           <div className="terms">
@@ -79,6 +71,12 @@ class LoginForm extends Component {
           </div>
 
           <button className="submit-btn">Login</button>
+          <div className="social_login">
+            <h3>Login with Google</h3>
+            <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
+              <FaGoogle />
+            </FormsBtn>
+          </div>
         </form>
       </section>
     )
