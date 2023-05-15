@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import { signInWithEmailAndPassword } from 'firebase/auth'
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
 import { signInWithGoogle, auth } from '../../firebase/utils'
+import { useHistory } from 'react-router-dom'
 
 class LoginForm extends Component {
   state = {
@@ -12,12 +14,14 @@ class LoginForm extends Component {
 
   handleSubmit = async (e) => {
     e.preventDefault()
-    const { email, password } = e.target.elements
+    
+    const history = useHistory()
+    const { email, password } = this.state
     try {
-      await auth.signInWithEmailAndPassword(email.value, password.value)
-      this.props.history.push('/')
+      await signInWithEmailAndPassword(auth, email, password)
+      history.pust('/')
     } catch (error) {
-      alert(error)
+      this.setState({ error: error.message })
     }
   }
 
@@ -70,7 +74,9 @@ class LoginForm extends Component {
             </p>
           </div>
 
-          <button className="submit-btn">Login</button>
+          <button type='submit' className="submit-btn">
+            Login
+          </button>
           <div className="social_login">
             <h3>Login with Google</h3>
             <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
@@ -82,6 +88,4 @@ class LoginForm extends Component {
     )
   }
 }
-
-// export default LoginForm
 export default LoginForm
