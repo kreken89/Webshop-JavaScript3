@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import FormsBtn from './FormsBtn';
 import { FaGoogle } from 'react-icons/fa';
 import {
+  auth,
   signInWithGoogle,
   signInWithEmailAndPassword,
 } from '../../firebase/utils'
