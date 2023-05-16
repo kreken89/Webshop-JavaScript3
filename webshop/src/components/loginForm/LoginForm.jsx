@@ -1,36 +1,62 @@
+<<<<<<< HEAD
 import React, { Component } from 'react'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
 import { signInWithGoogle, auth } from '../../firebase/utils'
+=======
+import React, { Component } from 'react';
+import FormsBtn from './FormsBtn';
+import { FaGoogle } from 'react-icons/fa';
+import {
+  auth,
+  signInWithGoogle,
+  signInWithEmailAndPassword,
+} from '../../firebase/utils'
+>>>>>>> 5164917fbca9225401256dc41d3535d464e558c6
 
 
 class LoginForm extends Component {
   state = {
     email: '',
     password: '',
-    error: null,
-  }
+    error: null
+  };
 
   handleSubmit = async (e) => {
-    e.preventDefault()
-    
-    const { email, password } = this.state
+    e.preventDefault();
+    const { email, password } = this.state;
     try {
-      await signInWithEmailAndPassword(auth, email, password)
-      history.push('/')
+      await signInWithEmailAndPassword(email, password);
+      const user = auth.currentUser;
+      if (user) {
+        const userRef = firestore.collection('users').doc(user.uid);
+        const userData = await userRef.get();
+        if (userData.exists()) {
+          const userDataObj = userData.data();
+          // Use the userDataObj for further processing or updating state
+          console.log(userDataObj);
+        } else {
+          // User data does not exist
+          console.log('User data not found');
+        }
+      }
     } catch (error) {
-      this.setState({ error: error.message })
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage);
+      // Handle the error message and display it to the user
+      this.setState({ error: errorMessage });
     }
-  }
+  };
 
   handleChange = (e) => {
-    const { id, value } = e.target
-    this.setState({ [id]: value })
-  }
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
+  };
 
   render() {
-    const { email, password, error } = this.state
+    const { email, password, error } = this.state;
     return (
       <section className="login-wrap">
         <form onSubmit={this.handleSubmit} className="contact-form">
@@ -69,11 +95,11 @@ class LoginForm extends Component {
             <br />
             <br />
             <p>
-              You don't have account? / <a href="/register"> Register here</a>
+              You don't have an account? / <a href="/register">Register here</a>
             </p>
           </div>
 
-          <button type='submit' className="submit-btn">
+          <button type="submit" className="submit-btn">
             Login
           </button>
           <div className="social_login">
@@ -84,7 +110,9 @@ class LoginForm extends Component {
           </div>
         </form>
       </section>
-    )
+    );
   }
 }
-export default LoginForm
+
+export default LoginForm;
+
