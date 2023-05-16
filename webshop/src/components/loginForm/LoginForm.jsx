@@ -1,110 +1,245 @@
-import React, { Component } from 'react';
-import FormsBtn from './FormsBtn';
-import { FaGoogle } from 'react-icons/fa';
+// import React, { useState } from 'react'
+// import FormsBtn from './FormsBtn'
+// import { FaGoogle } from 'react-icons/fa'
+// import {
+//   db,
+//   auth,
+//   signInWithGoogle,
+//   signInWithEmailAndPassword,
+// } from '../../firebase/utils'
+// import { doc, getDoc } from 'firebase/firestore'
+// import { initializeApp } from 'firebase/app'
+// import { firebaseConfig } from '../../firebase/config'
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig)
+
+// const LoginForm = () => {
+//   const [email, setEmail] = useState('')
+//   const [password, setPassword] = useState('')
+//   const [error, setError] = useState(null)
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault()
+//     try {
+//       await signInWithEmailAndPassword(email, password)
+//       const user = auth.currentUser
+//       console.log(email, password)
+//       if (user) {
+//         // const userRef = doc(db, 'users').doc(user.uid)
+//         const userRef = doc(db, 'users', user.uid)
+//         const userData = await getDoc(userRef)
+//         if (userData.exists()) {
+//           const userDataObj = userData.data()
+//           // console.log(userData.data())
+//           // setData({ id: userData.id, ...userData.data()})
+//           // Use the userDataObj for further processing or updating state
+//           userDataObj.uid = user.uid
+//           // in the parent component
+
+//         } else {
+//           // User data does not exist
+//           console.log('User data not found')
+//         }
+//         return user
+//       }
+//     } catch (error) {
+//       const errorCode = error.code
+//       const errorMessage = error.message
+//       console.log(errorCode, errorMessage)
+//       // Handle the error message and display it to the user
+//       setError(errorMessage)
+//     }
+//   }
+
+//   const handleChange = (e) => {
+//     const { id, value } = e.target
+//     if (id === 'email') {
+//       setEmail(value)
+//     } else if (id === 'password') {
+//       setPassword(value)
+//     }
+//   }
+
+//   return (
+//     <section className="login-wrap">
+//       <form onSubmit={handleSubmit} className="contact-form">
+//         {error && <p className="error">{error}</p>}
+//         <div className="user-details">
+//           <div className="input-box">
+//             <label htmlFor="email">
+//               Your Email <span className="required">*</span>
+//             </label>
+//             <input
+//               type="email"
+//               id="email"
+//               className="form-control"
+//               value={email}
+//               onChange={handleChange}
+//               required
+//             />
+
+//             <label htmlFor="password">
+//               Password <span className="required">*</span>
+//             </label>
+//             <input
+//               type="password"
+//               id="password"
+//               className="form-control"
+//               value={password}
+//               onChange={handleChange}
+//               required
+//             />
+//           </div>
+//         </div>
+//         <div className="terms">
+//           <input type="checkbox" />
+//           <label htmlFor=""> Please keep me logged in /</label>
+//           <a href="#"> Forgot Your Password ?</a>
+//           <br />
+//           <br />
+//           <p>
+//             You don't have an account? / <a href="/register">Register here</a>
+//           </p>
+//         </div>
+
+//         <button type="submit" className="submit-btn">
+//           Login
+//         </button>
+//         <div className="social_login">
+//           <h3>Login with Google</h3>
+//           <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
+//             <FaGoogle />
+//           </FormsBtn>
+//         </div>
+//       </form>
+//     </section>
+//   )
+// }
+
+// export default LoginForm
+
+import React, { useState } from 'react'
+import FormsBtn from './FormsBtn'
+import { FaGoogle } from 'react-icons/fa'
 import {
-  auth,
+  db,
   signInWithGoogle,
   signInWithEmailAndPassword,
 } from '../../firebase/utils'
+import { doc, query, where, getDoc } from 'firebase/firestore'
+import { initializeApp } from 'firebase/app'
+import { firebaseConfig } from '../../firebase/config'
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
 
-class LoginForm extends Component {
-  state = {
-    email: '',
-    password: '',
-    error: null
-  };
+const LoginForm = () => {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState(null)
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password } = this.state;
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     try {
-      await signInWithEmailAndPassword(email, password);
-      const user = auth.currentUser;
+      const userCredential = await signInWithEmailAndPassword(email, password)
+
+      const user = userCredential.user
+      console.log(userCredential)
+
+      console.log(email, password)
       if (user) {
-        const userRef = firestore.collection('users').doc(user.uid);
-        const userData = await userRef.get();
-        if (userData.exists()) {
-          const userDataObj = userData.data();
-          // Use the userDataObj for further processing or updating state
-          console.log(userDataObj);
-        } else {
-          // User data does not exist
-          console.log('User data not found');
+        const userRef = doc(db, 'users', user.uid)
+        const userData = await getDoc(userRef)
+        // if (userData.exists()) {
+
+          console.log(userData.data())
+          
+          // Retrieve all user data from Firestore
+          const userQuery = query(
+            collection(db, 'userData'), // Replace 'userData' with the collection name where the user data is stored
+            where('userId', '==', user.uid) // Replace 'userId' with the field name that represents the user's ID
+          )
+          const userSnapshot = await getDocs(userQuery)
+          const userDataArray = userSnapshot.docs.map((doc) => doc.data())
+          console.log('User Data Array:', userDataArray)
+
+          // Use userDataArray for further processing or updating state in the parent component
+        // } 
+      }else {
+          console.log('User data not found')
         }
-      }
     } catch (error) {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      console.log(errorCode, errorMessage);
-      // Handle the error message and display it to the user
-      this.setState({ error: errorMessage });
+      const errorCode = error.code
+      const errorMessage = error.message
+      console.log(errorCode, errorMessage)
+      setError(errorMessage)
     }
-  };
-
-  handleChange = (e) => {
-    const { id, value } = e.target;
-    this.setState({ [id]: value });
-  };
-
-  render() {
-    const { email, password, error } = this.state;
-    return (
-      <section className="login-wrap">
-        <form onSubmit={this.handleSubmit} className="contact-form">
-          {error && <p className="error">{error}</p>}
-          <div className="user-details">
-            <div className="input-box">
-              <label htmlFor="email">
-                Your Email <span className="required">*</span>
-              </label>
-              <input
-                type="email"
-                id="email"
-                className="form-control"
-                value={email}
-                onChange={this.handleChange}
-                required
-              />
-
-              <label htmlFor="password">
-                Password <span className="required">*</span>
-              </label>
-              <input
-                type="password"
-                id="password"
-                className="form-control"
-                value={password}
-                onChange={this.handleChange}
-                required
-              />
-            </div>
-          </div>
-          <div className="terms">
-            <input type="checkbox" />
-            <label htmlFor=""> Please keep me logged in /</label>
-            <a href="#"> Forgot Your Password ?</a>
-            <br />
-            <br />
-            <p>
-              You don't have an account? / <a href="/register">Register here</a>
-            </p>
-          </div>
-
-          <button type="submit" className="submit-btn">
-            Login
-          </button>
-          <div className="social_login">
-            <h3>Login with Google</h3>
-            <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
-              <FaGoogle />
-            </FormsBtn>
-          </div>
-        </form>
-      </section>
-    );
   }
+
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    if (id === 'email') {
+      setEmail(value)
+    } else if (id === 'password') {
+      setPassword(value)
+    }
+  }
+
+  return (
+    <section className="login-wrap">
+      <form onSubmit={handleSubmit} className="contact-form">
+        {error && <p className="error">{error}</p>}
+        <div className="user-details">
+          <div className="input-box">
+            <label htmlFor="email">
+              Your Email <span className="required">*</span>
+            </label>
+            <input
+              type="email"
+              id="email"
+              className="form-control"
+              value={email}
+              onChange={handleChange}
+              required
+            />
+
+            <label htmlFor="password">
+              Password <span className="required">*</span>
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="form-control"
+              value={password}
+              onChange={handleChange}
+              required
+            />
+          </div>
+        </div>
+        <div className="terms">
+          <input type="checkbox" />
+          <label htmlFor=""> Please keep me logged in /</label>
+          <a href="#"> Forgot Your Password ?</a>
+          <br />
+          <br />
+          <p>
+            You don't have an account? / <a href="/register">Register here</a>
+          </p>
+        </div>
+
+        <button type="submit" className="submit-btn">
+          Login
+        </button>
+        <div className="social_login">
+          <h3>Login with Google</h3>
+          <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
+            <FaGoogle />
+          </FormsBtn>
+        </div>
+      </form>
+    </section>
+  )
 }
 
-export default LoginForm;
-
+export default LoginForm

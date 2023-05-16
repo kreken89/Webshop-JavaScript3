@@ -1,6 +1,6 @@
+import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { db } from '../../firebase/utils'
 import { collection, addDoc } from 'firebase/firestore'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth, db } from '../../firebase/utils'
 import { useState } from 'react'
 
 const RegisterForm = () => {
