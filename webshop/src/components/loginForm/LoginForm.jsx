@@ -3,7 +3,6 @@ import { signInWithEmailAndPassword } from 'firebase/auth'
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
 import { signInWithGoogle, auth } from '../../firebase/utils'
-import { useHistory } from 'react-router-dom'
 
 class LoginForm extends Component {
   state = {
@@ -19,7 +18,7 @@ class LoginForm extends Component {
     const { email, password } = this.state
     try {
       await signInWithEmailAndPassword(auth, email, password)
-      history.pust('/')
+      history.push('/')
     } catch (error) {
       this.setState({ error: error.message })
     }
