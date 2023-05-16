@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-import React, { Component } from 'react'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import FormsBtn from './FormsBtn'
-import { FaGoogle } from 'react-icons/fa'
-import { signInWithGoogle, auth } from '../../firebase/utils'
-=======
 import React, { Component } from 'react';
 import FormsBtn from './FormsBtn';
 import { FaGoogle } from 'react-icons/fa';
@@ -13,7 +6,6 @@ import {
   signInWithGoogle,
   signInWithEmailAndPassword,
 } from '../../firebase/utils'
->>>>>>> 5164917fbca9225401256dc41d3535d464e558c6
 
 
 class LoginForm extends Component {
