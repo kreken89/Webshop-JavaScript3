@@ -116,6 +116,7 @@ const RegisterForm = () => {
               onChange={(e) => setPostalCode(e.target.value)}
             />
           </div>
+
           <div className="input-box">
             <label htmlFor="phoneNumber">
               Phone Number <span></span>
@@ -167,6 +168,11 @@ const RegisterForm = () => {
             <button type="submit" className="btn btn-primary">
               Register
             </button>
+            <div>
+              <p>
+                You already have an account? / <a href="/login">Login here</a>
+              </p>
+            </div>
           </div>
         </div>
       </form>
