@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getFirestore, collection, addDoc } from 'firebase/firestore'
+
 import {
   getAuth,
   signInWithPopup,
@@ -7,6 +8,7 @@ import {
   createUserWithEmailAndPassword as firebaseCreateUserWithEmailAndPassword,
   signInWithEmailAndPassword as firebaseSignInWithEmailAndPassword,
 } from 'firebase/auth'
+
 import { firebaseConfig } from './config'
 
 // Initialize Firebase
@@ -15,6 +17,7 @@ const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
 export const provider = new GoogleAuthProvider()
+
 
 export const signInWithGoogle = async () => {
   try {
