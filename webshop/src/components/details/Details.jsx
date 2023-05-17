@@ -74,12 +74,10 @@ console.log(product)
         </div>
         <div className={styles['textContainer']}>
           <div className={styles['detailsTextInfo']}>
-            <h4>Young Star Smart Shoe in Fashion</h4>
+            <h2>{product.name}</h2>
           </div>
           <div className={styles['text-box']}>
-            <p className={styles['detailsTextInfo']}>
-              {product.description}
-            </p>
+            <p className={styles['detailsTextInfo']}>{product.description}</p>
           </div>
           <p className={styles['price']}>{product.price}</p>
           <div className={styles['dropDown-box']}>
@@ -97,21 +95,22 @@ console.log(product)
             </div>
           </div>
         </div>
-        <div className="description_container">
+      </div>
+
+      <div className="description_container">
         <div className="description_box">
           <div className="description_title">Description</div>
-            <a href="#related_products" className="related_product_btn">
-              Related Products
-            </a>
+          <a href="#related_products" className="related_product_btn">
+            Related Products
+          </a>
         </div>
         <div className="description_info">
           <div className="product_details-info">
             <div className="description_info_title">
+              <h2>{product.name}</h2>
               <h4>Product Details</h4>
             </div>
-            <div className="description_info_text">
-              {product.description}
-            </div>
+            <div className="description_info_text">{product.description}</div>
           </div>
           <div className="description_img">
             <img src={product.imageURL} alt={product.name} />
@@ -127,8 +126,6 @@ console.log(product)
           <SmallIcons />
         </div>
       </div>
-      </div>
-      
     </>
   )
 }
