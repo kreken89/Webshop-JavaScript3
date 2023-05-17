@@ -1,71 +1,70 @@
 .register-wrap {
-    margin: 0;
-    display: grid;
-    grid-gap: 2rem;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 0;
 
-    .user-details {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
+  .user-details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-      .input-box {
-        margin: 1rem 0 1rem 0;
-        width: calc(100% / 2 - 20px);
+    .input-box {
+      margin: 1rem 0 1rem 0;
+      width: calc(100% / 2 - 10px);
 
-        label {
-          display: block;
-          font-weight: 300;
-          margin-bottom: 0.3rem;
-        }
+      label {
+        display: block;
+        font-weight: 300;
+        margin-bottom: 0.3rem;
+      }
 
-        span {
-          color: $red;
-          font-size: 1rem;
-        }
+      span {
+        color: $red;
+        font-size: 1rem;
+      }
 
-        .optinal {
-          color: rgb(165, 164, 164);
-          font-size: 1rem;
-          font-style: italic;
-        }
+      input {
+        height: 45px;
+        width: 100%;
+        border: transparent;
+        padding-left: 1rem;
+        background-color: $input-color;
+        font-size: 1rem;
+        align-items: center;
+      }
+
+      .terms {
+        display: inline-block;
+        width: calc(200%);
 
         input {
-          height: 45px;
-          width: 100%;
-          border: transparent;
-          padding-left: 1rem;
-          background-color: $input-color;
-          font-size: 1rem;
-          align-items: center;
+          height: 1rem;
+          margin-top: 1rem;
+          padding-right: 0.5rem;
         }
-
-        .terms {
-          display: inline-block;
-          width: calc(200%);
-
-          input {
-            height: 1rem;
-            margin-top: 1rem;
-            padding-right: 0.5rem;
-          }
-          p {
-            font-size: 0.7rem;
-          }
+        p {
+          font-size: 0.7rem;
         }
       }
     }
-
-    button {
-      margin: 1rem 0;
-      background-color: rgb(250, 49, 80);
-      color: #fff;
-      border: none;
-      border-radius: 0.1rem;
-      padding: 1rem 2rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-    }
   }
 
+  button {
+    margin: 1rem 0;
+    background-color: rgb(250, 49, 80);
+    color: #fff;
+    border: none;
+    border-radius: 0.2rem;
+    border: 1px solid rgb(250, 49, 80);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+
+  button:hover{
+    background-color: #fff;
+    color: rgb(250, 49, 80);
+
+  }
+}
