@@ -1,4 +1,5 @@
 import { createUserWithEmailAndPassword} from 'firebase/auth'
+import { auth } from '../../firebase/utils'
 import { db } from '../../firebase/utils'
 import { collection, addDoc } from 'firebase/firestore'
 import { useState } from 'react'
