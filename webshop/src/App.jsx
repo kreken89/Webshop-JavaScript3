@@ -8,7 +8,7 @@ import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
 import Admin from './pages/admin/Admin'
-import Add from './pages/add/AddProduct'
+import Add from './pages/admin/addProduct/AddProduct'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
 
@@ -20,7 +20,6 @@ import SmallHero from './components/smallHero/SmallHero'
 
 // Import firebase
 import { auth } from './firebase/utils'
-
 
 const App = () => {
   return (
