@@ -22,12 +22,6 @@
         font-size: 1rem;
       }
 
-      .optional {
-        color: rgb(165, 164, 164);
-        font-size: 1rem;
-        font-style: italic;
-      }
-
       input {
         height: 45px;
         width: 100%;
@@ -63,7 +57,7 @@
       color: rgb(250, 49, 80);
       background-color: #fff;
       border: 1px solid rgb(250, 49, 80);
-      border-radius: 0.1rem;
+      border-radius: 0.2rem;
       padding: .5rem 2rem;
       font-size: 1rem;
       cursor: pointer;
@@ -82,7 +76,7 @@
     background-color: rgb(250, 49, 80);
     color: #fff;
     border: 1px solid rgb(250, 49, 80);
-    border-radius: 0.1rem;
+    border-radius: 0.2rem;
     padding: .5rem 2rem;
     font-size: 1rem;
     cursor: pointer;
