@@ -1,23 +1,28 @@
 import React from 'react'
-import productImg from '../../assets/placeholders/270x295.svg'
-import tshirt from '../../assets/tshirts/t-shirt-red.jpeg'
-import img from '../../assets/images/p1.webp'
 import './Products.module.scss'
 import { MdAddShoppingCart } from 'react-icons/md'
+import { Link } from 'react-router-dom'
 
-const ProductCard = () => {
+const ProductCard = ({ product }) => {
+
+
+  
+
   return (
     
     <div className="product_item">
-      <div className="product_img">
-        <img src={img} alt="" />
-      </div>
-      <h3 className="product_name">First product</h3>
-      <span className="product_category">Category</span>
+      <Link to={`/productDetails/${product.id}`}>
+        <div className="product_img">
+          <img src={product.imageURL} alt={product.name} />
+        </div>
+        <h3 className="product_name">{product.name}</h3>
+        <span className="product_category">Category</span>
+        
+      </Link>
       <div className="product_card-bottom">
-        <span className="product_price">$ 10</span>
-        <button className="product_btn"><MdAddShoppingCart className='fa-shopping-cart'/></button>
-      </div>
+          <span className="product_price">{product.price} kr</span>
+          <button className="product_btn"><MdAddShoppingCart className='fa-shopping-cart'/></button>
+        </div>
     </div>
   )
 }

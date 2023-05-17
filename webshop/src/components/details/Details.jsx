@@ -2,6 +2,11 @@ import { useState } from 'react'
 import detailsImg from '../../assets/placeholders/501x430.svg'
 import styles from './Details.module.scss'
 import { MdOutlineAddShoppingCart } from 'react-icons/md'
+import Carousel from '../../components/slider/Carousel'
+import SmallIcons from '../../components/smallIcons/SmallIcons'
+import Loader from '../../components/loader/Loader'
+import useDoc from '../../hooks/useDoc.jsx'
+import { useParams } from 'react-router-dom'
 
 const QuantityButton = () => {
   const [quantity, setQuantity] = useState(0)
@@ -49,11 +54,23 @@ const SizeDropdown = () => {
 }
 
 const Details = () => {
+
+  const { id } = useParams()
+  const { data : product, error, loading } = useDoc('products', id)
+console.log(product)
+  if(!product) return (
+    <div>
+      { loading && <Loader />}
+      { error && <p>{error}</p>}
+    </div>
+  )
+
+
   return (
     <>
       <div className={styles['container-details']}>
-        <div className="imgBox">
-          <img src={detailsImg} alt="" />
+        <div className={styles['imgBox']}>
+          <img src={product.imageURL} alt="" />
         </div>
         <div className={styles['textContainer']}>
           <div className={styles['detailsTextInfo']}>
@@ -61,13 +78,10 @@ const Details = () => {
           </div>
           <div className={styles['text-box']}>
             <p className={styles['detailsTextInfo']}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-              voluptatum, quibusdam, quia, quos voluptates voluptatibus
-              voluptatibus voluptatibus voluptatibus voluptatibus voluptatibus
-              voluptatibus voluptatibus voluptatibus voluptatibus voluptatibus
+              {product.description}
             </p>
           </div>
-          <p className={styles['price']}>$30</p>
+          <p className={styles['price']}>{product.price}</p>
           <div className={styles['dropDown-box']}>
             <SizeDropdown />
           </div>
@@ -83,7 +97,38 @@ const Details = () => {
             </div>
           </div>
         </div>
+        <div className="description_container">
+        <div className="description_box">
+          <div className="description_title">Description</div>
+            <a href="#related_products" className="related_product_btn">
+              Related Products
+            </a>
+        </div>
+        <div className="description_info">
+          <div className="product_details-info">
+            <div className="description_info_title">
+              <h4>Product Details</h4>
+            </div>
+            <div className="description_info_text">
+              {product.description}
+            </div>
+          </div>
+          <div className="description_img">
+            <img src={product.imageURL} alt={product.name} />
+          </div>
+        </div>
+        <section id="related_products" className="related_products">
+          <div className="related_products-title">
+            <h4>Related Products</h4>
+            <Carousel />
+          </div>
+        </section>
+        <div className="icon_boxes">
+          <SmallIcons />
+        </div>
       </div>
+      </div>
+      
     </>
   )
 }

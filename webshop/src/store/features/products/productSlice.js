@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+/* import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import productService from "./productsService";
 
 const initialState = {
@@ -7,24 +7,16 @@ const initialState = {
     loading: false
 }
 
-export const addProduct = createAsyncThunk('product-list/add', async (productData, thunkAPI) => {
-    try {
-        return await productService.createProduct(productData)
-    } catch (err) {
-        return thunkAPI.rejectWithValue(err.message)
-    }
-})
-
-export const getProducts = createAsyncThunk('product-list/getAll', async (_, thunkAPI) => {
+export const getProduct = createAsyncThunk('product/getSpecific', async (_, thunkAPI) => {
   try {
-      return await productService.getAllAsync('products')
+      return await productService.getSpecificAsync('product', )
   } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
   }
 })
 
-export const productListSlice = createSlice({
-    name: 'Product-list',
+export const productSlice = createSlice({
+    name: 'Product',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
@@ -58,4 +50,4 @@ export const productListSlice = createSlice({
     }
 })
 
-export default productListSlice.reducer
+export default productSlice.reducer */

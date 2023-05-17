@@ -8,7 +8,7 @@ import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
 import Admin from './pages/admin/Admin'
-import Add from './pages/admin/addProduct/AddProduct'
+import AddProduct from './pages/admin/addProduct/AddProduct'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
 
@@ -30,12 +30,13 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productDetails" element={<ProductDetails />} />
+          <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LogOut />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/add" element={<Add />} />
+          <Route path="/addProduct" element={<AddProduct />} />
         </Routes>
         <Subscription />
         <Footer />

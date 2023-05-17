@@ -1,5 +1,5 @@
 import { db } from "../../../firebase/utils"
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs, getDoc } from 'firebase/firestore';
 
 const createProduct = async (productData) => {
     const collectionRef = collection(db, 'products')
@@ -12,11 +12,32 @@ const createProduct = async (productData) => {
     
 }
 
+const getAllAsync = async (col) => {
+    const colRef = collection(db, col )
+    const querySnapshot = await getDocs(colRef)
+
+    const products = []
+    querySnapshot.forEach(doc => {
+        products.push({id: doc.id, ...doc.data()})
+    })
+    
+    return products
+}
+
+/* const getSpecificAsync = async (col, id) => {
+    const docRef = doc(db, col, id)
+    const docSnapshot = await getDoc(docRef)
+    return {id: docSnapshot.id, ...docSnapshot.data()}
+} */
+
+
 
 
 
 const productService = { 
-    createProduct
+    createProduct,
+    getAllAsync
+   
 }
 
 export default productService

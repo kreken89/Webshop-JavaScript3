@@ -1,8 +1,23 @@
-import React from 'react'
 import ProductCard from './ProductCard'
 import SmallHero from '../../components/smallHero/SmallHero'
 
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts } from '../../store/features/products/productListSlice'
+import Loader from '../../components/loader/Loader'
+
 const Products = () => {
+  
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [])
+
+  const { products, loading, error } = useSelector(state => state.productList)
+
+  
+
   return (
     <div className='products_container'>
         <SmallHero page="Products" description="Look your best!"/>
@@ -13,47 +28,13 @@ const Products = () => {
       </div>
 
         <div className="products-collection">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-
+            {loading && <Loader />}
+            {error && <p>{error}</p>}
+            {
+              products.map(product => <ProductCard key={product.id} product={product} />) 
+            }
+            
+            
         </div>
     </div>
   )
