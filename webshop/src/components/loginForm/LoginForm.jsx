@@ -3,11 +3,10 @@
 // import { FaGoogle } from 'react-icons/fa'
 // import {
 //   db,
-//   auth,
 //   signInWithGoogle,
 //   signInWithEmailAndPassword,
 // } from '../../firebase/utils'
-// import { doc, getDoc } from 'firebase/firestore'
+// import { doc, query, where, getDoc } from 'firebase/firestore'
 // import { initializeApp } from 'firebase/app'
 // import { firebaseConfig } from '../../firebase/config'
 
@@ -22,32 +21,37 @@
 //   const handleSubmit = async (e) => {
 //     e.preventDefault()
 //     try {
-//       await signInWithEmailAndPassword(email, password)
-//       const user = auth.currentUser
+//       const userCredential = await signInWithEmailAndPassword(email, password)
+//       const user = userCredential.user
+//       // 
+//       console.log(userCredential)
+
 //       console.log(email, password)
 //       if (user) {
-//         // const userRef = doc(db, 'users').doc(user.uid)
 //         const userRef = doc(db, 'users', user.uid)
 //         const userData = await getDoc(userRef)
-//         if (userData.exists()) {
-//           const userDataObj = userData.data()
-//           // console.log(userData.data())
-//           // setData({ id: userData.id, ...userData.data()})
-//           // Use the userDataObj for further processing or updating state
-//           userDataObj.uid = user.uid
-//           // in the parent component
+//         // if (userData.exists()) {
 
-//         } else {
-//           // User data does not exist
+//           console.log(userData.data())
+          
+//           // Retrieve all user data from Firestore
+//           const userQuery = query(
+//             collection(db, 'userData'), // Replace 'userData' with the collection name where the user data is stored
+//             where('userId', '==', user.uid) // Replace 'userId' with the field name that represents the user's ID
+//           )
+//           const userSnapshot = await getDocs(userQuery)
+//           const userDataArray = userSnapshot.docs.map((doc) => doc.data())
+//           console.log('User Data Array:', userDataArray)
+
+//           // Use userDataArray for further processing or updating state in the parent component
+//         // } 
+//       }else {
 //           console.log('User data not found')
 //         }
-//         return user
-//       }
 //     } catch (error) {
 //       const errorCode = error.code
 //       const errorMessage = error.message
 //       console.log(errorCode, errorMessage)
-//       // Handle the error message and display it to the user
 //       setError(errorMessage)
 //     }
 //   }
@@ -119,7 +123,9 @@
 
 // export default LoginForm
 
+
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
 import {
@@ -127,7 +133,14 @@ import {
   signInWithGoogle,
   signInWithEmailAndPassword,
 } from '../../firebase/utils'
-import { doc, query, where, getDoc } from 'firebase/firestore'
+import {
+  doc,
+  query,
+  where,
+  getDoc,
+  collection,
+  getDocs,
+} from 'firebase/firestore'
 import { initializeApp } from 'firebase/app'
 import { firebaseConfig } from '../../firebase/config'
 
@@ -138,37 +151,33 @@ const LoginForm = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const navigate = useNavigate() // Get the navigate function from the useNavigate hook
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       const userCredential = await signInWithEmailAndPassword(email, password)
-
       const user = userCredential.user
       console.log(userCredential)
-
       console.log(email, password)
       if (user) {
         const userRef = doc(db, 'users', user.uid)
         const userData = await getDoc(userRef)
-        // if (userData.exists()) {
+        console.log(userData.data())
 
-          console.log(userData.data())
-          
-          // Retrieve all user data from Firestore
-          const userQuery = query(
-            collection(db, 'userData'), // Replace 'userData' with the collection name where the user data is stored
-            where('userId', '==', user.uid) // Replace 'userId' with the field name that represents the user's ID
-          )
-          const userSnapshot = await getDocs(userQuery)
-          const userDataArray = userSnapshot.docs.map((doc) => doc.data())
-          console.log('User Data Array:', userDataArray)
+        const userQuery = query(
+          collection(db, 'userData'), // Replace 'userData' with the collection name where the user data is stored
+          where('userId', '==', user.uid) // Replace 'userId' with the field name that represents the user's ID
+        )
+        const userSnapshot = await getDocs(userQuery)
+        const userDataArray = userSnapshot.docs.map((doc) => doc.data())
+        console.log('User Data Array:', userDataArray)
 
-          // Use userDataArray for further processing or updating state in the parent component
-        // } 
-      }else {
-          console.log('User data not found')
-        }
+        // Redirect to the home page
+        navigate('/') // Replace '/' with the path of your home page
+      } else {
+        console.log('User data not found')
+      }
     } catch (error) {
       const errorCode = error.code
       const errorMessage = error.message
@@ -243,3 +252,4 @@ const LoginForm = () => {
 }
 
 export default LoginForm
+
