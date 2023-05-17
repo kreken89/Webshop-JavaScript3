@@ -161,6 +161,7 @@ const LoginForm = () => {
       console.log(userCredential)
       console.log(email, password)
       if (user) {
+        
         const userRef = doc(db, 'users', user.uid)
         const userData = await getDoc(userRef)
         console.log(userData.data())
@@ -174,8 +175,8 @@ const LoginForm = () => {
         console.log('User Data Array:', userDataArray)
 
         // Redirect to the home page
-        navigate('/') // Replace '/' with the path of your home page
       } else {
+        navigate('/') // Replace '/' with the path of your home page
         console.log('User data not found')
       }
     } catch (error) {

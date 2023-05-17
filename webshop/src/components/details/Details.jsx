@@ -3,9 +3,6 @@ import detailsImg from "../../assets/placeholders/501x430.svg";
 import styles from "./Details.module.scss"
 import {MdOutlineAddShoppingCart} from "react-icons/md"
 
-
-
-   
     
 const QuantityButton = () => {
     const [quantity, setQuantity] = useState(0)
