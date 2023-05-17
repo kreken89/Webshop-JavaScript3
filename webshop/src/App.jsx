@@ -25,7 +25,6 @@ const App = () => {
     <>
       <Router>
         <Header />
-        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
