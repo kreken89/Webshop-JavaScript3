@@ -30,10 +30,6 @@ const getAllAsync = async (col) => {
     return {id: docSnapshot.id, ...docSnapshot.data()}
 } */
 
-
-
-
-
 const productService = { 
     createProduct,
     getAllAsync

@@ -8,12 +8,14 @@
 @import './pages/login/Login.module.scss';
 @import './pages/register/Register.module.scss';
 @import './pages/admin/addProduct/AddProduct.module.scss';
+@import './components/details/ProductDetails.module.scss';
 
 // components
-@import './components/details/ProductDetails.module.scss';
+@import './components/details/Details.module.scss';
 @import './components/smallHero/smallHero.module.scss';
 @import './components/hero/Hero.scss';
 @import './components/bestCollection/BestCollection.module.scss';
+@import './components/bestCollection/BestCollectionCard.module.scss';
 @import './components/footer/Footer.module.scss';
 @import './components/campaign/Campaign.module.scss';
 @import './components/slider/Carousel.module.scss';
@@ -21,4 +23,4 @@
 @import './components/header/Header.module.scss';
 @import './components/registerForm/RegisterForm.module.scss';
 @import './components/loginForm/LoginForm.module.scss';
-@import './components/loader/Loader.scss'
+@import './components/loader/Loader.scss';

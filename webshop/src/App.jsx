@@ -1,3 +1,4 @@
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.scss'
 
@@ -18,10 +19,9 @@ import Footer from './components/footer/Footer'
 import Subscription from './components/subscribe/Subscription'
 import SmallHero from './components/smallHero/SmallHero'
 
-// Import firebase
-import { auth } from './firebase/utils'
-
 const App = () => {
+  
+
   return (
     <>
       <Router>

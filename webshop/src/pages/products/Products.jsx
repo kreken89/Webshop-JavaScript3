@@ -1,6 +1,5 @@
-import ProductCard from './ProductCard'
+import ProductCard from '../../components/productCard/ProductCard'
 import SmallHero from '../../components/smallHero/SmallHero'
-
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../store/features/products/productListSlice'
@@ -15,8 +14,6 @@ const Products = () => {
   }, [])
 
   const { products, loading, error } = useSelector(state => state.productList)
-
-  
 
   return (
     <div className='products_container'>

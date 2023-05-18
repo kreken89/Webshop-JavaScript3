@@ -1,12 +1,9 @@
 import React from 'react'
-import './Products.module.scss'
+import '../../pages/products/Products.module.scss'
 import { MdAddShoppingCart } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 const ProductCard = ({ product }) => {
-
-
-  
 
   return (
     

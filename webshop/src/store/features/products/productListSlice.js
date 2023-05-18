@@ -18,6 +18,7 @@ export const addProduct = createAsyncThunk('product-list/add', async (productDat
 export const getProducts = createAsyncThunk('product-list/getAll', async (_, thunkAPI) => {
   try {
       return await productService.getAllAsync('products')
+      return products.slice(0, count)
   } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
   }

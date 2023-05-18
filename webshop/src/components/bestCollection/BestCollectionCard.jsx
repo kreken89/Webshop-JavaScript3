@@ -1,20 +1,23 @@
 import React from 'react'
-import productImg from '../../assets/placeholders/270x295.svg'
-// import { motion } from 'framer-motion'
-import './BestCollection.module.scss'
 import { MdAddShoppingCart } from 'react-icons/md'
 
-const BestCollectionCard = () => {
+const BestCollectionCard = ({ product }) => {
+   if (!product || !product.imageURL) {
+     // Render fallback content or return null
+     return null
+   }
   return (
     <div className="product_item">
       <div className="product_img">
-        <img src={productImg} alt="" />
+        <img src={product.imageURL} alt={product.name} />
       </div>
-      <h3 className="product_name">First product</h3>
+      <h3 className="product_name">{product.name}</h3>
       <span className="product_category">Category</span>
       <div className="product_card-bottom">
-        <span className="product_price">$ 100</span>
-        <button className="product_btn"><MdAddShoppingCart/></button>
+        <span className="product_price">{product.price} kr</span>
+        <button className="product_btn">
+          <MdAddShoppingCart className="fa-shopping-cart" />
+        </button>
       </div>
     </div>
   )
