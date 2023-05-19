@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react'
 import Details from '../../components/details/Details'
 import Carousel from '../../components/slider/Carousel'
-
 
 const ProductDetails = () => {
   return (
