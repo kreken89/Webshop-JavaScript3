@@ -10,12 +10,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../store/features/products/productListSlice'
 
 const QuantityButton = () => {
-  const dispatch = useDispatch()
-  const { products, loading, error } = useSelector((state) => state.productList)
-
-  useEffect(() => {
-    dispatch(getProducts())
-  }, [dispatch])
 
   const [quantity, setQuantity] = useState(0)
 
@@ -122,7 +116,7 @@ const ProductDetails = () => {
             <h4>Description</h4>
           </div>
           <div className="description-content">
-            <p>{data.longDescription}</p>
+            <p>{data.description}</p>
           </div>
         </section>
 
