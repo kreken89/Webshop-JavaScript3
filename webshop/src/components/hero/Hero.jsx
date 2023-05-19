@@ -8,12 +8,12 @@ const Hero = ({ products }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       nextImage()
-    }, 3000)
+    }, 2000)
 
     return () => {
       clearInterval(interval)
     }
-  }, [])
+  }, [products])
 
   const previousImage = () => {
     setCurrentImageIndex((prevIndex) =>
@@ -22,8 +22,12 @@ const Hero = ({ products }) => {
   }
 
   const nextImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === products.length - 1 ? 0 : prevIndex + 1
+    setCurrentImageIndex((prevIndex) => {
+      // console.log(prevIndex);
+      if(prevIndex >= products.length - 1) return 0
+      else return prevIndex + 1
+    }
+      // prevIndex === products.length - 1 ? 0 : prevIndex + 1
     )
   }
 
@@ -31,6 +35,8 @@ const Hero = ({ products }) => {
   if (products.length === 0) {
     return null
   }
+  // console.log(products.length);
+  // console.log(currentImageIndex);
 
   const currentProduct = products[currentImageIndex]
   const imageURL = currentProduct ? currentProduct.imageURL : ''
