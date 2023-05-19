@@ -127,7 +127,7 @@ const ProductDetails = () => {
           </div>
         </section>
 
-        {/* Other sections and components */}
+        <SmallIcons />
       </div>
     </>
   )
