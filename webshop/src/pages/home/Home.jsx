@@ -6,6 +6,7 @@ import BestCollection from '../../components/bestCollection/BestCollection'
 import Subscription from '../../components/subscribe/Subscription'
 import Campaign from '../../components/campaign/Campaign'
 import Carousel from '../../components/slider/Carousel'
+import ErrorBoundary from '../../components/errorBoundary/ErrorBoundary'
 
 
 const Home = () => {
@@ -18,7 +19,9 @@ const Home = () => {
 
   return (
     <div className="home_container">
-      <Hero products={products} />
+      <ErrorBoundary>
+        <Hero products={products} />
+      </ErrorBoundary>
       <div className="best_collection">
         <BestCollection products={products} />
       </div>
