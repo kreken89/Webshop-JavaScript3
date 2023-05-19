@@ -27,13 +27,13 @@ const Hero = ({ products }) => {
     )
   }
 
-  // Add a check for empty products array
+
   if (products.length === 0) {
-    return null // or return a loading state if desired
+    return null
   }
 
-  // Add a check for undefined imageURL
-  const imageURL = products[currentImageIndex]?.imageURL
+  const currentProduct = products[currentImageIndex]
+  const imageURL = currentProduct ? currentProduct.imageURL : ''
 
   return (
     <div className="container_hero">
@@ -43,7 +43,7 @@ const Hero = ({ products }) => {
         </button>
         <div className="CTA">
           <span>WELCOME TO BMARKETO SHOP</span>
-          <h1>Exclusive Chair gold Collection.</h1>
+          <h1>Exclusive Sneakers gold Collection.</h1>
           <a href="#best_collection" className="btn btn-cta">
             SHOP NOW
           </a>

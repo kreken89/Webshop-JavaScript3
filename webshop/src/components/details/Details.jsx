@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import styles from '../../components/details/Details.module.css'
+// import styles from '../../components/details/Details.module.css'
 import { MdOutlineAddShoppingCart } from 'react-icons/md'
 import Carousel from '../../components/slider/Carousel'
 import SmallIcons from '../../components/smallIcons/SmallIcons'
@@ -80,8 +80,8 @@ const Details = () => {
   
   return (
     <>
-      <div className={styles['container-details']}>
-        <div className={styles['imgBox']}>
+      {/* <div className={styles['container-details']}>
+          <div className={styles['imgBox']}>
           <img src={data.imageURL} alt="" />
         </div>
         <div className={styles['textContainer']}>
@@ -107,7 +107,7 @@ const Details = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className="description_container">
         <div className="description_box">
