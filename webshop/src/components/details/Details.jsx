@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styles from '../../components/details/Details.module.css'
 import { MdOutlineAddShoppingCart } from 'react-icons/md'
-import Carousel from '../slider/Carousel'
+import Carousel from '../../components/slider/Carousel'
 import SmallIcons from '../../components/smallIcons/SmallIcons'
 import Loader from '../../components/loader/Loader'
 import useDoc from '../../hooks/useDoc'
 import { useParams } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProducts } from '../../store/features/products/productListSlice'
 
 const QuantityButton = () => {
   const [quantity, setQuantity] = useState(0)
@@ -59,6 +61,13 @@ const SizeDropdown = () => {
 const Details = () => {
   const { id } = useParams()
   const { data, error, loading } = useDoc('products', id)
+  const dispatch = useDispatch()
+  const productList = useSelector((state) => state.productList)
+  const { products } = productList
+
+  useEffect(() => {
+    dispatch(getProducts())
+  }, [dispatch])
 
   if (!data) {
     return (
@@ -68,7 +77,7 @@ const Details = () => {
       </div>
     )
   }
-
+  
   return (
     <>
       <div className={styles['container-details']}>
