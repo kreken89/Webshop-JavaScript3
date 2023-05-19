@@ -26,6 +26,7 @@ const LoginForm = () => {
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
   const navigate = useNavigate() // Get the navigate function from the useNavigate hook
+  // we need to use useEffect instead of useNavigate because we need to wait for the user to be logged in before redirecting them to the home page
 
   const handleSubmit = async (e) => {
     e.preventDefault()
