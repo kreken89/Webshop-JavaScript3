@@ -123,7 +123,7 @@ const Details = () => {
         <section id="related_products" className="related_products">
           <div className="related_products-title">
             <h4>Related Products</h4>
-            <Carousel products={[data, ...data.relatedProducts]} />
+            <Carousel products={[data, ...products]} />
           </div>
         </section>
 
