@@ -1,64 +1,99 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '../../firebase/utils'
-import { db } from '../../firebase/utils'
-import { collection, addDoc } from 'firebase/firestore'
+// import { createUserWithEmailAndPassword } from 'firebase/auth'
+// import { auth } from '../../firebase/utils'
+// import { db } from '../../firebase/utils'
+// import { collection, addDoc } from 'firebase/firestore'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import FormsBtn from '../loginForm/FormsBtn'
+import { FaGoogle } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { registerUser, setError } from '../../store/features/auth/authSlice'
 
 const RegisterForm = () => {
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [address, setAddress] = useState('')
-  const [city, setCity] = useState('')
-  const [postalCode, setPostalCode] = useState('')
-  const [phoneNumber, setPhoneNumber] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [passwordConfirm, setPasswordConfirm] = useState('')
+  const { user, loading, error } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
 
-  const handleRegister = async (e) => {
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    address: '',
+    city: '',
+    postalCode: '',
+    phoneNumber: '',
+    email: '',
+    password: '',
+    passwordConfirm: '',
+  })
+
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setFormData((data) => ({ ...data, [id]: value }))
+  }
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-
-    if (password !== passwordConfirm) {
-      alert('Passwords do not match')
+    if (formData.password !== formData.passwordConfirm) {
+      dispatch(setError('Passwords do not match'))
       return
     }
-
-    try {
-      const { user } = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      )
-
-      console.log(user)
-
-      const userData = {
-        firstName,
-        lastName,
-        email,
-        city,
-        address,
-        postalCode,
-        phoneNumber,
-      }
-
-      // Save userData to Firestore
-      const docRef = await addDoc(collection(db, 'users'), userData)
-      console.log('User document written with ID: ', docRef.id)
-
-      // Save userData to Firebase database or Firestore
-      console.log(userData)
-
-      // Optionally, you can redirect the user to another page
-      // after successful registration
-      // history.push('/dashboard');
-    } catch (error) {
-      console.log(error)
-    }
+    console.log(formData)
+    dispatch(registerUser(formData))
   }
+
+  // const [firstName, setFirstName] = useState('')
+  // const [lastName, setLastName] = useState('')
+  // const [address, setAddress] = useState('')
+  // const [city, setCity] = useState('')
+  // const [postalCode, setPostalCode] = useState('')
+  // const [phoneNumber, setPhoneNumber] = useState('')
+  // const [email, setEmail] = useState('')
+  // const [password, setPassword] = useState('')
+  // const [passwordConfirm, setPasswordConfirm] = useState('')
+
+  // const handleRegister = async (e) => {
+  //   e.preventDefault()
+
+  //   if (password !== passwordConfirm) {
+  //     alert('Passwords do not match')
+  //     return
+  //   }
+
+  //   try {
+  //     const { user } = await createUserWithEmailAndPassword(
+  //       auth,
+  //       email,
+  //       password
+  //     )
+
+  //     console.log(user)
+
+  //     const userData = {
+  //       firstName,
+  //       lastName,
+  //       email,
+  //       city,
+  //       address,
+  //       postalCode,
+  //       phoneNumber,
+  //     }
+
+  //     // Save userData to Firestore
+  //     const docRef = await addDoc(collection(db, 'users'), userData)
+  //     console.log('User document written with ID: ', docRef.id)
+
+  //     // Save userData to Firebase database or Firestore
+  //     console.log(userData)
+
+  //     // Optionally, you can redirect the user to another page
+  //     // after successful registration
+  //     // history.push('/dashboard');
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
   return (
     <section className="register-wrap">
-      <form onSubmit={handleRegister} className="contact-form">
+      <form onSubmit={handleSubmit} className="contact-form">
         <div className="user-details">
           <div className="input-box">
             <label htmlFor="firstName">
@@ -68,8 +103,8 @@ const RegisterForm = () => {
               type="text"
               id="firstName"
               className="form-control"
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              value={formData.firstName}
+              onChange={handleChange}
             />
 
             <label htmlFor="lastName">
@@ -79,8 +114,8 @@ const RegisterForm = () => {
               type="text"
               id="lastName"
               className="form-control"
-              value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              value={formData.lastName}
+              onChange={handleChange}
             />
 
             <label htmlFor="address">
@@ -90,8 +125,8 @@ const RegisterForm = () => {
               type="text"
               id="address"
               className="form-control"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              value={formData.address}
+              onChange={handleChange}
             />
 
             <label htmlFor="city">
@@ -101,23 +136,21 @@ const RegisterForm = () => {
               type="text"
               id="city"
               className="form-control"
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
+              value={formData.city}
+              onChange={handleChange}
             />
 
             <label htmlFor="postal_code">
-              Postal Code <span className="required">*</span>
+              Postal Code <span>*</span>
             </label>
             <input
               type="text"
               id="postal_code"
               className="form-control"
-              value={postalCode}
-              onChange={(e) => setPostalCode(e.target.value)}
+              value={formData.postalCode}
+              onChange={handleChange}
             />
-          </div>
 
-          <div className="input-box">
             <label htmlFor="phoneNumber">
               Phone Number <span></span>
             </label>
@@ -125,10 +158,12 @@ const RegisterForm = () => {
               type="text"
               id="phoneNumber"
               className="form-control"
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
+              value={formData.phoneNumber}
+              onChange={handleChange}
             />
+          </div>
 
+          <div className="input-box">
             <label htmlFor="email">
               Your Email <span className="required">*</span>
             </label>
@@ -136,8 +171,8 @@ const RegisterForm = () => {
               type="email"
               id="email"
               className="form-control"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={formData.email}
+              onChange={handleChange}
               required
             />
 
@@ -148,8 +183,8 @@ const RegisterForm = () => {
               type="password"
               id="password"
               className="form-control"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formData.password}
+              onChange={handleChange}
               required
             />
 
@@ -160,17 +195,28 @@ const RegisterForm = () => {
               type="password"
               id="passwordConfirm"
               className="form-control"
-              value={passwordConfirm}
-              onChange={(e) => setPasswordConfirm(e.target.value)}
+              value={formData.passwordConfirm}
+              onChange={handleChange}
               required
             />
+
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
 
             <button type="submit" className="btn btn-primary">
               Register
             </button>
+
+            <div className="social_login">
+              <h3>Login with Google</h3>
+              <FormsBtn className="social_login_btn">
+                <FaGoogle />
+              </FormsBtn>
+            </div>
             <div>
               <p>
-                You already have an account? / <a href="/login">Login here</a>
+                You already have an account? /{' '}
+                <Link to="/login">Login here</Link>
               </p>
             </div>
           </div>

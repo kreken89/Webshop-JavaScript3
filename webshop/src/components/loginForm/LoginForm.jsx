@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
@@ -22,6 +22,22 @@ import { firebaseConfig } from '../../firebase/config'
 const app = initializeApp(firebaseConfig)
 
 const LoginForm = () => {
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+  })
+
+  const handleChange = (e) => {
+    const { id, value } = e.target
+    setFormData((data) => ({ ...data, [id]: value }))
+  }
+
+
+
+
+
+
+
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
@@ -62,14 +78,14 @@ const LoginForm = () => {
     }
   }
 
-  const handleChange = (e) => {
-    const { id, value } = e.target
-    if (id === 'email') {
-      setEmail(value)
-    } else if (id === 'password') {
-      setPassword(value)
-    }
-  }
+  // const handleChange = (e) => {
+  //   const { id, value } = e.target
+  //   if (id === 'email') {
+  //     setEmail(value)
+  //   } else if (id === 'password') {
+  //     setPassword(value)
+  //   }
+  // }
 
   return (
     <section className="login-wrap">
@@ -84,7 +100,7 @@ const LoginForm = () => {
               type="email"
               id="email"
               className="form-control"
-              value={email}
+              value={formData.email}
               onChange={handleChange}
               required
             />
@@ -96,21 +112,11 @@ const LoginForm = () => {
               type="password"
               id="password"
               className="form-control"
-              value={password}
+              value={formData.password}
               onChange={handleChange}
               required
             />
           </div>
-        </div>
-        <div className="terms">
-          <input type="checkbox" />
-          <label htmlFor=""> Please keep me logged in /</label>
-          <a href="#"> Forgot Your Password ?</a>
-          <br />
-          <br />
-          <p>
-            You don't have an account? / <a href="/register">Register here</a>
-          </p>
         </div>
 
         <button type="submit" className="submit-btn">
@@ -121,6 +127,16 @@ const LoginForm = () => {
           <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
             <FaGoogle />
           </FormsBtn>
+        </div>
+        <div className="terms">
+          <input type="checkbox" />
+          <label htmlFor=""> Please keep me logged in /</label>
+          <a href="#"> Forgot Your Password ?</a>
+          <br />
+          <br />
+          <p>
+            You don't have an account? / <a href="/register">Register here</a>
+          </p>
         </div>
       </form>
     </section>
