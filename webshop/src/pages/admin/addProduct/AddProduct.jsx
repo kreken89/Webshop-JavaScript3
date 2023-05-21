@@ -1,8 +1,18 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../store/features/products/productListSlice'
+import { Navigate } from 'react-router-dom'
 
 const AddProduct = () => {
+  
+  const { user } = useSelector(state => state.auth)
+
+  if (!user) {
+    return (
+      <Navigate to="/login" replace />
+    )
+  }
+
   const dispatch = useDispatch()
   const [productData, setProductData] = useState({
     name: '',

@@ -1,27 +1,15 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom' // Import the useNavigate hook
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginUser, setError } from '../../store/features/auth/authSlice'
 import FormsBtn from './FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
-import {
-  db,
-  signInWithGoogle,
-  signInWithEmailAndPassword,
-} from '../../firebase/utils'
-import {
-  doc,
-  query,
-  where,
-  getDoc,
-  collection,
-  getDocs,
-} from 'firebase/firestore'
-import { initializeApp } from 'firebase/app'
-import { firebaseConfig } from '../../firebase/config'
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig)
 
 const LoginForm = () => {
+  const navigate = useNavigate()
+
+  const { user, loading, error } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -32,59 +20,29 @@ const LoginForm = () => {
     setFormData((data) => ({ ...data, [id]: value }))
   }
 
-
-
-
-
-
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState(null)
-  const navigate = useNavigate() // Get the navigate function from the useNavigate hook
-  // we need to use useEffect instead of useNavigate because we need to wait for the user to be logged in before redirecting them to the home page
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      const userCredential = await signInWithEmailAndPassword(email, password)
-      const user = userCredential.user
-      console.log(userCredential)
-      console.log(email, password)
-      if (user) {
-        
-        const userRef = doc(db, 'users', user.uid)
-        const userData = await getDoc(userRef)
-        console.log(userData.data())
-
-        const userQuery = query(
-          collection(db, 'userData'), // Replace 'userData' with the collection name where the user data is stored
-          where('userId', '==', user.uid) // Replace 'userId' with the field name that represents the user's ID
-        )
-        const userSnapshot = await getDocs(userQuery)
-        const userDataArray = userSnapshot.docs.map((doc) => doc.data())
-        console.log('User Data Array:', userDataArray)
-
-        // Redirect to the home page
-      } else {
-        navigate('/') // Replace '/' with the path of your home page
-        console.log('User data not found')
-      }
-    } catch (error) {
-      const errorCode = error.code
-      const errorMessage = error.message
-      console.log(errorCode, errorMessage)
-      setError(errorMessage)
+    if (
+      formData.email !== formData.email ||
+      formData.password !== formData.password
+    ) {
+      dispatch(setError('Email or password is incorrect, please try again!'))
+      return
     }
+    await dispatch(loginUser(formData))
   }
 
-  // const handleChange = (e) => {
-  //   const { id, value } = e.target
-  //   if (id === 'email') {
-  //     setEmail(value)
-  //   } else if (id === 'password') {
-  //     setPassword(value)
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   if (
+  //     formData.email !== formData.email ||
+  //     formData.password !== formData.password
+  //   ) {
+  //     dispatch(setError('Email or password is incorrect, please try again!'))
+  //     return
   //   }
+  //   await dispatch(loginUser(formData))
+  //   navigate('/admin')
   // }
 
   return (
@@ -119,23 +77,27 @@ const LoginForm = () => {
           </div>
         </div>
 
+        {loading && <p>Loading...</p>}
+        {error && <p>{error}</p>}
+
         <button type="submit" className="submit-btn">
           Login
         </button>
         <div className="social_login">
           <h3>Login with Google</h3>
-          <FormsBtn onClick={signInWithGoogle} className="social_login_btn">
+          <FormsBtn className="social_login_btn">
             <FaGoogle />
           </FormsBtn>
         </div>
         <div className="terms">
           <input type="checkbox" />
           <label htmlFor=""> Please keep me logged in /</label>
-          <a href="#"> Forgot Your Password ?</a>
+          <Link to="#"> Forgot Your Password ?</Link>
           <br />
           <br />
           <p>
-            You don't have an account? / <a href="/register">Register here</a>
+            You don't have an account? /{' '}
+            <Link to="/register">Register here</Link>
           </p>
         </div>
       </form>
@@ -144,4 +106,3 @@ const LoginForm = () => {
 }
 
 export default LoginForm
-

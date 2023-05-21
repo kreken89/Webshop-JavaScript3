@@ -3,7 +3,7 @@ import styles from './Header.module.scss'
 import logo from '../../assets/placeholders/Logo.svg'
 import { Link, NavLink } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
-import { auth } from '../../firebase/utils'
+import { auth } from '../../firebase/config'
 import { handleLogout } from '../../pages/login/LogOut'
 
 const Header = () => {

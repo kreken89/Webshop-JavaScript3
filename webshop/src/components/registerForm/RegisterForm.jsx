@@ -1,6 +1,5 @@
 // import { createUserWithEmailAndPassword } from 'firebase/auth'
-// import { auth } from '../../firebase/utils'
-// import { db } from '../../firebase/utils'
+// import { auth, db } from '../../firebase/config'
 // import { collection, addDoc } from 'firebase/firestore'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -36,7 +35,6 @@ const RegisterForm = () => {
       dispatch(setError('Passwords do not match'))
       return
     }
-    console.log(formData)
     dispatch(registerUser(formData))
   }
 
@@ -141,7 +139,7 @@ const RegisterForm = () => {
             />
 
             <label htmlFor="postal_code">
-              Postal Code <span>*</span>
+              Postal Code <span></span>
             </label>
             <input
               type="text"
