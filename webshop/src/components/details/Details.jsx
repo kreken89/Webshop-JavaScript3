@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-// import styles from '../../components/details/Details.module.css'
+import styles from '../../components/details/Details.module.css'
 import { MdOutlineAddShoppingCart } from 'react-icons/md'
 import Carousel from '../../components/slider/Carousel'
 import SmallIcons from '../../components/smallIcons/SmallIcons'
@@ -8,6 +8,8 @@ import useDoc from '../../hooks/useDoc'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProducts } from '../../store/features/products/productListSlice'
+import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
+
 
 const QuantityButton = () => {
   const [quantity, setQuantity] = useState(0)
@@ -53,10 +55,11 @@ const SizeDropdown = () => {
         <option value="M">M</option>
         <option value="L">L</option>
       </select>
-      <p className={styles['size-selector']}>{selectedSize}</p>
+      <p className={'size-selector'}>{selectedSize}</p>
     </>
   )
 }
+
 
 const Details = () => {
   const { id } = useParams()
@@ -80,34 +83,34 @@ const Details = () => {
   
   return (
     <>
-      {/* <div className={styles['container-details']}>
-          <div className={styles['imgBox']}>
+      <div className='container-details'>
+          <div className='imgBox'>
           <img src={data.imageURL} alt="" />
         </div>
-        <div className={styles['textContainer']}>
-          <div className={styles['detailsTextInfo']}>
+        <div className='textContainer'>
+          <div className='detailsTextInfo'>
             <h2>{data.name}</h2>
           </div>
-          <div className={styles['text-box']}>
-            <p className={styles['detailsTextInfo']}>{data.description}</p>
+          <div className='text-box'>
+            <p className='detailsTextInfo'>{data.description}</p>
           </div>
-          <p className={styles['price']}>{data.price}</p>
-          <div className={styles['dropDown-box']}>
+          <p className='price'>{data.price}</p>
+          <div className='dropDown-box'>
             <SizeDropdown />
           </div>
-          <div className={styles['cart-bnt-box']}>
-            <div className={styles['quantityButton']}>
+          <div className='cart-bnt-box'>
+            <div className='quantityButton'>
               <QuantityButton />
-              <button className={styles['addToCart-bnt']}>
+              <button className='addToCart-bnt' onClick={ () => dispatch(addToCart(data))}>
                 Add to Cart{' '}
                 <MdOutlineAddShoppingCart
-                  className={styles['fa-shopping-cart']}
+                  className='fa-shopping-cart'
                 />
               </button>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
 
       <div className="description_container">
         <div className="description_box">

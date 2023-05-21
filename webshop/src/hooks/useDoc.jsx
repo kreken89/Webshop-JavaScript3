@@ -23,7 +23,7 @@ export const useDoc = (collection, id) => {
         setLoading(false)
     }
     getDocAsync()
-  }, [])
+  }, [id])
   
   
     return {data, error, loading}
