@@ -1,7 +1,7 @@
 // import { createUserWithEmailAndPassword } from 'firebase/auth'
 // import { auth, db } from '../../firebase/config'
 // import { collection, addDoc } from 'firebase/firestore'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import FormsBtn from '../loginForm/FormsBtn'
 import { FaGoogle } from 'react-icons/fa'
@@ -9,8 +9,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { registerUser, setError } from '../../store/features/auth/authSlice'
 
 const RegisterForm = () => {
-  const { user, loading, error } = useSelector((state) => state.auth)
+  const { user, loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const [submitted, setSubmitted] = useState(false)
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -29,14 +30,21 @@ const RegisterForm = () => {
     setFormData((data) => ({ ...data, [id]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.password !== formData.passwordConfirm) {
       dispatch(setError('Passwords do not match'))
       return
     }
-    dispatch(registerUser(formData))
+    await dispatch(registerUser(formData))
+    setSubmitted(true)
   }
+
+  useEffect(() => {
+    if (submitted && user) {
+      navigate('/')
+    }
+  }, [submitted, user])
 
   // const [firstName, setFirstName] = useState('')
   // const [lastName, setLastName] = useState('')

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginUser, setError } from '../../store/features/auth/authSlice'
@@ -10,6 +10,8 @@ const LoginForm = () => {
 
   const { user, loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  const [submitted, setSubmitted] = useState(false)
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -30,7 +32,14 @@ const LoginForm = () => {
       return
     }
     await dispatch(loginUser(formData))
+    setSubmitted(true)
   }
+
+  useEffect(() => {
+    if (submitted && user) {
+      navigate('/')
+    }
+  }, [submitted, user])
 
   return (
     <section className="login-wrap">

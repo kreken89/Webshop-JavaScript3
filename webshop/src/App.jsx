@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import './App.scss'
 
@@ -17,15 +17,37 @@ import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
 import Admin from './pages/admin/Admin'
 import AddProduct from './pages/admin/addProduct/AddProduct'
 
-
 // Components
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
 import Subscription from './components/subscribe/Subscription'
 import SmallHero from './components/smallHero/SmallHero'
 
+// Firebase
+import { onAuthStateChanged } from 'firebase/auth'
+import { auth } from './firebase/config'
+import { useDispatch } from 'react-redux'
+import { authReady } from './store/features/auth/authSlice'
+
 const App = () => {
+
+  const dispatch = useDispatch()
   
+  useEffect(() => {
+    onAuthStateChanged(auth, (_user) => {
+     console.log(_user)
+     let user = null
+
+     if(_user){
+      user = {
+        uid: _user.uid,
+        email: _user.email,
+      }
+     }
+
+     dispatch(authReady(user))
+    })
+  }, [])
 
   return (
     <>

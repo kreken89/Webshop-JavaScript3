@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginAdmin, setError } from '../../../store/features/auth/authSlice'
@@ -7,8 +7,9 @@ import { FaGoogle } from 'react-icons/fa'
 const LoginAdmin = () => {
   const navigate = useNavigate()
 
-  const { user, loading, error } = useSelector((state) => state.auth)
+  const { user, loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,16 +22,15 @@ const LoginAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (
-      formData.email !== formData.email ||
-      formData.password !== formData.password
-    ) {
-      dispatch(setError('Email or password is incorrect, please try again!'))
-      return
-    }
     await dispatch(loginAdmin(formData))
-    navigate('/admin-panel')
+    setSubmitted(true)
   }
+
+  useEffect(() => {
+    if (submitted && user) {
+      navigate('/admin-panel')
+    }
+  }, [submitted, user])
 
   return (
     <div className="login_sign_container">
@@ -39,7 +39,6 @@ const LoginAdmin = () => {
           <div className="login_container">
             <h2>Administrator login</h2>
           </div>
-          {error && <p className="error">{error}</p>}
           <div className="user-details">
             <div className="input-box">
               <label htmlFor="email">

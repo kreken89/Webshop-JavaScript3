@@ -7,7 +7,6 @@ const adminPanel = () => {
         <h2>Welcome to Admin Panel</h2>
         <div className="info_login"></div>
         <hr />
-        
       </div>
     </div>
   )

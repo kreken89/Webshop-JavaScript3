@@ -1,13 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { registerAdmin, setError } from '../../../store/features/auth/authSlice'
 
 const registerAdminPage = () => {
-  const { user, loading, error } = useSelector((state) => state.auth)
+  const { user, loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
-
+  const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -19,14 +19,21 @@ const registerAdminPage = () => {
     setFormData((data) => ({ ...data, [id]: value }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (formData.password !== formData.passwordConfirm) {
       dispatch(setError('Passwords do not match'))
       return
     }
-    dispatch(registerAdmin(formData))
+    await dispatch(registerAdmin(formData))
+    setSubmitted(true)
   }
+
+  useEffect(() => {
+    if (submitted && user) {
+      navigate('/admin-panel')
+    }
+  }, [submitted, user])
 
   return (
     <div className="login_sign_container">
