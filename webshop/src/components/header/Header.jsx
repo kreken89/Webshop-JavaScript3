@@ -1,20 +1,27 @@
-import React, { useState, useEffect } from 'react'
-import styles from './Header.module.scss'
-import logo from '../../assets/placeholders/Logo.svg'
-import { Link, NavLink } from 'react-router-dom'
-import { FaShoppingCart } from 'react-icons/fa'
-import { auth } from '../../firebase/utils'
-import { handleLogout } from '../../pages/login/LogOut'
+import React, { useState, useEffect } from 'react';
+import logo from '../../assets/placeholders/Logo.svg';
+import { Link, NavLink } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import { auth } from '../../firebase/utils';
+import { handleLogout } from '../../pages/login/LogOut';
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const { totalQuantity } = useSelector(state => state.shoppingCart);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsAuthenticated(user !== null)
-    })
-    return unsubscribe
-  }, [])
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      setIsAuthenticated(user !== null);
+    });
+    return unsubscribe;
+  }, []);
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   return (
     <header>
@@ -56,16 +63,32 @@ const Header = () => {
                 </li>
               </>
             )}
+            <li className="nav-item dropdown">
+              <span
+                className="nav-link"
+                role="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#cartDropdown"
+                aria-expanded={isCartOpen ? 'true' : 'false'}
+                onClick={toggleCart}
+              >
+                <FaShoppingCart />
+                {totalQuantity > 0 && (
+                  <span className='position-absolut start-100 translate-middle badge rounded-pill bg-danger'>{totalQuantity}</span>
+                )}
+              </span>
+              <div
+                id="cartDropdown"
+                className={`dropdown-menu dropdown-menu-end shopping-cart ${isCartOpen ? 'show' : ''}`}
+              >
+                <ShoppingCart />
+              </div>
+            </li>
           </ul>
-          <span className={styles.cart}>
-            <Link to="/cart">
-              <FaShoppingCart />
-            </Link>
-          </span>
         </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
