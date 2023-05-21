@@ -32,19 +32,6 @@ const LoginForm = () => {
     await dispatch(loginUser(formData))
   }
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault()
-  //   if (
-  //     formData.email !== formData.email ||
-  //     formData.password !== formData.password
-  //   ) {
-  //     dispatch(setError('Email or password is incorrect, please try again!'))
-  //     return
-  //   }
-  //   await dispatch(loginUser(formData))
-  //   navigate('/admin')
-  // }
-
   return (
     <section className="login-wrap">
       <form onSubmit={handleSubmit} className="contact-form">

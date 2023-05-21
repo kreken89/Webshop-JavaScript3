@@ -1,14 +1,19 @@
 // pages
 @import './pages/cart/Cart.module.scss';
-@import './pages/admin/Admin.module.scss';
 @import './pages/home/Home.module.scss';
 @import './pages/orderHistory/orderHistory.module.scss';
 @import './pages/contact/Contact.module.scss';
 @import './pages/products/Products.module.scss';
 @import './pages/login/Login.module.scss';
 @import './pages/register/Register.module.scss';
-@import './pages/admin/addProduct/AddProduct.module.scss';
 // @import './components/details/ProductDetails.module.scss';
+
+// admin pages
+@import './pages/admin/Admin.module.scss';
+@import './pages/admin/addProduct/AddProduct.module.scss';
+@import './pages/admin/loginAdmin/LoginAdmin.module.scss';
+@import './pages/admin/registerAdmin/RegisterAdmin.module.scss';
+
 
 // components
 @import './components/details/Details.module.scss';

@@ -11,7 +11,6 @@ const Login = () => {
           <span>Please Login to Your Account</span>
         </div>
         <LoginForm />
-        {/* <LoginForm onGoogleSignIn={handleGoogleSignIn} onClick={handleLogin} /> */}
       </div>
     </div>
   )
