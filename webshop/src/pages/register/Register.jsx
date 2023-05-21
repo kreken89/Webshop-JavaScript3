@@ -1,7 +1,6 @@
 import React from 'react'
 import RegisterForm from '../../components/registerForm/RegisterForm'
 
-
 const register = () => {
   return (
     <div className="register_container">

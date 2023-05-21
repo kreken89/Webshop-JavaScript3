@@ -50,6 +50,7 @@
   }
   .social_login {
     margin: 1rem 0;
+
     .social_login_btn {
       margin-top: 0.5rem;
       width: 100%;
@@ -62,13 +63,12 @@
       cursor: pointer;
       transition: all 0.3s ease-in-out;
     }
-  
+
     .social_login_btn:hover {
       background-color: rgb(250, 49, 80);
       color: #fff;
     }
   }
-  
 
   .submit-btn {
     width: 100%;

@@ -34,22 +34,15 @@
       }
 
       .terms {
-        display: inline-block;
-        width: calc(200%);
-
-        input {
-          height: 1rem;
-          margin-top: 1rem;
-          padding-right: 0.5rem;
-        }
         p {
-          font-size: 0.7rem;
+          margin-top: 1rem;
+          font-size: 1rem;
         }
       }
     }
   }
 
-  button {
+  .submit-btn{
     margin: 1rem 0;
     width: 100%;
     background-color: rgb(250, 49, 80);
@@ -63,9 +56,27 @@
     transition: all 0.3s ease-in-out;
   }
 
-  button:hover{
+  .submit-btn:hover{
     background-color: #fff;
     color: rgb(250, 49, 80);
 
   }
+
+  .social_login_btn {
+      margin-top: 0.5rem;
+      width: 100%;
+      color: rgb(250, 49, 80);
+      background-color: #fff;
+      border: 1px solid rgb(250, 49, 80);
+      border-radius: 0.2rem;
+      padding: .5rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .social_login_btn:hover {
+      background-color: rgb(250, 49, 80);
+      color: #fff;
+    }
 }

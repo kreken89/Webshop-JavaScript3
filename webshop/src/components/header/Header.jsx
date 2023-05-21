@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState, useEffect } from 'react';
 import logo from '../../assets/placeholders/Logo.svg';
 import { Link, NavLink } from 'react-router-dom';
@@ -22,6 +23,19 @@ const Header = () => {
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
+=======
+import styles from './Header.module.scss'
+import logo from '../../assets/placeholders/Logo.svg'
+import { Link, NavLink } from 'react-router-dom'
+import { FaShoppingCart } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../../store/features/auth/authSlice'
+
+const Header = () => {
+
+  const { user } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+>>>>>>> a7a6b45ce1978660894944f815b1f3a6f343d4f2
 
   return (
     <header>
@@ -42,15 +56,15 @@ const Header = () => {
             <li>
               <NavLink to="/contact">Contact</NavLink>
             </li>
-            {isAuthenticated ? (
+            {user ? (
               <>
                 <li>
-                  <NavLink onClick={() => handleLogout(history)}>
+                  <NavLink onClick={() => dispatch(logoutUser())}>
                     Logout
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/orders">My orders</NavLink>
+                  <NavLink to="/my-orders">My orders</NavLink>
                 </li>
               </>
             ) : (
