@@ -19,9 +19,33 @@ export const registerUser = createAsyncThunk(
   }
 )
 
+// registerAdmin
+export const registerAdmin = createAsyncThunk(
+  'auth/registerAdmin',
+  async (formData, thunkAPI) => {
+    try {
+      return await authService.signup(formData.email, formData.password)
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+    }
+  }
+)
+
 // loginUser
 export const loginUser = createAsyncThunk(
   'auth/login',
+  async (formData, thunkAPI) => {
+    try {
+      return await authService.login(formData.email, formData.password)
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+    }
+  }
+)
+
+// loginUser
+export const loginAdmin = createAsyncThunk(
+  'auth/loginAdmin',
   async (formData, thunkAPI) => {
     try {
       return await authService.login(formData.email, formData.password)
@@ -67,6 +91,20 @@ export const authSlice = createSlice({
         state.error = action.payload.error
       })
 
+      // registerAdmin
+      .addCase(registerAdmin.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(registerAdmin.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.loading = false
+        state.error = null
+      })
+      .addCase(registerAdmin.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload.error
+      })
+
       // loginUser
       .addCase(loginUser.pending, (state) => {
         state.loading = true
@@ -77,6 +115,20 @@ export const authSlice = createSlice({
         state.error = null
       })
       .addCase(loginUser.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload.error
+      })
+
+      // loginAdmin
+      .addCase(loginAdmin.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(loginAdmin.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.loading = false
+        state.error = null
+      })
+      .addCase(loginAdmin.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload.error
       })

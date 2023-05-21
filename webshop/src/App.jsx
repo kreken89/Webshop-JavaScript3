@@ -8,10 +8,15 @@ import Products from './pages/products/Products'
 import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
-import Admin from './pages/admin/Admin'
-import AddProduct from './pages/admin/addProduct/AddProduct'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
+
+// Admin pages
+import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
+import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
+import Admin from './pages/admin/Admin'
+import AddProduct from './pages/admin/addProduct/AddProduct'
+
 
 // Components
 import Header from './components/header/Header'
@@ -35,9 +40,9 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LogOut />} />
-          <Route path="/login-admin" element={<Admin />} />
-          <Route path="/register-admin" element={<Admin />} />
-          {/* <Route path="/admin-panel" element={<Admin />} /> */}
+          <Route path="/login-admin" element={<LoginAdmin />} />
+          <Route path="/register-admin" element={<RegisterAdmin />} />
+          <Route path="/admin-panel" element={<Admin />} />
           <Route path="/addProduct" element={<AddProduct />} />
         </Routes>
         <Subscription />

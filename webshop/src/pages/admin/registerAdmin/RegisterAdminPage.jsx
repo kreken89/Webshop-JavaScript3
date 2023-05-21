@@ -1,17 +1,17 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { loginAdmin, setError } from '../../../store/features/auth/authSlice'
+import { Link } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { registerAdmin, setError } from '../../../store/features/auth/authSlice'
 
-const LoginAdmin = () => {
-  const navigate = useNavigate()
-
+const registerAdminPage = () => {
   const { user, loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    passwordConfirm: '',
   })
 
   const handleChange = (e) => {
@@ -19,17 +19,13 @@ const LoginAdmin = () => {
     setFormData((data) => ({ ...data, [id]: value }))
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault()
-    if (
-      formData.email !== formData.email ||
-      formData.password !== formData.password
-    ) {
-      dispatch(setError('Email or password is incorrect, please try again!'))
+    if (formData.password !== formData.passwordConfirm) {
+      dispatch(setError('Passwords do not match'))
       return
     }
-    await dispatch(loginAdmin(formData))
-    navigate('/admin-panel')
+    dispatch(registerAdmin(formData))
   }
 
   return (
@@ -37,7 +33,7 @@ const LoginAdmin = () => {
       <section className="login-wrap">
         <form onSubmit={handleSubmit} className="contact-form">
           <div className="login_container">
-            <h2>Administrator login</h2>
+            <h2>Register as an Administrator</h2>
           </div>
           {error && <p className="error">{error}</p>}
           <div className="user-details">
@@ -65,6 +61,18 @@ const LoginAdmin = () => {
                 onChange={handleChange}
                 required
               />
+
+              <label htmlFor="passwordConfirm">
+                Confirm Password <span className="required">*</span>
+              </label>
+              <input
+                type="password"
+                id="passwordConfirm"
+                className="form-control"
+                value={formData.passwordConfirm}
+                onChange={handleChange}
+                required
+              />
             </div>
           </div>
 
@@ -75,15 +83,14 @@ const LoginAdmin = () => {
             Login
           </button>
           <div className="social_login">
-            <h3>Login with Google</h3>
+            <h3>Register with Google</h3>
             <button className="social_login_btn">
               <FaGoogle />
             </button>
           </div>
           <div className="terms">
             <p>
-              You don't have an account? /{' '}
-              <Link to="/register-admin">Register here</Link>
+              Already administrator? / <Link to="/login-admin">Login here</Link>
             </p>
           </div>
         </form>
@@ -92,4 +99,4 @@ const LoginAdmin = () => {
   )
 }
 
-export default LoginAdmin
+export default registerAdminPage
