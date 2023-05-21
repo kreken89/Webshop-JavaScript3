@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginUser, setError } from '../../store/features/auth/authSlice'
-import FormsBtn from './FormsBtn'
-import { FaGoogle } from 'react-icons/fa'
+import {
+  loginUser,
+  setError,
+} from '../../store/features/auth/authSlice'
+import GoogleBtn from './GoogleBtn'
 
 const LoginForm = () => {
   const navigate = useNavigate()
@@ -81,9 +83,7 @@ const LoginForm = () => {
         </button>
         <div className="social_login">
           <h3>Login with Google</h3>
-          <FormsBtn className="social_login_btn">
-            <FaGoogle />
-          </FormsBtn>
+          <GoogleBtn className="social_login_btn" />
         </div>
         <div className="terms">
           <input type="checkbox" />

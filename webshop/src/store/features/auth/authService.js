@@ -1,8 +1,8 @@
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
+  signInWithEmailAndPassword, signInWithPopup, signOut
 } from 'firebase/auth'
-import { auth } from '../../../firebase/config'
+import { auth, googleProvider } from '../../../firebase/config'
 
 const signup = async (email, password) => {
   const userCredential = await createUserWithEmailAndPassword(
@@ -12,7 +12,7 @@ const signup = async (email, password) => {
   )
 
   const user = {
-    id: userCredential.user.uid,
+    uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
   return user
@@ -22,10 +22,14 @@ const login = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
   const user = {
-    id: userCredential.user.uid,
+    uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
   return user
+}
+
+const logout = async () => {
+  return await signOut(auth)
 }
 
 // login as admin
@@ -33,7 +37,7 @@ const loginAsAdmin = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
   const admin = {
-    id: userCredential.user.uid,
+    uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
   return admin
@@ -48,7 +52,7 @@ const signupAsAdmin = async (email, password) => {
   )
 
   const admin = {
-    id: userCredential.user.uid,
+    uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
   return admin
@@ -59,7 +63,19 @@ const subscribeToNewsletter = async (email) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email)
 
   const user = {
-    id: userCredential.user.uid,
+    uid: userCredential.user.uid,
+    email: userCredential.user.email,
+  }
+  return user
+}
+
+const signInWithGoogle = async () => {
+  const userCredential = await signInWithPopup(auth, googleProvider)
+  if(!userCredential.user) throw new Error('Google login failed')
+
+
+  const user = {
+    uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
   return user
@@ -68,9 +84,11 @@ const subscribeToNewsletter = async (email) => {
 const authService = {
   signup,
   login,
+  logout,
   signupAsAdmin,
   loginAsAdmin,
   subscribeToNewsletter,
+  signInWithGoogle,
 }
 
 export default authService

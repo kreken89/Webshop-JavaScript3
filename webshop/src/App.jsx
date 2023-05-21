@@ -10,12 +10,14 @@ import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
+import MyOrders from './pages/myOrders/MyOrders'
 
 // Admin pages
 import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
 import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
 import Admin from './pages/admin/Admin'
 import AddProduct from './pages/admin/addProduct/AddProduct'
+import Orders from './pages/admin/orders/Orders'
 
 // Components
 import Header from './components/header/Header'
@@ -26,11 +28,12 @@ import SmallHero from './components/smallHero/SmallHero'
 // Firebase
 import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/config'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { authReady } from './store/features/auth/authSlice'
 
 const App = () => {
 
+  const { authIsReady, router } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   
   useEffect(() => {
@@ -51,6 +54,8 @@ const App = () => {
 
   return (
     <>
+    {authIsReady ? (
+
       <Router>
         <Header />
         <Routes>
@@ -59,6 +64,7 @@ const App = () => {
           <Route path="/productDetails" element={<ProductDetails />} />
           <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/my-orders" element={<MyOrders />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LogOut />} />
@@ -66,11 +72,16 @@ const App = () => {
           <Route path="/register-admin" element={<RegisterAdmin />} />
           <Route path="/admin-panel" element={<Admin />} />
           <Route path="/addProduct" element={<AddProduct />} />
+          <Route path="/orders" element={<Orders />} />
         </Routes>
         <Subscription />
         <Footer />
       </Router>
+      
+      ) : null}
     </>
+    
+    
   )
 }
 

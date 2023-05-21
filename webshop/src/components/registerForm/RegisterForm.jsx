@@ -3,13 +3,12 @@
 // import { collection, addDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import FormsBtn from '../loginForm/FormsBtn'
-import { FaGoogle } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
 import { registerUser, setError } from '../../store/features/auth/authSlice'
+import GoogleBtn from '../loginForm/GoogleBtn'
 
 const RegisterForm = () => {
-  const { user, loading, error } = useSelector(state => state.auth)
+  const { user, loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const [submitted, setSubmitted] = useState(false)
 
@@ -46,57 +45,6 @@ const RegisterForm = () => {
     }
   }, [submitted, user])
 
-  // const [firstName, setFirstName] = useState('')
-  // const [lastName, setLastName] = useState('')
-  // const [address, setAddress] = useState('')
-  // const [city, setCity] = useState('')
-  // const [postalCode, setPostalCode] = useState('')
-  // const [phoneNumber, setPhoneNumber] = useState('')
-  // const [email, setEmail] = useState('')
-  // const [password, setPassword] = useState('')
-  // const [passwordConfirm, setPasswordConfirm] = useState('')
-
-  // const handleRegister = async (e) => {
-  //   e.preventDefault()
-
-  //   if (password !== passwordConfirm) {
-  //     alert('Passwords do not match')
-  //     return
-  //   }
-
-  //   try {
-  //     const { user } = await createUserWithEmailAndPassword(
-  //       auth,
-  //       email,
-  //       password
-  //     )
-
-  //     console.log(user)
-
-  //     const userData = {
-  //       firstName,
-  //       lastName,
-  //       email,
-  //       city,
-  //       address,
-  //       postalCode,
-  //       phoneNumber,
-  //     }
-
-  //     // Save userData to Firestore
-  //     const docRef = await addDoc(collection(db, 'users'), userData)
-  //     console.log('User document written with ID: ', docRef.id)
-
-  //     // Save userData to Firebase database or Firestore
-  //     console.log(userData)
-
-  //     // Optionally, you can redirect the user to another page
-  //     // after successful registration
-  //     // history.push('/dashboard');
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
   return (
     <section className="register-wrap">
       <form onSubmit={handleSubmit} className="contact-form">
@@ -209,17 +157,15 @@ const RegisterForm = () => {
             {loading && <p>Loading...</p>}
             {error && <p>{error}</p>}
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="submit-btn">
               Register
             </button>
 
             <div className="social_login">
               <h3>Login with Google</h3>
-              <FormsBtn className="social_login_btn">
-                <FaGoogle />
-              </FormsBtn>
+              <GoogleBtn className="social_login_btn" />
             </div>
-            <div>
+            <div className="terms">
               <p>
                 You already have an account? /{' '}
                 <Link to="/login">Login here</Link>

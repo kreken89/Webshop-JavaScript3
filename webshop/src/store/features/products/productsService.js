@@ -24,12 +24,6 @@ const getAllAsync = async (col) => {
     return products
 }
 
-/* const getSpecificAsync = async (col, id) => {
-    const docRef = doc(db, col, id)
-    const docSnapshot = await getDoc(docRef)
-    return {id: docSnapshot.id, ...docSnapshot.data()}
-} */
-
 const productService = { 
     createProduct,
     getAllAsync

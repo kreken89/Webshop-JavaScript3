@@ -5,6 +5,7 @@ const initialState = {
   user: null,
   loading: false,
   error: null,
+  authIsReady: false,
 }
 
 // registerUser
@@ -43,7 +44,19 @@ export const loginUser = createAsyncThunk(
   }
 )
 
-// loginUser
+// logoutUser
+export const logoutUser = createAsyncThunk(
+  'auth/logout',
+  async (_, thunkAPI) => {
+    try {
+      return await authService.logout()
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+    }
+  }
+)
+
+// loginAdmin
 export const loginAdmin = createAsyncThunk(
   'auth/loginAdmin',
   async (formData, thunkAPI) => {
@@ -67,6 +80,20 @@ export const subscribeUser = createAsyncThunk(
   }
 )
 
+// login with google
+export const signInWithGoogle = createAsyncThunk(
+  'auth/googleLogin',
+  async (_, thunkAPI) => {
+    try {
+      return await authService.signInWithGoogle()
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+    }
+  }
+)
+
+
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -76,6 +103,7 @@ export const authSlice = createSlice({
     },
     authReady: (state, action) => {
       state.user = action.payload
+      state.authIsReady = true
     }
   },
   extraReducers: (builder) => {
@@ -148,6 +176,25 @@ export const authSlice = createSlice({
       .addCase(subscribeUser.rejected, (state, action) => {
         state.loading = false
         state.error = action.payload.error
+      })
+
+      // signInWithGoogle
+      .addCase(signInWithGoogle.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(signInWithGoogle.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.loading = false
+        state.error = null
+      })
+      .addCase(signInWithGoogle.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload.error
+      })
+
+      // logoutUser
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.user = null
       })
   },
 })

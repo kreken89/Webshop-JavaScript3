@@ -1,20 +1,14 @@
-import React, { useState, useEffect } from 'react'
 import styles from './Header.module.scss'
 import logo from '../../assets/placeholders/Logo.svg'
 import { Link, NavLink } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
-import { auth } from '../../firebase/config'
-import { handleLogout } from '../../pages/login/LogOut'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutUser } from '../../store/features/auth/authSlice'
 
 const Header = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setIsAuthenticated(user !== null)
-    })
-    return unsubscribe
-  }, [])
+  const { user } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
 
   return (
     <header>
@@ -35,15 +29,15 @@ const Header = () => {
             <li>
               <NavLink to="/contact">Contact</NavLink>
             </li>
-            {isAuthenticated ? (
+            {user ? (
               <>
                 <li>
-                  <NavLink onClick={() => handleLogout(history)}>
+                  <NavLink onClick={() => dispatch(logoutUser())}>
                     Logout
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/orders">My orders</NavLink>
+                  <NavLink to="/my-orders">My orders</NavLink>
                 </li>
               </>
             ) : (
