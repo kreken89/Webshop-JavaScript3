@@ -37,7 +37,7 @@ const Hero = ({ products }) => {
 
   return (
     <div className="container_hero">
-      <div className="row">
+      <div className="row_hero">
         <button className="slider-control left" onClick={previousImage}>
           <AiOutlineLeft className="left_arrow" />
         </button>

@@ -83,7 +83,7 @@ const LoginForm = () => {
         </button>
         <div className="social_login">
           <h3>Login with Google</h3>
-          <GoogleBtn className="social_login_btn" />
+          <GoogleBtn setSubmitted={setSubmitted} />
         </div>
         <div className="terms">
           <input type="checkbox" />

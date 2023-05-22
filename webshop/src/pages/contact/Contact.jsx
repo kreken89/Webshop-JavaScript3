@@ -11,13 +11,23 @@ const Contact = () => {
               <label htmlFor="fullName">
                 Your Name <span className="required">*</span>
               </label>
-              <input type="text" id="fullName" className="form-control" required />
+              <input
+                type="text"
+                id="fullName"
+                className="form-control"
+                required
+              />
             </div>
             <div className="input-box">
               <label htmlFor="email">
                 Your Email <span className="required">*</span>
               </label>
-              <input type="email" id="email" className="form-control" required />
+              <input
+                type="email"
+                id="email"
+                className="form-control"
+                required
+              />
             </div>
             <div className="input-box">
               <label htmlFor="phoneNumber">
@@ -57,11 +67,19 @@ const Contact = () => {
         </form>
       </section>
       <section className="map">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.770547547894!2d18.0689213160021!3d59.332394980544!2m3!1f0!2f39.99999857731487!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1e3!2sKungsgatan%2033!5e0!3m2!1sda!2sdk!4v1623349128809!5m2!1sda!2sdk"
-          width="100%"
-          height="450"
-          allowfullscreen="Yes"></iframe>
+        <section className="map">
+          <div className="map-container">
+            <section className="map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2034.770547547894!2d18.0689213160021!3d59.332394980544!2m3!1f0!2f39.99999857731487!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1e3!2sNK%20Stockholm!5e0!3m2!1sda!2sdk!4v1623349128809!5m2!1sda!2sdk&z=10"
+                width="100%"
+                height="450"
+                allowFullScreen></iframe>
+            </section>
+
+            <div className="pin"></div>
+          </div>
+        </section>
       </section>
     </>
   )

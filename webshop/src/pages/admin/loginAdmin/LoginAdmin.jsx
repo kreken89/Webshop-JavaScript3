@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginAdmin, setError } from '../../../store/features/auth/authSlice'
-import { FaGoogle } from 'react-icons/fa'
+import GoogleBtn from '../../../components/loginForm/GoogleBtn'
 
 const LoginAdmin = () => {
   const navigate = useNavigate()
@@ -75,9 +75,7 @@ const LoginAdmin = () => {
           </button>
           <div className="social_login">
             <h3>Login with Google</h3>
-            <button className="social_login_btn">
-              <FaGoogle />
-            </button>
+            <GoogleBtn setSubmitted={setSubmitted} />
           </div>
           <div className="terms">
             <p>

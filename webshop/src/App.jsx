@@ -10,7 +10,7 @@ import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
-import MyOrders from './pages/myOrders/MyOrders'
+import MyAccount from './pages/myAccount/MyAccount'
 
 // Admin pages
 import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
@@ -64,7 +64,7 @@ const App = () => {
           <Route path="/productDetails" element={<ProductDetails />} />
           <Route path="/productDetails/:id" element={<ProductDetails />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/my-orders" element={<MyOrders />} />
+          <Route path="/my-account" element={<MyAccount />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<LogOut />} />

@@ -92,8 +92,6 @@ export const signInWithGoogle = createAsyncThunk(
   }
 )
 
-
-
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
