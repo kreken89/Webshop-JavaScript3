@@ -4,4 +4,8 @@
   place-items: center;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
+  img{
+      height: 122px;
+        width: 200px;
+  }
 }

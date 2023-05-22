@@ -1,5 +1,6 @@
 import React from 'react'
 import image from '../../assets/placeholders/sale-50.png'
+
 import './Campaign.module.scss'
 import { Link } from 'react-router-dom'
 
