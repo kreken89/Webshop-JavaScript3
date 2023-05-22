@@ -26,11 +26,17 @@ const LoginAdmin = () => {
     setSubmitted(true)
   }
 
+  // useEffect(() => {
+  //   if (submitted && user) {
+  //     navigate('/admin-panel')
+  //   }
+  // }, [submitted, user])
+  
   useEffect(() => {
-    if (submitted && user) {
+    if (submitted && user && user.isAdmin) {
       navigate('/admin-panel')
     }
-  }, [submitted, user])
+  }, [submitted, user, navigate])
 
   return (
     <div className="login_sign_container">
