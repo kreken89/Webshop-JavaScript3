@@ -3,14 +3,33 @@
     padding: 3rem .1rem;
     display: flex;
     justify-content: center;
+    .campaign_sale {
+        margin-right: 2rem;
+        img {
+                height: 466px;
+                width: 310px;
+            }
+    }
     .campaign_image1{
         margin-right: 2rem;
+        p{
+            background-color: white;
+            margin-top: -1rem;
+            padding: 1rem;
+            font-size: .7;
+        }
+        img{
+            height: 369px;
+            width: 310px;
+        }
     }
+
     .campaign_text {
         background-color: white;
         padding: 1rem;
         border-bottom: 1px solid lightgray;
         margin-top: -4px;
+        
     }
     .campaign_price {
         background-color: white;
