@@ -30,11 +30,18 @@ const registerAdminPage = () => {
     setSubmitted(true)
   }
 
+  // useEffect(() => {
+  //   if (submitted && user) {
+  //     navigate('/admin-panel')
+  //   }
+  // }, [submitted, user, navigate])
+
   useEffect(() => {
-    if (submitted && user) {
+    if (submitted && user && user.isAdmin) {
       navigate('/admin-panel')
     }
   }, [submitted, user, navigate])
+
 
   return (
     <div className="login_sign_container">

@@ -33,18 +33,29 @@ const logout = async () => {
 }
 
 // login as admin
-const loginAsAdmin = async (email, password) => {
+const loginAdmin = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password)
 
   const admin = {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
+    isAdmin: true, // Add a flag to indicate admin status
   }
   return admin
 }
 
+// const loginAsAdmin = async (email, password) => {
+//   const userCredential = await signInWithEmailAndPassword(auth, email, password)
+
+//   const admin = {
+//     uid: userCredential.user.uid,
+//     email: userCredential.user.email,
+//   }
+//   return admin
+// }
+
 // signup as admin
-const signupAsAdmin = async (email, password) => {
+const registerAdmin = async (email, password) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
@@ -54,9 +65,25 @@ const signupAsAdmin = async (email, password) => {
   const admin = {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
+    isAdmin: true, // Add a flag to indicate admin status
   }
   return admin
 }
+
+
+// const signupAsAdmin = async (email, password) => {
+//   const userCredential = await createUserWithEmailAndPassword(
+//     auth,
+//     email,
+//     password
+//   )
+
+//   const admin = {
+//     uid: userCredential.user.uid,
+//     email: userCredential.user.email,
+//   }
+//   return admin
+// }
 
 // TODO: Implement this function to subscribe to newsletter and save data in firebase
 const subscribeToNewsletter = async (email) => {
@@ -86,8 +113,8 @@ const authService = {
   signup,
   login,
   logout,
-  signupAsAdmin,
-  loginAsAdmin,
+  registerAdmin,
+  loginAdmin,
   subscribeToNewsletter,
   signInWithGoogle,
 }

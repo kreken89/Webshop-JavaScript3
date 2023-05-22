@@ -25,12 +25,23 @@ export const registerAdmin = createAsyncThunk(
   'auth/registerAdmin',
   async (formData, thunkAPI) => {
     try {
-      return await authService.signup(formData.email, formData.password)
+      return await authService.registerAdmin(formData.email, formData.password)
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
+
+// export const registerAdmin = createAsyncThunk(
+//   'auth/registerAdmin',
+//   async (formData, thunkAPI) => {
+//     try {
+//       return await authService.signup(formData.email, formData.password)
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message)
+//     }
+//   }
+// )
 
 // loginUser
 export const loginUser = createAsyncThunk(
@@ -61,12 +72,23 @@ export const loginAdmin = createAsyncThunk(
   'auth/loginAdmin',
   async (formData, thunkAPI) => {
     try {
-      return await authService.login(formData.email, formData.password)
+      return await authService.loginAdmin(formData.email, formData.password)
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
+
+// export const loginAdmin = createAsyncThunk(
+//   'auth/loginAdmin',
+//   async (formData, thunkAPI) => {
+//     try {
+//       return await authService.login(formData.email, formData.password)
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message)
+//     }
+//   }
+// )
 
 // subscribeUser
 export const subscribeUser = createAsyncThunk(
