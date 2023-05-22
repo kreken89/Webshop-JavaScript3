@@ -15,7 +15,7 @@ const RegisterForm = () => {
     lastName: '',
     address: '',
     city: '',
-    postalCode: '',
+    postal_code: '',
     phoneNumber: '',
     email: '',
     password: '',
@@ -99,7 +99,7 @@ const RegisterForm = () => {
               type="text"
               id="postal_code"
               className="form-control"
-              value={formData.postalCode}
+              value={formData.postal_code}
               onChange={handleChange}
             />
 

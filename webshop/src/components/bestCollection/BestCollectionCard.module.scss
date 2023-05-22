@@ -2,8 +2,21 @@
   font-size: 1rem;
   font-weight: 500;
 }
+.product_item{
+  margin: 1rem 0;
+  padding: 1rem;
+  border: none;
+  
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
+  
+  h3.product_name{
+    margin-top: 2rem;
+    margin-bottom: 0;
+  }
+}
 
 .product_category{
+  margin-top: 0;
   font-size: 0.8rem;
   font-weight: 300;
   color: grey;
