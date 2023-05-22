@@ -4,7 +4,7 @@ import {
   signInWithPopup,
   signOut,
 } from 'firebase/auth'
-import { auth, googleProvider } from '../../../firebase/config'
+import { auth, db, googleProvider } from '../../../firebase/config'
 
 const signup = async (email, password) => {
   const userCredential = await createUserWithEmailAndPassword(
@@ -17,6 +17,9 @@ const signup = async (email, password) => {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
+  // Store user data in a collection
+  await addDoc(collection(db, 'users'), user)
+
   return user
 }
 
@@ -59,6 +62,9 @@ const registerAdmin = async (email, password) => {
     email: userCredential.user.email,
     isAdmin: true, // Add a flag to indicate admin status
   }
+  // Store admin data in a collection
+   await addDoc(collection(db, 'admins'), admin)
+
   return admin
 }
 
@@ -70,6 +76,8 @@ const subscribeToNewsletter = async (email) => {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
+   await addDoc(collection(db, 'subscribers'), user)
+
   return user
 }
 
