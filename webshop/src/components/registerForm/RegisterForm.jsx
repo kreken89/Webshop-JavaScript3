@@ -1,8 +1,5 @@
-// import { createUserWithEmailAndPassword } from 'firebase/auth'
-// import { auth, db } from '../../firebase/config'
-// import { collection, addDoc } from 'firebase/firestore'
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { registerUser, setError } from '../../store/features/auth/authSlice'
 import GoogleBtn from '../loginForm/GoogleBtn'
@@ -10,6 +7,7 @@ import GoogleBtn from '../loginForm/GoogleBtn'
 const RegisterForm = () => {
   const { user, loading, error } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate() 
   const [submitted, setSubmitted] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -43,7 +41,7 @@ const RegisterForm = () => {
     if (submitted && user) {
       navigate('/')
     }
-  }, [submitted, user])
+  }, [submitted, user, navigate])
 
   return (
     <section className="register-wrap">
@@ -163,7 +161,7 @@ const RegisterForm = () => {
 
             <div className="social_login">
               <h3>Login with Google</h3>
-              <GoogleBtn className="social_login_btn" />
+              <GoogleBtn setSubmitted={setSubmitted} />
             </div>
             <div className="terms">
               <p>

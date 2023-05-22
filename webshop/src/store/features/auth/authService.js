@@ -73,7 +73,8 @@ const signInWithGoogle = async () => {
   const userCredential = await signInWithPopup(auth, googleProvider)
   if(!userCredential.user) throw new Error('Google login failed')
 
-
+  console.log(userCredential)
+  
   const user = {
     uid: userCredential.user.uid,
     email: userCredential.user.email,

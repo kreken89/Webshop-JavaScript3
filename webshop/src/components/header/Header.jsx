@@ -48,7 +48,7 @@ const Header = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/my-orders">My orders</NavLink>
+                  <NavLink to="/my-account">My account</NavLink>
                 </li>
               </>
             ) : (
@@ -68,17 +68,19 @@ const Header = () => {
                 data-bs-toggle="collapse"
                 data-bs-target="#cartDropdown"
                 aria-expanded={isCartOpen ? 'true' : 'false'}
-                onClick={toggleCart}
-              >
+                onClick={toggleCart}>
                 <FaShoppingCart />
                 {totalQuantity > 0 && (
-                  <span className='position-absolut start-100 translate-middle badge rounded-pill bg-danger'>{totalQuantity}</span>
+                  <span className="position-absolut start-100 translate-middle badge rounded-pill bg-danger">
+                    {totalQuantity}
+                  </span>
                 )}
               </span>
               <div
                 id="cartDropdown"
-                className={`dropdown-menu dropdown-menu-end shopping-cart ${isCartOpen ? 'show' : ''}`}
-              >
+                className={`dropdown-menu dropdown-menu-end shopping-cart ${
+                  isCartOpen ? 'show' : ''
+                }`}>
                 <ShoppingCart />
               </div>
             </li>
@@ -86,7 +88,7 @@ const Header = () => {
         </div>
       </nav>
     </header>
-  );
+  )
 };
 
 export default Header;

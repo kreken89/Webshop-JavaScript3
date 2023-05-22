@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaGoogle } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { registerAdmin, setError } from '../../../store/features/auth/authSlice'
+import GoogleBtn from '../../../components/loginForm/GoogleBtn'
 
 const registerAdminPage = () => {
   const { user, loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
@@ -33,7 +34,7 @@ const registerAdminPage = () => {
     if (submitted && user) {
       navigate('/admin-panel')
     }
-  }, [submitted, user])
+  }, [submitted, user, navigate])
 
   return (
     <div className="login_sign_container">
@@ -91,9 +92,7 @@ const registerAdminPage = () => {
           </button>
           <div className="social_login">
             <h3>Register with Google</h3>
-            <button className="social_login_btn">
-              <FaGoogle />
-            </button>
+            <GoogleBtn setSubmitted={setSubmitted} />
           </div>
           <div className="terms">
             <p>
