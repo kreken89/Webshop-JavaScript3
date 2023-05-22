@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { registerAdmin, setError } from '../../../store/features/auth/authSlice'
+import {
+  registerAdminUser,
+  setError,
+} from '../../../store/features/auth/authSlice'
 import GoogleBtn from '../../../components/loginForm/GoogleBtn'
 
 const registerAdminPage = () => {
@@ -26,7 +29,7 @@ const registerAdminPage = () => {
       dispatch(setError('Passwords do not match'))
       return
     }
-    await dispatch(registerAdmin(formData))
+    await dispatch(registerAdminUser(formData))
     setSubmitted(true)
   }
 

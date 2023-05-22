@@ -1,23 +1,32 @@
-import React, { useState } from 'react'
+import React, { Component } from 'react'
 
-const ErrorBoundary = ({ children }) => {
-  const [hasError, setHasError] = useState(false)
-  const [error, setError] = useState(null)
-  const [errorInfo, setErrorInfo] = useState(null)
-
-  const componentDidCatch = (error, errorInfo) => {
-    setHasError(true)
-    setError(error)
-    setErrorInfo(errorInfo)
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      hasError: false,
+      error: null,
+      errorInfo: null,
+    }
   }
 
-  if (hasError) {
-    // Render fallback UI or error message
-    return <div>Something went wrong!</div>
+  componentDidCatch(error, errorInfo) {
+    this.setState({
+      hasError: true,
+      error: error,
+      errorInfo: errorInfo,
+    })
+    // You can also log the error to an error tracking service here
   }
 
-  // Render the wrapped component if no error occurred
-  return children
+  render() {
+    if (this.state.hasError) {
+      // You can customize the error message or render a fallback UI
+      return <div>Error: {this.state.error.toString()}</div>
+    }
+    // Render the wrapped component as normal
+    return this.props.children
+  }
 }
 
 export default ErrorBoundary
