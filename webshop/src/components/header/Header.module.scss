@@ -50,3 +50,10 @@ header{
     }
    }
 }
+
+.custom-dropdown-li .dropdown-menu {
+  right: 0 !important;
+  left: auto !important;
+  // transform: translateX(-100%) !important;
+  margin-top: 1rem;
+}

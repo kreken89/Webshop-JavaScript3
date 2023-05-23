@@ -5,7 +5,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutUser } from '../../store/features/auth/authSlice'
-import ShoppingCart from '../shoppingCart/ShoppingCart'
+import ShoppingCart from '../ShoppingCart/ShoppingCart'
 
 const Header = () => {
 
@@ -61,7 +61,7 @@ const Header = () => {
                 </li>
               </>
             )}
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown custom-dropdown-li">
               <span
                 className="nav-link"
                 role="button"
