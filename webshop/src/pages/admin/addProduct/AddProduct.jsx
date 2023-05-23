@@ -3,17 +3,22 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addProduct } from '../../../store/features/products/productListSlice'
 import { useNavigate } from 'react-router-dom'
 
-const AddProduct = () => {
+const AddProduct = ({isAdmin}) => {
   
   const { user } = useSelector(state => state.auth)
-
   const navigate = useNavigate()
 
+  // useEffect(() => {
+  //   if (!user) {
+  //     navigate('/login-admin')
+  //   }
+  // }, [user])
+
   useEffect(() => {
-    if (!user) {
+    if (!isAdmin) {
       navigate('/login-admin')
     }
-  }, [user])
+  }, [user, navigate])
 
   const dispatch = useDispatch()
   const [productData, setProductData] = useState({
