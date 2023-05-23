@@ -61,7 +61,7 @@ const Header = () => {
                 </li>
               </>
             )}
-            <li className="nav-item dropdown">
+            <li className="nav-item dropdown custom-dropdown-li">
               <span
                 className="nav-link"
                 role="button"
@@ -78,7 +78,7 @@ const Header = () => {
               </span>
               <div
                 id="cartDropdown"
-                className={`dropdown-menu dropdown-menu-end shopping-cart ${
+                className={`dropdown-menu dropdown-menu-end custom-dropdown-menu shopping-cart ${
                   isCartOpen ? 'show' : ''
                 }`}>
                 <ShoppingCart />

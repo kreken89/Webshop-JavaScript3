@@ -11,6 +11,7 @@ import Login from './pages/login/Login'
 import Register from './pages/register/Register'
 import LogOut from './pages/login/LogOut'
 import MyAccount from './pages/myAccount/MyAccount'
+import Checkout from './pages/checkout/Checkout'
 
 // Admin pages
 import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
@@ -30,6 +31,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from './firebase/config'
 import { useDispatch, useSelector } from 'react-redux'
 import { authReady } from './store/features/auth/authSlice'
+
 
 const App = () => {
 
@@ -73,6 +75,7 @@ const App = () => {
           <Route path="/admin-panel" element={<Admin />} />
           <Route path="/addProduct" element={<AddProduct />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
         <Subscription />
         <Footer />

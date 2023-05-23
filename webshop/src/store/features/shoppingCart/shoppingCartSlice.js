@@ -1,8 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import shoppingCartService from './shoppingCartService';
 
 
 const initialState = {
     cart: [],
+    error: null,
+    loading: false,
     totalQuantity: 0,
     totalAmount: 0
 }
@@ -21,8 +24,34 @@ const getTotalAmount = (cart) => {
     return amount;
 }
 
+
+
+//  export const saveOrderToDatabase = createAsyncThunk("order" , async (order, {getState}) => {
+//     try {
+//         const state = getState()
+//         const userId = state.user.userId
+
+//         const database = firebase.database()
+//         await database.ref('user/${userId}/orders').push(order)
+//         return order
+//     } catch(error){
+//         throw new Error("fail to save order to data base")
+//         t
+//     }
+// })
+
+export const addOrder = createAsyncThunk('order/add', async (orderData, thunkAPI) => {
+    try {
+        return await shoppingCartService.createOrder(orderData)
+    } catch (err) {
+        return thunkAPI.rejectWithValue(err.message)
+    }
+})
+
+
+
 export const shoppingCartSlice = createSlice({
-    name: 'shoppingCart',
+    name: 'order',
     initialState,
     reducers: {
         addToCart: (state, action) => {
@@ -54,15 +83,40 @@ export const shoppingCartSlice = createSlice({
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
         },
-        placeOrder: (state) => {
-            const order = state.cart.map(item => {
-                return { id: item.product.id, quantity: item.quantity }
-                    
-                })
-            }
+        extraReduers:(builder)=> {
+            builder
+          .addCase(addOrder.pending, (state) => {
+            state.loading = true;
+          })
+          .addCase(addOrder.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            state.products = [...state.cart, action.payload];
+          })
+          .addCase(addOrder.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+          })
+
+
+          /* .addCase(getProducts.pending, (state) => {
+            state.loading = true;
+          })
+          .addCase(getProducts.fulfilled, (state, action) => {
+            state.loading = false;
+            state.error = null;
+            state.orders = action.payload;
+          })
+          .addCase(getProducts.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+          }) */
+ 
+        }
+       
         }
 
 })
 
-export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, placeOrder } = shoppingCartSlice.actions;
+export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, placeOrder, } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

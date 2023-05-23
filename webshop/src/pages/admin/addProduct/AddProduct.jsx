@@ -25,7 +25,7 @@ const AddProduct = () => {
 
   const handleChange = (e) => {
     const { id, value } = e.target
-    setProductData((product) => {
+    setProductData( {(product) =>
       return {
         ...product,
         [id]: value,
