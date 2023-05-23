@@ -29,11 +29,13 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     if (formData.password !== formData.passwordConfirm) {
       dispatch(setError('Passwords do not match'))
       return
     }
     await dispatch(registerUser(formData))
+
     setSubmitted(true)
   }
 

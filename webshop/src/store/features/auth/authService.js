@@ -5,12 +5,13 @@ import {
   signOut,
 } from 'firebase/auth'
 import { auth, db, googleProvider } from '../../../firebase/config'
+import { collection, addDoc } from 'firebase/firestore'
 
-const signup = async (email, password) => {
+const signup = async (email, password ) => {
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
-    password
+    password,
   )
 
   const user = {
