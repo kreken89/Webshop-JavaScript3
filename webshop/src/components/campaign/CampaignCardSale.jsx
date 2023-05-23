@@ -7,11 +7,9 @@ import { Link } from 'react-router-dom'
 const CampaignCard = () => {
   return (
     <div className='container_campaign'>
-        <Link to={`/products`}>
       <div className='campaign_sale'>
         <img src={image} alt="image1"></img> 
       </div>      
-      </Link>
     </div>
   )
 }
