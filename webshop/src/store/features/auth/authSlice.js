@@ -13,12 +13,23 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
     try {
-      return await authService.signup(formData.email, formData.password)
+      return await authService.signup(formData)
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
+
+// export const registerUser = createAsyncThunk(
+//   'auth/register',
+//   async (formData, thunkAPI) => {
+//     try {
+//       return await authService.signup(formData.email, formData.password)
+//     } catch (err) {
+//       return thunkAPI.rejectWithValue(err.message)
+//     }
+//   }
+// )
 
 // registerAdmin
 export const registerAdminUser = createAsyncThunk(

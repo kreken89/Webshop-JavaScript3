@@ -36,6 +36,18 @@ const RegisterForm = () => {
     }
     await dispatch(registerUser(formData))
 
+    setFormData({
+      firstName: '',
+      lastName: '',
+      address: '',
+      city: '',
+      postal_code: '',
+      phoneNumber: '',
+      email: '',
+      password: '',
+      passwordConfirm: '',
+    })
+
     setSubmitted(true)
   }
 

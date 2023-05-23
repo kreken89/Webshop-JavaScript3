@@ -7,22 +7,59 @@ import {
 import { auth, db, googleProvider } from '../../../firebase/config'
 import { collection, addDoc } from 'firebase/firestore'
 
-const signup = async (email, password ) => {
+// const signup = async (email, password ) => {
+//   const userCredential = await createUserWithEmailAndPassword(
+//     auth,
+//     email,
+//     password,
+//   )
+
+//   const user = {
+//     uid: userCredential.user.uid,
+//     email: userCredential.user.email,
+//     firstName
+//   }
+//   // Store user data in a collection
+//   await addDoc(collection(db, 'users'), user)
+
+//   return user
+// }
+
+const signup = async (formData) => {
+  const {
+    email,
+    password,
+    firstName,
+    lastName,
+    address,
+    city,
+    postal_code,
+    phoneNumber,
+  } = formData
+
   const userCredential = await createUserWithEmailAndPassword(
     auth,
     email,
-    password,
+    password
   )
 
   const user = {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
+    firstName,
+    lastName,
+    address,
+    city,
+    postal_code,
+    phoneNumber,
   }
+
   // Store user data in a collection
   await addDoc(collection(db, 'users'), user)
 
   return user
 }
+
 
 const login = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password)
