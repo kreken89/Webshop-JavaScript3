@@ -76,36 +76,10 @@ const App = () => {
             <Route path="/my-account" element={<MyAccount />} />
             {/* Admin route */}
             <Route path="/login-admin" element={<LoginAdmin />} />
-            <Route path="/register-admin" element={<RegisterAdmin />} />
-            <Route
-              element={
-                <ProtectedRoute
-                  isAdmin={isAdmin}
-                  path="/admin-panel"
-                  element={<Admin />}
-                />
-              }
-            />
-            <Route
-              element={
-                <ProtectedRoute
-                  isAdmin={isAdmin}
-                  path="/addProduct"
-                  element={<AddProduct />}
-                />
-              }
-            />
-            <Route
-              element={
-                <ProtectedRoute
-                  isAdmin={isAdmin}
-                  path="/orders"
-                  element={<Orders />}
-                />
-              }
-            />
-
-            {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+            <Route path="/register-admin" element={<RegisterAdmin />}/>
+            <Route isAdmin={isAdmin} path="/admin-panel" element={<Admin />}/>
+            <Route isAdmin={isAdmin} path="/addProduct" element={<AddProduct />}/>
+            <Route isAdmin={isAdmin} path="/orders" element={<Orders />}/>
           </Routes>
           <Subscription />
           <Footer />
