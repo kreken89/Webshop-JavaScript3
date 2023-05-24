@@ -8,15 +8,30 @@ import { useSelector, useDispatch } from 'react-redux'
 const Checkout = () => {
 
   const dispatch = useDispatch()
+  
 
   const [orderData, setOrderData] = useState({
-    productName: '',
-    quantity: '',
-    status: '',
+    productName: "",
+    quantity: "",
+    status: "pending",
   })
 
-  const handleSubmit = () => {
-    const data = {...orderData, }
+//   const handleChange = (e) => {
+//     const { id, value } = e.target
+//     setOrderData((order) => {
+//       return {
+//         ...order,
+//         [id]: value,
+//       }
+//     })
+//   }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const data = {
+        ...orderData,
+        // quantity: +quantityData.quantity
+      }
     dispatch(addOrder(data))
   }
 

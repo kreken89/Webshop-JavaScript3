@@ -1,5 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import shoppingCartService from './shoppingCartService';
+// import shoppingCartService from './shoppingCartService';
+import shoppingCartService from'./shoppingCartService'
+
+
 
 
 const initialState = {
@@ -40,13 +43,23 @@ const getTotalAmount = (cart) => {
 //     }
 // })
 
+// export const addOrder = createAsyncThunk('order/add', async (orderData, thunkAPI) => {
+//     try {
+//         return await shoppingCartService.createOrder(orderData)
+//     } catch (err) {
+//         return thunkAPI.rejectWithValue(err.message)
+//     }
+// })
 export const addOrder = createAsyncThunk('order/add', async (orderData, thunkAPI) => {
-    try {
-        return await shoppingCartService.createOrder(orderData)
-    } catch (err) {
-        return thunkAPI.rejectWithValue(err.message)
-    }
-})
+  try {
+    const order = await shoppingCartService.createOrder(orderData);
+    await shoppingCartService.saveOrderToDatabase(order); // Save the order to the database
+
+    return order;
+  } catch (err) {
+    return thunkAPI.rejectWithValue(err.message);
+  }
+});
 
 
 
@@ -118,5 +131,5 @@ export const shoppingCartSlice = createSlice({
 
 })
 
-export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, placeOrder, } = shoppingCartSlice.actions;
+export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, placeOrder } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
