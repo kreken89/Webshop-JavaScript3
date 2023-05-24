@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import ShoppingCart from '../../components/shoppingCart/ShoppingCart'
-import {addOrder, addToCart, placeOrder,} from '../../store/features/shoppingCart/shoppingCartSlice'
+import {addOrder, addToCart, placeOrder, clearCart} from '../../store/features/shoppingCart/shoppingCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 // import { getFirestore } from 'firebase/firestore';
 
@@ -13,12 +13,13 @@ const Checkout = () => {
   
   const cart = useSelector((state) => state.shoppingCart.cart);
 
-  console.log(cart)
+  const user = useSelector((state) => state.auth.user)
 
+  console.log(cart)
+  console.log(user)
   const [orderData, setOrderData] = useState({
-    productId: cart[0].product.id,
-    quantity: cart[0].quantity,
     status: "pending",
+    userId: ''
   })
 
 //   const handleChange = (e) => {
@@ -33,16 +34,25 @@ const Checkout = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const orderItems = cart.map((item) => ({
+        productId: item.product.id,
+        quantity: item.quantity,
+        imageURL: item.product.imageURL,
+        name: item.product.name,
+        price: item.product.price
+      }));
     const data = {
         ...orderData,
-       
+        item: orderItems,
+        userId: user.uid
+
      
         //  productId: product.id
       }
  
    console.log(cart[0].product.id)
     dispatch(addOrder(data))
-    
+    dispatch(clearCart())
   }
 
   // const handleSubmit = (e) => {
