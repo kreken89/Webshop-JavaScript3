@@ -1,7 +1,9 @@
 import {useState} from 'react'
 import ShoppingCart from '../../components/shoppingCart/ShoppingCart'
-import {addOrder} from '../../store/features/shoppingCart/shoppingCartSlice'
+import {addOrder, addToCart, placeOrder,} from '../../store/features/shoppingCart/shoppingCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
+// import { getFirestore } from 'firebase/firestore';
+
 
 
 
@@ -9,10 +11,13 @@ const Checkout = () => {
 
   const dispatch = useDispatch()
   
+  const cart = useSelector((state) => state.shoppingCart.cart);
+
+  console.log(cart)
 
   const [orderData, setOrderData] = useState({
-    productName: "",
-    quantity: "",
+    productId: cart[0].product.id,
+    quantity: cart[0].quantity,
     status: "pending",
   })
 
@@ -30,10 +35,34 @@ const Checkout = () => {
     e.preventDefault()
     const data = {
         ...orderData,
-        // quantity: +quantityData.quantity
+       
+     
+        //  productId: product.id
       }
+ 
+   console.log(cart[0].product.id)
     dispatch(addOrder(data))
+    
   }
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  
+  //   // Get the order data from the Redux state
+  //   const order = placeOrder();
+  
+  //   // Save the order to Firestore
+  //   const ordersCollection = getFirestore().collection('orders');
+  //   ordersCollection
+  //     .add(order)
+  //     .then(() => {
+  //       dispatch(addOrder(order));
+  //       console.log('Order saved successfully!');
+  //     })
+  //     .catch((error) => {
+  //       console.log('Error saving order:', error);
+  //     });
+  // };
 
 
 
@@ -123,20 +152,8 @@ const Checkout = () => {
               type="email"
               id="email"
               className="form-control"
-           
-            
-             
+
             />
-
-
-
-
-           
-
-           
-
-           
-           
           </div>
         </div>
       </form>

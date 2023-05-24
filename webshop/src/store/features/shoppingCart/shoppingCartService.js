@@ -45,7 +45,7 @@ try {
       quantity: orderData.quantity, 
       status: orderData.status
     })
-
+    console.log(orderData)
    return orderData
 
 } catch (error) {

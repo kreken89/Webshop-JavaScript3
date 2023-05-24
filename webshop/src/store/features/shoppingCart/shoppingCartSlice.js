@@ -5,7 +5,8 @@ import shoppingCartService from'./shoppingCartService'
 
 
 
-const initialState = {
+ export const initialState = {
+    order:[],
     cart: [],
     error: null,
     loading: false,
@@ -68,6 +69,7 @@ export const shoppingCartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action) => {
+           
             const itemRef = state.cart.find(item => item.product.id === action.payload.id);
             itemRef
             ? itemRef.quantity += 1
@@ -75,6 +77,7 @@ export const shoppingCartSlice = createSlice({
 
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
+            console.log(state.cart)
         },
         removeFromCart: (state, action) => {
             const itemRef = state.cart.find(item => item.product.id === action.payload);
@@ -96,6 +99,13 @@ export const shoppingCartSlice = createSlice({
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
         },
+
+          placeOrder: (state, action) => {
+          const order =  state.cart.map(item => { 
+            return {id: item.product.id === action.product.id, quantity: quantity.id === action.payload.id}
+          })
+           return order
+          },
         extraReduers:(builder)=> {
             builder
           .addCase(addOrder.pending, (state) => {
@@ -105,6 +115,10 @@ export const shoppingCartSlice = createSlice({
             state.loading = false;
             state.error = null;
             state.products = [...state.cart, action.payload];
+            state.cart = [],
+            state.order = action.payload
+            state.totalAmount = 0; // Reset total amount and quantity
+            state.totalQuantity = 0;
           })
           .addCase(addOrder.rejected, (state, action) => {
             state.loading = false
