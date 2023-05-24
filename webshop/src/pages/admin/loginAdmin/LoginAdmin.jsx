@@ -1,14 +1,17 @@
-import { useEffect, useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { loginAdmin, setError } from '../../../store/features/auth/authSlice'
+import {
+  loginAdminUser,
+  setError,
+} from '../../../store/features/auth/authSlice'
+
 import GoogleBtn from '../../../components/loginForm/GoogleBtn'
 
 const LoginAdmin = () => {
   const navigate = useNavigate()
-
-  const { user, loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const { user, loading, error } = useSelector((state) => state.auth)
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
@@ -22,15 +25,15 @@ const LoginAdmin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    await dispatch(loginAdmin(formData))
+    await dispatch(loginAdminUser(formData))
     setSubmitted(true)
   }
 
   useEffect(() => {
-    if (submitted && user) {
+    if (submitted && user && user.isAdmin) {
       navigate('/admin-panel')
     }
-  }, [submitted, user])
+  }, [submitted, user, navigate])
 
   return (
     <div className="login_sign_container">

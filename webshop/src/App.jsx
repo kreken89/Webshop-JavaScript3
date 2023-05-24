@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom'
 import './App.scss'
 
 // Pages
@@ -14,6 +19,8 @@ import MyAccount from './pages/myAccount/MyAccount'
 import Checkout from './pages/checkout/Checkout'
 
 // Admin pages
+import ProtectedRoute from './components/protectedRoute/ProtectedRoute'
+
 import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
 import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
 import Admin from './pages/admin/Admin'
@@ -34,57 +41,54 @@ import { authReady } from './store/features/auth/authSlice'
 
 
 const App = () => {
-
-  const { authIsReady, router } = useSelector(state => state.auth)
+  const { authIsReady, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
-  
+
+  const isAdmin = user && user.isAdmin
+
   useEffect(() => {
     onAuthStateChanged(auth, (_user) => {
-     console.log(_user)
-     let user = null
+      console.log(_user)
+      let user = null
 
-     if(_user){
-      user = {
-        uid: _user.uid,
-        email: _user.email,
+      if (_user) {
+        user = {
+          uid: _user.uid,
+          email: _user.email,
+        }
       }
-     }
 
-     dispatch(authReady(user))
+      dispatch(authReady(user))
     })
-  }, [])
+  }, [dispatch])
 
   return (
     <>
-    {authIsReady ? (
-
-      <Router>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/productDetails" element={<ProductDetails />} />
-          <Route path="/productDetails/:id" element={<ProductDetails />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/my-account" element={<MyAccount />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/logout" element={<LogOut />} />
-          <Route path="/login-admin" element={<LoginAdmin />} />
-          <Route path="/register-admin" element={<RegisterAdmin />} />
-          <Route path="/admin-panel" element={<Admin />} />
-          <Route path="/addProduct" element={<AddProduct />} />
-          <Route path="/orders" element={<Orders />} />
+      {authIsReady ? (
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/productDetails/:id" element={<ProductDetails />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="/my-account" element={<MyAccount />} />
+            {/* Admin route */}
+            <Route path="/login-admin" element={<LoginAdmin />} />
+            <Route path="/register-admin" element={<RegisterAdmin />}/>
+            <Route isAdmin={isAdmin} path="/admin-panel" element={<Admin />}/>
+            <Route isAdmin={isAdmin} path="/addProduct" element={<AddProduct />}/>
+            <Route isAdmin={isAdmin} path="/orders" element={<Orders />}/>
           <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-        <Subscription />
-        <Footer />
-      </Router>
-      
+          </Routes>
+          <Subscription />
+          <Footer />
+        </Router>
       ) : null}
     </>
-    
-    
   )
 }
 

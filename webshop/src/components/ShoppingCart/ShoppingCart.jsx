@@ -26,8 +26,7 @@ const ShoppingCart = ({ checkout }) => {
                 {!checkout &&
                 <>
                 <button className='btn btn-warning' onClick={() => dispatch(clearCart())}>Clear cart</button>
-                // Om användaren är inloggad så gå till checkout annars skicka til login
-                <Link to='/checkout' className='btn btn-info ms-2'>Checkout</Link>
+                <Link to='/checkout' className='btn btn-success ms-2'>Checkout</Link>
                 </>
                 }
                 

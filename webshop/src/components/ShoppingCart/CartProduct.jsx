@@ -20,7 +20,7 @@ const CartProduct = ({ item }) => {
     }
   return (
     <div className="d-flex justify-content-between align-items-center p-2 gap-3">
-        <Link to={`/product/${item.product.id}`} className='d-flex align-items-center text-decoration-none text-dark'>
+        <Link to={`/productDetails/${item.product.id}`} className='d-flex align-items-center text-decoration-none text-dark'>
             <img src={item.product.imageURL} alt={item.product.name} className='img-fluid cart-image' />
             <div>
                 <p className='m-0'>{item.product.name}</p>
