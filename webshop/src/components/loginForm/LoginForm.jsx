@@ -86,11 +86,6 @@ const LoginForm = () => {
           <GoogleBtn setSubmitted={setSubmitted} />
         </div>
         <div className="terms">
-          <input type="checkbox" />
-          <label htmlFor=""> Please keep me logged in /</label>
-          <Link to="#"> Forgot Your Password ?</Link>
-          <br />
-          <br />
           <p>
             You don't have an account? /{' '}
             <Link to="/register">Register here</Link>

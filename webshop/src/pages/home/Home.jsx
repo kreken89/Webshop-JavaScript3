@@ -6,6 +6,7 @@ import BestCollection from '../../components/bestCollection/BestCollection'
 import Subscription from '../../components/subscribe/Subscription'
 import Campaign from '../../components/campaign/Campaign'
 import Carousel from '../../components/slider/Carousel'
+import SmallIcons from '../../components/smallIcons/SmallIcons'
 
 const Home = () => {
   const dispatch = useDispatch()
@@ -23,6 +24,7 @@ const Home = () => {
       </div>
       <Campaign />
       <Carousel products={products} />
+      <SmallIcons />
     </div>
   )
 }

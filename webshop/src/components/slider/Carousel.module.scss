@@ -1,5 +1,6 @@
 .top_selling-container{
-  margin: 3rem 0;
+  max-width: 1224px;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -31,13 +32,9 @@
       font-size: 1.5rem;
       cursor: pointer;
       transition: all 0.3s ease-in-out;
-      z-index: 10;
+      
     }
-    .left_arrow:hover{
-      color: #fff;
-      background-color: #111;
-    }
-
+    
     .right_arrow{
       background-color: #efefef;
       padding: .5rem;
@@ -45,11 +42,10 @@
       position: absolute;
       font-size: 1.5rem;
       cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      z-index: 10;
+      transition: all 0.1s ease-in-out;
+      
     }
-
-    .right_arrow:hover{
+    button:hover{
       color: #fff;
       background-color: #111;
     }

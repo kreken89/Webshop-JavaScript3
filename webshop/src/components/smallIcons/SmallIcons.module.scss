@@ -1,11 +1,12 @@
 .icon_box {
-  max-width: 1224;
+  max-width: 1224px;
+  margin: 3rem auto;
   display: grid;
   place-items: center;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  img{
-      height: 122px;
-        width: 200px;
+  img {
+    height: 122px;
+    width: 200px;
   }
 }
