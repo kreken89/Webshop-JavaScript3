@@ -8,95 +8,79 @@ const initialState = {
   authIsReady: false,
 }
 
-// registerUser
 export const registerUser = createAsyncThunk(
   'auth/register',
   async (formData, thunkAPI) => {
     try {
-      return await authService.signup(formData)
+      const user = await authService.signup(formData)
+      thunkAPI.dispatch(authReady(user)) // Dispatch the authReady action
+      return user
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
 
-// export const registerUser = createAsyncThunk(
-//   'auth/register',
-//   async (formData, thunkAPI) => {
-//     try {
-//       return await authService.signup(formData.email, formData.password)
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message)
-//     }
-//   }
-// )
-
-// registerAdmin
-export const registerAdminUser = createAsyncThunk(
-  'auth/registerAdmin',
-  async (formData, thunkAPI) => {
-    try {
-      return await authService.registerAdmin(formData.email, formData.password)
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message)
-    }
-  }
-)
-
-// loginUser
 export const loginUser = createAsyncThunk(
   'auth/login',
   async (formData, thunkAPI) => {
     try {
-      return await authService.login(formData.email, formData.password)
+      const user = await authService.login(formData.email, formData.password)
+      thunkAPI.dispatch(authReady(user)) // Dispatch the authReady action
+      return user
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
 
-// logoutUser
 export const logoutUser = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      return await authService.logout()
+      await authService.logout()
+      thunkAPI.dispatch(authReady(null)) // Dispatch the authReady action with null user
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
 
-// loginAdmin
-export const loginAdminUser = createAsyncThunk(
-  'auth/loginAdmin',
-  async (formData, thunkAPI) => {
-    try {
-      return await authService.loginAdmin(formData.email, formData.password)
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message)
-    }
-  }
-)
-
-// subscribeUser
 export const subscribeUser = createAsyncThunk(
   'auth/subscribe',
   async (formData, thunkAPI) => {
     try {
-      return await authService.subscribeToNewsletter(formData.email)
+      const user = await authService.subscribeToNewsletter(formData.email)
+      thunkAPI.dispatch(authReady(user)) // Dispatch the authReady action
+      return user
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
   }
 )
 
-// login with google
 export const signInWithGoogle = createAsyncThunk(
   'auth/googleLogin',
   async (_, thunkAPI) => {
     try {
-      return await authService.signInWithGoogle()
+      const user = await authService.signInWithGoogle()
+      thunkAPI.dispatch(authReady(user)) // Dispatch the authReady action
+      return user
+    } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+    }
+  }
+)
+
+// edit user data in my account
+export const update = createAsyncThunk(
+  'auth/update',
+  async (formData, thunkAPI) => {
+    try {
+      // Perform the update logic here
+      // Example: await authService.updateUser(formData)
+      const updatedUser = { ...formData } // Replace with your actual update logic
+      return updatedUser
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
     }
@@ -114,10 +98,12 @@ export const authSlice = createSlice({
       state.user = action.payload
       state.authIsReady = true
     },
+    updateUser: (state, action) => {
+      state.user = { ...state.user, ...action.payload }
+    },
   },
   extraReducers: (builder) => {
     builder
-      // registerUser
       .addCase(registerUser.pending, (state) => {
         state.loading = true
       })
@@ -130,22 +116,6 @@ export const authSlice = createSlice({
         state.loading = false
         state.error = action.payload.error
       })
-
-      // registerAdmin
-      .addCase(registerAdminUser.pending, (state) => {
-        state.loading = true
-      })
-      .addCase(registerAdminUser.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.loading = false
-        state.error = null
-      })
-      .addCase(registerAdminUser.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload.error
-      })
-
-      // loginUser
       .addCase(loginUser.pending, (state) => {
         state.loading = true
       })
@@ -158,22 +128,6 @@ export const authSlice = createSlice({
         state.loading = false
         state.error = action.payload.error
       })
-
-      // loginAdmin
-      .addCase(loginAdminUser.pending, (state) => {
-        state.loading = true
-      })
-      .addCase(loginAdminUser.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.loading = false
-        state.error = null
-      })
-      .addCase(loginAdminUser.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload.error
-      })
-
-      // subscribeUser
       .addCase(subscribeUser.pending, (state) => {
         state.loading = true
       })
@@ -186,8 +140,6 @@ export const authSlice = createSlice({
         state.loading = false
         state.error = action.payload.error
       })
-
-      // signInWithGoogle
       .addCase(signInWithGoogle.pending, (state) => {
         state.loading = true
       })
@@ -200,15 +152,24 @@ export const authSlice = createSlice({
         state.loading = false
         state.error = action.payload.error
       })
-
-      // logoutUser
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null
+        state.authIsReady = false // Reset authIsReady state on logout
+      })
+
+      .addCase(update.fulfilled, (state, action) => {
+        state.user = action.payload
+        state.loading = false
+        state.error = null
+      })
+      .addCase(update.rejected, (state, action) => {
+        state.loading = false
+        state.error = action.payload.error
       })
   },
 })
 
-export const { setError, authReady } = authSlice.actions
+export const { setError, authReady, setUser } = authSlice.actions
 export default authSlice.reducer
 
 // import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
@@ -226,35 +187,12 @@ export default authSlice.reducer
 //   'auth/register',
 //   async (formData, thunkAPI) => {
 //     try {
-//       return await authService.signup(formData.email, formData.password)
+//       return await authService.signup(formData)
 //     } catch (err) {
 //       return thunkAPI.rejectWithValue(err.message)
 //     }
 //   }
 // )
-
-// // registerAdmin
-// export const registerAdmin = createAsyncThunk(
-//   'auth/registerAdmin',
-//   async (formData, thunkAPI) => {
-//     try {
-//       return await authService.registerAdmin(formData.email, formData.password)
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message)
-//     }
-//   }
-// )
-
-// // export const registerAdmin = createAsyncThunk(
-// //   'auth/registerAdmin',
-// //   async (formData, thunkAPI) => {
-// //     try {
-// //       return await authService.signup(formData.email, formData.password)
-// //     } catch (err) {
-// //       return thunkAPI.rejectWithValue(err.message)
-// //     }
-// //   }
-// // )
 
 // // loginUser
 // export const loginUser = createAsyncThunk(
@@ -280,35 +218,12 @@ export default authSlice.reducer
 //   }
 // )
 
-// // loginAdmin
-// export const loginAdmin = createAsyncThunk(
-//   'auth/loginAdmin',
-//   async (formData, thunkAPI) => {
-//     try {
-//       return await authService.loginAdmin(formData.email, formData.password)
-//     } catch (err) {
-//       return thunkAPI.rejectWithValue(err.message)
-//     }
-//   }
-// )
-
-// // export const loginAdmin = createAsyncThunk(
-// //   'auth/loginAdmin',
-// //   async (formData, thunkAPI) => {
-// //     try {
-// //       return await authService.login(formData.email, formData.password)
-// //     } catch (err) {
-// //       return thunkAPI.rejectWithValue(err.message)
-// //     }
-// //   }
-// // )
-
 // // subscribeUser
 // export const subscribeUser = createAsyncThunk(
 //   'auth/subscribe',
 //   async (formData, thunkAPI) => {
 //     try {
-//       return await authService.subscribe(formData.email)
+//       return await authService.subscribeToNewsletter(formData.email)
 //     } catch (err) {
 //       return thunkAPI.rejectWithValue(err.message)
 //     }
@@ -337,7 +252,7 @@ export default authSlice.reducer
 //     authReady: (state, action) => {
 //       state.user = action.payload
 //       state.authIsReady = true
-//     }
+//     },
 //   },
 //   extraReducers: (builder) => {
 //     builder
@@ -355,20 +270,6 @@ export default authSlice.reducer
 //         state.error = action.payload.error
 //       })
 
-//       // registerAdmin
-//       .addCase(registerAdmin.pending, (state) => {
-//         state.loading = true
-//       })
-//       .addCase(registerAdmin.fulfilled, (state, action) => {
-//         state.user = action.payload
-//         state.loading = false
-//         state.error = null
-//       })
-//       .addCase(registerAdmin.rejected, (state, action) => {
-//         state.loading = false
-//         state.error = action.payload.error
-//       })
-
 //       // loginUser
 //       .addCase(loginUser.pending, (state) => {
 //         state.loading = true
@@ -379,20 +280,6 @@ export default authSlice.reducer
 //         state.error = null
 //       })
 //       .addCase(loginUser.rejected, (state, action) => {
-//         state.loading = false
-//         state.error = action.payload.error
-//       })
-
-//       // loginAdmin
-//       .addCase(loginAdmin.pending, (state) => {
-//         state.loading = true
-//       })
-//       .addCase(loginAdmin.fulfilled, (state, action) => {
-//         state.user = action.payload
-//         state.loading = false
-//         state.error = null
-//       })
-//       .addCase(loginAdmin.rejected, (state, action) => {
 //         state.loading = false
 //         state.error = action.payload.error
 //       })

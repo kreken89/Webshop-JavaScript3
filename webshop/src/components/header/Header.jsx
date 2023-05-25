@@ -43,9 +43,9 @@ const Header = () => {
             {user ? (
               <>
                 <li>
-                  <NavLink onClick={() => dispatch(logoutUser())}>
+                  <Link onClick={() => dispatch(logoutUser())}>
                     Logout
-                  </NavLink>
+                  </Link>
                 </li>
                 <li>
                   <NavLink to="/my-account">My account</NavLink>

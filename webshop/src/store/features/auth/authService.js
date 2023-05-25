@@ -5,27 +5,21 @@ import {
   signOut,
 } from 'firebase/auth'
 import { auth, db, googleProvider } from '../../../firebase/config'
-import { collection, addDoc } from 'firebase/firestore'
+import { collection, addDoc, doc, getDoc } from 'firebase/firestore'
 
-// const signup = async (email, password ) => {
-//   const userCredential = await createUserWithEmailAndPassword(
-//     auth,
-//     email,
-//     password,
-//   )
+let currentUserData = null
 
-//   const user = {
-//     uid: userCredential.user.uid,
-//     email: userCredential.user.email,
-//     firstName
-//   }
-//   // Store user data in a collection
-//   await addDoc(collection(db, 'users'), user)
+const setUserData = (userData) => {
+  currentUserData = userData
+}
 
-//   return user
-// }
+const getUserData = () => {
+  return currentUserData
+}
 
-
+const clearUserData = () => {
+  currentUserData = null
+}
 
 const signup = async (formData) => {
   const {
@@ -56,12 +50,13 @@ const signup = async (formData) => {
     phoneNumber,
   }
 
-  // Store user data in a collection
+  setUserData(user)
+
+  // Store user data in Firestore
   await addDoc(collection(db, 'users'), user)
 
   return user
 }
-
 
 const login = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(auth, email, password)
@@ -70,45 +65,17 @@ const login = async (email, password) => {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
+
+  setUserData(user)
+
   return user
 }
 
 const logout = async () => {
-  return await signOut(auth)
+  await signOut(auth)
+  clearUserData()
 }
 
-// login as admin
-const loginAdmin = async (email, password) => {
-  const userCredential = await signInWithEmailAndPassword(auth, email, password)
-
-  const admin = {
-    uid: userCredential.user.uid,
-    email: userCredential.user.email,
-    isAdmin: true, // Add a flag to indicate admin status
-  }
-  return admin
-}
-
-// signup as admin
-const registerAdmin = async (email, password) => {
-  const userCredential = await createUserWithEmailAndPassword(
-    auth,
-    email,
-    password
-  )
-
-  const admin = {
-    uid: userCredential.user.uid,
-    email: userCredential.user.email,
-    isAdmin: true, // Add a flag to indicate admin status
-  }
-  // Store admin data in a collection
-   await addDoc(collection(db, 'admins'), admin)
-
-  return admin
-}
-
-// TODO: Implement this function to subscribe to the newsletter and save data in Firebase
 const subscribeToNewsletter = async (email) => {
   const userCredential = await createUserWithEmailAndPassword(auth, email)
 
@@ -116,7 +83,11 @@ const subscribeToNewsletter = async (email) => {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
-   await addDoc(collection(db, 'subscribers'), user)
+
+  setUserData(user)
+
+  // Store subscriber data in Firestore
+  await addDoc(collection(db, 'subscribers'), user)
 
   return user
 }
@@ -129,28 +100,98 @@ const signInWithGoogle = async () => {
     uid: userCredential.user.uid,
     email: userCredential.user.email,
   }
+
+  setUserData(user)
+
   return user
+}
+
+const retrieveUserData = async (uid) => {
+  const userRef = doc(db, 'users', uid)
+
+  const userDoc = await getDoc(userRef)
+
+  if (userDoc.exists()) {
+    const userData = userDoc.data()
+    return { uid: userDoc.id, ...userData }
+  } else {
+    throw new Error('User data not found')
+  }
+}
+
+
+const updateUser = async (uid, updatedData) => {
+  const userRef = doc(db, 'users', uid)
+
+  // Retrieve the user document from Firestore
+  const userDoc = await getDoc(userRef)
+
+  if (userDoc.exists()) {
+    const userData = userDoc.data()
+
+    // Merge the existing user data with the updated data
+    const updatedUser = { ...userData, ...updatedData }
+
+    // Update the user document in Firestore
+    await setDoc(userRef, updatedUser)
+
+    // Update the user data in the current session
+    setUserData(updatedUser)
+
+    return updatedUser
+  } else {
+    throw new Error('User data not found')
+  }
 }
 
 const authService = {
   signup,
   login,
   logout,
-  registerAdmin,
-  loginAdmin,
   subscribeToNewsletter,
   signInWithGoogle,
+  getUserData,
+  retrieveUserData,
+  updateUser,
 }
 
 export default authService
 
 // import {
 //   createUserWithEmailAndPassword,
-//   signInWithEmailAndPassword, signInWithPopup, signOut
+//   signInWithEmailAndPassword,
+//   signInWithPopup,
+//   signOut,
 // } from 'firebase/auth'
-// import { auth, googleProvider } from '../../../firebase/config'
+// import { auth, db, googleProvider } from '../../../firebase/config'
+// import { collection, addDoc } from 'firebase/firestore'
 
-// const signup = async (email, password) => {
+// let currentUserData = null
+
+// const setUserData = (userData) => {
+//   currentUserData = userData
+// }
+
+// const getUserData = () => {
+//   return currentUserData
+// }
+
+// const clearUserData = () => {
+//   currentUserData = null
+// }
+
+// const signup = async (formData) => {
+//   const {
+//     email,
+//     password,
+//     firstName,
+//     lastName,
+//     address,
+//     city,
+//     postal_code,
+//     phoneNumber,
+//   } = formData
+
 //   const userCredential = await createUserWithEmailAndPassword(
 //     auth,
 //     email,
@@ -160,7 +201,17 @@ export default authService
 //   const user = {
 //     uid: userCredential.user.uid,
 //     email: userCredential.user.email,
+//     firstName,
+//     lastName,
+//     address,
+//     city,
+//     postal_code,
+//     phoneNumber,
 //   }
+
+//   // Store user data in a collection
+//   await addDoc(collection(db, 'users'), user)
+
 //   return user
 // }
 
@@ -178,59 +229,7 @@ export default authService
 //   return await signOut(auth)
 // }
 
-// // login as admin
-// const loginAdmin = async (email, password) => {
-//   const userCredential = await signInWithEmailAndPassword(auth, email, password)
-
-//   const admin = {
-//     uid: userCredential.user.uid,
-//     email: userCredential.user.email,
-//     isAdmin: true, // Add a flag to indicate admin status
-//   }
-//   return admin
-// }
-
-// // const loginAsAdmin = async (email, password) => {
-// //   const userCredential = await signInWithEmailAndPassword(auth, email, password)
-
-// //   const admin = {
-// //     uid: userCredential.user.uid,
-// //     email: userCredential.user.email,
-// //   }
-// //   return admin
-// // }
-
-// // signup as admin
-// const registerAdmin = async (email, password) => {
-//   const userCredential = await createUserWithEmailAndPassword(
-//     auth,
-//     email,
-//     password
-//   )
-
-//   const admin = {
-//     uid: userCredential.user.uid,
-//     email: userCredential.user.email,
-//     isAdmin: true, // Add a flag to indicate admin status
-//   }
-//   return admin
-// }
-
-// // const signupAsAdmin = async (email, password) => {
-// //   const userCredential = await createUserWithEmailAndPassword(
-// //     auth,
-// //     email,
-// //     password
-// //   )
-
-// //   const admin = {
-// //     uid: userCredential.user.uid,
-// //     email: userCredential.user.email,
-// //   }
-// //   return admin
-// // }
-
-// // TODO: Implement this function to subscribe to newsletter and save data in firebase
+// // TODO: Implement this function to subscribe to the newsletter and save data in Firebase
 // const subscribeToNewsletter = async (email) => {
 //   const userCredential = await createUserWithEmailAndPassword(auth, email)
 
@@ -238,14 +237,14 @@ export default authService
 //     uid: userCredential.user.uid,
 //     email: userCredential.user.email,
 //   }
+//    await addDoc(collection(db, 'subscribers'), user)
+
 //   return user
 // }
 
 // const signInWithGoogle = async () => {
 //   const userCredential = await signInWithPopup(auth, googleProvider)
-//   if(!userCredential.user) throw new Error('Google login failed')
-
-//   console.log(userCredential)
+//   if (!userCredential.user) throw new Error('Google login failed')
 
 //   const user = {
 //     uid: userCredential.user.uid,
@@ -258,8 +257,6 @@ export default authService
 //   signup,
 //   login,
 //   logout,
-//   registerAdmin,
-//   loginAdmin,
 //   subscribeToNewsletter,
 //   signInWithGoogle,
 // }

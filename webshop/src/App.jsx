@@ -19,13 +19,13 @@ import MyAccount from './pages/myAccount/MyAccount'
 import Checkout from './pages/checkout/Checkout'
 
 // Admin pages
-import ProtectedRoute from './components/protectedRoute/ProtectedRoute'
+// import ProtectedRoute from './components/protectedRoute/ProtectedRoute'
 
-import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
-import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
-import Admin from './pages/admin/Admin'
-import AddProduct from './pages/admin/addProduct/AddProduct'
-import Orders from './pages/admin/orders/Orders'
+// import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
+// import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
+// import Admin from './pages/admin/Admin'
+// import AddProduct from './pages/admin/addProduct/AddProduct'
+// import Orders from './pages/admin/orders/Orders'
 
 // Components
 import Header from './components/header/Header'
@@ -77,11 +77,11 @@ const App = () => {
             <Route path="/logout" element={<LogOut />} />
             <Route path="/my-account" element={<MyAccount />} />
             {/* Admin route */}
-            <Route path="/login-admin" element={<LoginAdmin />} />
+            {/* <Route path="/login-admin" element={<LoginAdmin />} />
             <Route path="/register-admin" element={<RegisterAdmin />}/>
             <Route isAdmin={isAdmin} path="/admin-panel" element={<Admin />}/>
             <Route isAdmin={isAdmin} path="/addProduct" element={<AddProduct />}/>
-            <Route isAdmin={isAdmin} path="/orders" element={<Orders />}/>
+            <Route isAdmin={isAdmin} path="/orders" element={<Orders />}/> */}
           <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Subscription />

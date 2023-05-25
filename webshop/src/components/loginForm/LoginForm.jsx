@@ -26,6 +26,7 @@ const LoginForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    
     if (
       formData.email !== formData.email ||
       formData.password !== formData.password
