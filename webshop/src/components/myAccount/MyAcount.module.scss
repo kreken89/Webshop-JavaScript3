@@ -1,0 +1,16 @@
+li {
+    list-style: none;
+    img{
+        width: 64px;
+    }
+}
+.orderContainer{
+    margin-bottom: 3rem;
+    border: 1px black solid;
+    padding: 2rem;
+    
+    .fat{
+        font-size: 24px;
+        font-weight: bolder;
+    }
+}

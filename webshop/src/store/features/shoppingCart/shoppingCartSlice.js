@@ -6,6 +6,7 @@ import shoppingCartService from'./shoppingCartService'
 
 
  export const initialState = {
+    orders: [],
     order:[],
     cart: [],
     error: null,
@@ -62,6 +63,14 @@ export const addOrder = createAsyncThunk('order/add', async (orderData, thunkAPI
   }
 });
 
+export const getOrders = createAsyncThunk('product-list/getAll', async (uid, thunkAPI) => {
+  try {
+      return await shoppingCartService.getOrderAsync('orders', uid)
+      
+  } catch (err) {
+      return thunkAPI.rejectWithValue(err.message)
+  }
+})
 
 
 export const shoppingCartSlice = createSlice({
@@ -124,6 +133,19 @@ export const shoppingCartSlice = createSlice({
             state.loading = false
             state.error = action.payload
           })
+          .addCase(getOrders.pending, (state) => {
+            state.loading = true
+          })
+          .addCase(getOrders.fulfilled, (state, action) => {
+            state.loading = false
+            state.error = null
+            state.orders = action.payload
+          })
+          .addCase(getOrders.rejected, (state, action) => {
+            state.loading = false
+            state.error = action.payload
+          })
+
 
 
           /* .addCase(getProducts.pending, (state) => {

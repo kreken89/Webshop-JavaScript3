@@ -12,6 +12,7 @@ const Checkout = () => {
   const dispatch = useDispatch()
   
   const cart = useSelector((state) => state.shoppingCart.cart);
+  const totalAmount = useSelector((state) => state.shoppingCart.totalAmount)
 
   const user = useSelector((state) => state.auth.user)
 
@@ -19,7 +20,8 @@ const Checkout = () => {
   console.log(user)
   const [orderData, setOrderData] = useState({
     status: "pending",
-    userId: ''
+    userId: '',
+    totalAmount: 0
   })
 
 //   const handleChange = (e) => {
@@ -44,8 +46,8 @@ const Checkout = () => {
     const data = {
         ...orderData,
         item: orderItems,
-        userId: user.uid
-
+        userId: user.uid,
+        totalAmount: totalAmount
      
         //  productId: product.id
       }

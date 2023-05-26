@@ -1,5 +1,5 @@
 import { db } from "../../../firebase/config"
-import { addDoc, collection, getDocs, } from 'firebase/firestore';
+import { addDoc, collection, getDocs, query, where } from 'firebase/firestore';
 import { getDatabase, push, ref, set } from "firebase/database";
 
 const createOrder = async (orderData) => {
@@ -15,16 +15,15 @@ const createOrder = async (orderData) => {
     
 }
 
-const getOrderAsync = async (col) => {
-    const colRef = collection(db, col )
-    const querySnapshot = await getDocs(colRef)
+const getOrderAsync = async (col, uid) => {
+    const q = query(collection(db, col), where("userId", "==", uid))
+    const querySnapshot = await getDocs(q)
 
-    const order = []
+    const orders = []
     querySnapshot.forEach(doc => {
-        order.push({id: doc.id, ...doc.data()})
+        orders.push({...doc.data()})
     })
-    
-    return order
+    return orders
 }
 
 const saveOrderToDatabase = async(orderData) => {
