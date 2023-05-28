@@ -1,9 +1,9 @@
-import { useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { authReady } from '../../store/features/auth/authSlice'
 import authService from '../../store/features/auth/authService'
 
-const MyAccount = () => {
+const MyAccountEdit = () => {
   const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
@@ -42,4 +42,4 @@ const MyAccount = () => {
   )
 }
 
-export default MyAccount
+export default MyAccountEdit
