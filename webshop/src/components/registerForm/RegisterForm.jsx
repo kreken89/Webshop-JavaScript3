@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { registerUser, setError } from '../../store/features/auth/authSlice'
 import GoogleBtn from '../loginForm/GoogleBtn'
+import { getUserData } from '../../store/features/auth/authService'
+
 
 const RegisterForm = () => {
   const { user, loading, error } = useSelector((state) => state.auth)
@@ -53,9 +55,10 @@ const RegisterForm = () => {
 
   useEffect(() => {
     if (submitted && user) {
+      dispatch(getUserData(user.uid))
       navigate('/')
     }
-  }, [submitted, user, navigate])
+  }, [submitted, user, dispatch, navigate])
 
   return (
     <section className="register-wrap">

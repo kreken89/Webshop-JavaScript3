@@ -11,7 +11,7 @@ const MyAccountEdit = () => {
     const fetchUserData = async () => {
       try {
         if (user) {
-          const userData = await authService.retrieveUserData(user.uid)
+          const userData = await authService.getUserData(user.uid)
           dispatch(authReady(userData))
         }
       } catch (error) {

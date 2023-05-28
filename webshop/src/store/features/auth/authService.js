@@ -7,18 +7,20 @@ import {
 import { auth, db, googleProvider } from '../../../firebase/config'
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore'
 
-let currentUserData = null
+export const getUserData = async (uid) => {
+  try {
+    const userRef = doc(db, 'users', uid)
+    const userDoc = await getDoc(userRef)
 
-const setUserData = (userData) => {
-  currentUserData = userData
-}
-
-const getUserData = () => {
-  return currentUserData
-}
-
-const clearUserData = () => {
-  currentUserData = null
+    if (userDoc.exists()) {
+      const userData = userDoc.data()
+      return userData
+    } else {
+      throw new Error('User data not found')
+    }
+  } catch (error) {
+    throw new Error('Failed to fetch user data')
+  }
 }
 
 const signup = async (formData) => {
@@ -66,7 +68,7 @@ const login = async (email, password) => {
     email: userCredential.user.email,
   }
 
-  const userData = await retrieveUserData(user.uid)
+  const userData = await getUserData(user.uid)
 
   setUserData({ ...user, ...userData })
 
@@ -108,19 +110,6 @@ const signInWithGoogle = async () => {
   return user
 }
 
-const retrieveUserData = async (uid) => {
-  const userRef = doc(db, 'users', uid)
-
-  const userDoc = await getDoc(userRef)
-
-  if (userDoc.exists()) {
-    const userData = userDoc.data()
-    return userData
-  } else {
-    throw new Error('User data not found')
-  }
-}
-
 const authService = {
   signup,
   login,
@@ -128,7 +117,6 @@ const authService = {
   subscribeToNewsletter,
   signInWithGoogle,
   getUserData,
-  retrieveUserData,
 }
 
 export default authService
