@@ -1,5 +1,4 @@
-import React from 'react'
-import MyAccountEdit from '../../components/myAccount/myAccountEdit'
+import MyAccountEdit from '../../components/myAccount/MyAccountEdit'
 import MyAccountOrders from '../../components/myAccount/MyAccountOrders'
 
 const MyAccount = () => {
