@@ -86,7 +86,6 @@ export const shoppingCartSlice = createSlice({
 
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
-            console.log(state.cart)
         },
         removeFromCart: (state, action) => {
             const itemRef = state.cart.find(item => item.product.id === action.payload);
@@ -115,7 +114,7 @@ export const shoppingCartSlice = createSlice({
           })
            return order
           },
-        extraReduers:(builder)=> {
+        extraReducers:(builder)=> {
             builder
           .addCase(addOrder.pending, (state) => {
             state.loading = true;
