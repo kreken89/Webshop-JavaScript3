@@ -21,8 +21,8 @@ const Products = () => {
         <h2 className="products-title">All our products</h2>
 
         <div className="products-categories">
-        <li>All</li> /<li>T-shirts</li> /<li>Dress</li> /<li>Shoes</li> /<li>Jeans</li> 
-      </div>
+          <li>All</li> /<li>Man</li> /<li>Woman</li>
+        </div>
 
         <div className="products-collection">
             {loading && <Loader />}

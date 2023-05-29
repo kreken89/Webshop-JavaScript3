@@ -18,15 +18,6 @@ import LogOut from './pages/login/LogOut'
 import MyAccount from './pages/myAccount/MyAccount'
 import Checkout from './pages/checkout/Checkout'
 
-// Admin pages
-// import ProtectedRoute from './components/protectedRoute/ProtectedRoute'
-
-// import LoginAdmin from './pages/admin/loginAdmin/LoginAdmin'
-// import RegisterAdmin from './pages/admin/registerAdmin/RegisterAdminPage'
-// import Admin from './pages/admin/Admin'
-// import AddProduct from './pages/admin/addProduct/AddProduct'
-// import Orders from './pages/admin/orders/Orders'
-
 // Components
 import Header from './components/header/Header'
 import Footer from './components/footer/Footer'
@@ -39,12 +30,11 @@ import { auth } from './firebase/config'
 import { useDispatch, useSelector } from 'react-redux'
 import { authReady } from './store/features/auth/authSlice'
 
-
 const App = () => {
   const { authIsReady, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
-  const isAdmin = user && user.isAdmin
+  // const isAdmin = user && user.isAdmin
 
   useEffect(() => {
     onAuthStateChanged(auth, (_user) => {
@@ -76,13 +66,7 @@ const App = () => {
             <Route path="/register" element={<Register />} />
             <Route path="/logout" element={<LogOut />} />
             <Route path="/my-account" element={<MyAccount />} />
-            {/* Admin route */}
-            {/* <Route path="/login-admin" element={<LoginAdmin />} />
-            <Route path="/register-admin" element={<RegisterAdmin />}/>
-            <Route isAdmin={isAdmin} path="/admin-panel" element={<Admin />}/>
-            <Route isAdmin={isAdmin} path="/addProduct" element={<AddProduct />}/>
-            <Route isAdmin={isAdmin} path="/orders" element={<Orders />}/> */}
-          <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout />} />
           </Routes>
           <Subscription />
           <Footer />
