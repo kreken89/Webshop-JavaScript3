@@ -57,9 +57,10 @@ const MyAccountEdit = () => {
   }
 
   return (
-    <div>
+    <div className="mb-5">
       <h2>My Account</h2>
-      <form onSubmit={handleSubmit}>
+      <span>{formData.email}</span>
+      {/* <form onSubmit={handleSubmit}>
         <div className="input-box">
           <label htmlFor="firstName">First Name</label>
           <input
@@ -133,11 +134,11 @@ const MyAccountEdit = () => {
             required
           />
 
-          {/* Include other form fields for address, city, postal code, etc. */}
+          
 
           <button type="submit">Save</button>
         </div>
-      </form>
+      </form> */}
     </div>
   )
 }

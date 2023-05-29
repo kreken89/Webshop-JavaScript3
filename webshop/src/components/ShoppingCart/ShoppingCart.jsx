@@ -5,6 +5,7 @@ import { clearCart, closeCart } from '../../store/features/shoppingCart/shopping
 import CartProduct from './CartProduct';
 
 const ShoppingCart = ({ checkout }) => {
+
   const { cart, totalAmount, isOpen } = useSelector(state => state.shoppingCart);
   const dispatch = useDispatch();
   const cartRef = useRef(null);
@@ -72,3 +73,42 @@ const ShoppingCart = ({ checkout }) => {
 };
 
 export default ShoppingCart;
+=======
+  const { cart, totalAmount } = useSelector((state) => state.shoppingCart)
+  const dispatch = useDispatch()
+
+  return (
+    <div onClick={(e) => e.stopPropagation()}>
+      {cart.length < 1 && (
+        <div className="p-2 text-center"> Your cart is empty</div>
+      )}
+      {cart.map((item) => (
+        <CartProduct key={'cart' + item.product.id} item={item} />
+      ))}
+      <div className="dropdown-divider"></div>
+      <div className="d-flex justify-content-between align-items-center p-2">
+        <div>
+          <p className="m-0">Total Price: {totalAmount}</p>
+          <p className="text-muted"> Ink. vat</p>
+        </div>
+        <div>
+          {!checkout && (
+            <>
+              <button
+                className="btn btn-warning"
+                onClick={() => dispatch(clearCart())}>
+                Clear cart
+              </button>
+              <Link to="/checkout" className="btn btn-success ms-2">
+                Continue to Checkout
+              </Link>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default ShoppingCart
+
