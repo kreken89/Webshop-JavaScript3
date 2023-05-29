@@ -10,7 +10,8 @@ const MyAccountEdit = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        if (user) {
+        if (user && user.uid) {
+          // Add a check for user.uid
           const userData = await authService.getUserData(user.uid)
           dispatch(authReady(userData))
         }

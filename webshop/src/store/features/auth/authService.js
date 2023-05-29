@@ -23,6 +23,7 @@ export const getUserData = async (uid) => {
   }
 }
 
+
 const signup = async (formData) => {
   const {
     email,

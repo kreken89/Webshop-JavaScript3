@@ -72,19 +72,6 @@ export const signInWithGoogle = createAsyncThunk(
   }
 )
 
-export const updateUser = createAsyncThunk(
-  'auth/updateUser',
-  async (uid, thunkAPI) => {
-    try {
-      const userData = await authService.retrieveUserData(uid)
-      thunkAPI.dispatch(setUser(userData))
-      return userData
-    } catch (err) {
-      return thunkAPI.rejectWithValue(err.message)
-    }
-  }
-)
-
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -153,12 +140,6 @@ export const authSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null
         state.authIsReady = false // Reset authIsReady state on logout
-      })
-
-      .addCase(updateUser.fulfilled, (state, action) => {
-        state.user = action.payload
-        state.loading = false
-        state.error = null
       })
   },
 })

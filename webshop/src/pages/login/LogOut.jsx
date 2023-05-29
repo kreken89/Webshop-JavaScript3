@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { auth } from '../../firebase/config'
 
-export const handleLogout = async (navigate) => {
+const handleLogout = async () => {
   try {
     await auth.signOut()
     // Navigate to the homepage after logging out
@@ -15,7 +15,7 @@ export const handleLogout = async (navigate) => {
 const Logout = () => {
   const navigate = useNavigate()
 
-  return <button onClick={() => handleLogout(navigate)}>Logout</button>
+  return <button onClick={handleLogout}>Logout</button>
 }
 
 export default Logout
