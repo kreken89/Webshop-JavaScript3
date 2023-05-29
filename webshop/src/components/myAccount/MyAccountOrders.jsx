@@ -35,15 +35,15 @@ const MyAccountOrders = () => {
         <p>Loading...</p>
       ) : (
         orders && orders.length > 0 ? (
-          orders.map((order) => {
+          orders.map((order, i) => {
             return (
-              <div className="orderContainer" key={order.id}>
+              <div className="orderContainer" key={i}>
                 <p className="fat">Order Status: {order.status}</p>
                 <p></p>
                 <h5>Items:</h5>
                 <ul>
-                  {order.item.map((item) => (
-                    <li key={item.id}>
+                  {order.item.map((item, i) => (
+                    <li key={i}>
                       <img src={item.imageURL} alt={item.name} />
                       <p>Item Name: {item.name}</p>
                       <p>Size: {item.size}</p>
