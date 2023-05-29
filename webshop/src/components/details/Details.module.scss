@@ -167,10 +167,18 @@ border: 0.1rem solid rgb(144, 133, 133);
 
 .dropDown-box{
     margin-bottom: 2rem;
+    
+}
+#size{
+  width: 80px;
+}
+.size-selector{
+  display: none;
 }
 
 .selector{
 display: flex;
 flex-direction: column;
+
 }
 

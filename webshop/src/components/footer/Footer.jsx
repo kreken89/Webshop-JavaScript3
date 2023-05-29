@@ -8,10 +8,10 @@ const Footer = () => {
       <div className="footer-top">
         <div className="footer-general footer-content-container">
           <img src="../../public/logo.png" alt="Our logo"></img>
-          <h4>869, Miyan road, Y4 456 Mona Town.</h4>
-          <h4>Office No 3456.</h4>
-          <h4>info@example.com</h4>
-          <h4>+234-58286909</h4>
+          <span>869, Miyan road, Y4 456 Mona Town.</span>
+          <span>Office No 3456.</span>
+          <span>info@example.com</span>
+          <span>+234-58286909</span>
         </div>
         <div className="footer-links footer-content-container">
           <h3>Links.</h3>
@@ -41,7 +41,6 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">©2020 CopyRight Example. All rights reserved.</div>
-      <div></div>
     </div>
   )
 }

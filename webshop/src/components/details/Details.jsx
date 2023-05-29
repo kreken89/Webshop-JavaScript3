@@ -11,7 +11,7 @@ import { getProducts } from '../../store/features/products/productListSlice'
 import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 
 
-const QuantityButton = () => {
+/* const QuantityButton = () => {
   const [quantity, setQuantity] = useState(1)
 
   const increment = () => {
@@ -35,9 +35,9 @@ const QuantityButton = () => {
       </button>
     </div>
   )
-}
+} */
 
-const SizeDropdown = () => {
+/* const SizeDropdown = () => {
   const [selectedSize, setSelectedSize] = useState('')
 
   const handleSizeChange = (e) => {
@@ -67,7 +67,7 @@ const SizeDropdown = () => {
       <p className={'size-selector'}>{selectedSize}</p>
     </>
   )
-}
+} */
 
 
 const Details = () => {
@@ -76,6 +76,8 @@ const Details = () => {
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { products } = productList
+  const [quantity, setQuantity] = useState(1)
+  const [selectedSize, setSelectedSize] = useState('M')
 
   useEffect(() => {
     dispatch(getProducts())
@@ -88,6 +90,26 @@ const Details = () => {
         {error && <p>{error}</p>}
       </div>
     )
+  }
+
+  const increment = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
+
+  const handleSizeChange = (e) => {
+    setSelectedSize(e.target.value)
+  }
+
+  const addToCartHandler = () => {
+    
+    const sendData = {...data, quantity: quantity, selectedSize: selectedSize}
+    dispatch(addToCart(sendData))
   }
   
   return (
@@ -105,12 +127,28 @@ const Details = () => {
           </div>
           <p className='price'>{data.price}</p>
           <div className='dropDown-box'>
-            <SizeDropdown />
+            <label htmlFor="size" className={styles['selector']}>
+              Select Size:
+            </label>
+            <select value={selectedSize} id="size" onChange={handleSizeChange}>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+            </select>
+            <p className={'size-selector'}>{selectedSize}</p>
           </div>
           <div className='cart-bnt-box'>
             <div className='quantityButton'>
-              <QuantityButton />
-              <button className='addToCart-bnt' onClick={ () => dispatch(addToCart(data))}>
+            <div className={styles['quantity-group']}>
+              <button className={styles['quantity-decrement']} onClick={decrement}>
+                -
+              </button>
+              <span className={styles['quantity']}>{quantity}</span>
+              <button className={styles['quantity-increment']} onClick={increment}>
+                +
+              </button>
+            </div>
+              <button className='addToCart-bnt' onClick={addToCartHandler}>
                 Add to Cart{' '}
                 <MdOutlineAddShoppingCart
                   className='fa-shopping-cart'
