@@ -11,8 +11,8 @@ import { getProducts } from '../../store/features/products/productListSlice'
 import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 
 
-const QuantityButton = () => {
-  const [quantity, setQuantity] = useState(0)
+/* const QuantityButton = () => {
+  const [quantity, setQuantity] = useState(1)
 
   const increment = () => {
     setQuantity(quantity + 1)
@@ -35,7 +35,7 @@ const QuantityButton = () => {
       </button>
     </div>
   )
-}
+} */
 
 const SizeDropdown = () => {
   const [selectedSize, setSelectedSize] = useState('')
@@ -67,6 +67,7 @@ const Details = () => {
   const dispatch = useDispatch()
   const productList = useSelector((state) => state.productList)
   const { products } = productList
+  const [quantity, setQuantity] = useState(1)
 
   useEffect(() => {
     dispatch(getProducts())
@@ -79,6 +80,20 @@ const Details = () => {
         {error && <p>{error}</p>}
       </div>
     )
+  }
+
+  const increment = () => {
+    setQuantity(quantity + 1)
+  }
+
+  const decrement = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1)
+    }
+  }
+  const addToCartHandler = () => {
+    const sendData = {...data, quantity: quantity}
+    dispatch(addToCart(sendData))
   }
   
   return (
@@ -100,8 +115,16 @@ const Details = () => {
           </div>
           <div className='cart-bnt-box'>
             <div className='quantityButton'>
-              <QuantityButton />
-              <button className='addToCart-bnt' onClick={ () => dispatch(addToCart(data))}>
+            <div className={styles['quantity-group']}>
+              <button className={styles['quantity-decrement']} onClick={decrement}>
+                -
+              </button>
+              <span className={styles['quantity']}>{quantity}</span>
+              <button className={styles['quantity-increment']} onClick={increment}>
+                +
+              </button>
+            </div>
+              <button className='addToCart-bnt' onClick={addToCartHandler}>
                 Add to Cart{' '}
                 <MdOutlineAddShoppingCart
                   className='fa-shopping-cart'
