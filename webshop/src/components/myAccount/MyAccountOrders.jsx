@@ -46,6 +46,7 @@ const MyAccountOrders = () => {
                     <li key={item.id}>
                       <img src={item.imageURL} alt={item.name} />
                       <p>Item Name: {item.name}</p>
+                      <p>Size: {item.size}</p>
                       <p>Item Price: {item.price} kr</p>
                       <p>Item Quantity: {item.quantity}</p>
                       
