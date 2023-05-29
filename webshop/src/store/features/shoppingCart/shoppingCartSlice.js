@@ -80,7 +80,7 @@ export const shoppingCartSlice = createSlice({
         addToCart: (state, action) => {
            console.log(action.payload)
             const itemRef = state.cart.find(item => item.product.id === action.payload.id);
-            const itemSize = state.cart.find(item => item.product.size === action.payload.selectedSize)
+            const itemSize = state.cart.find(item => item.product.selectedSize === action.payload.selectedSize)
             itemRef && itemSize ? itemRef.quantity += action.payload.quantity
             : state.cart = [...state.cart, { product: action.payload, quantity: action.payload.quantity}];
             console.log(state.cart)
