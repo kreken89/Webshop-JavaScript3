@@ -12,7 +12,8 @@ import shoppingCartService from'./shoppingCartService'
     error: null,
     loading: false,
     totalQuantity: 0,
-    totalAmount: 0
+    totalAmount: 0,
+    isOpen: false
 }
 
 const getTotalQuantity = (cart) => {
@@ -109,6 +110,13 @@ export const shoppingCartSlice = createSlice({
             state.totalQuantity = getTotalQuantity(state.cart);
         },
 
+        toggleCart(state) {
+          state.isOpen = !state.isOpen
+        },
+        closeCart(state) {
+          state.isOpen = false
+        },
+
           placeOrder: (state, action) => {
           const order =  state.cart.map(item => { 
             return {id: item.product.id === action.product.id, quantity: quantity.id === action.payload.id}
@@ -167,5 +175,5 @@ export const shoppingCartSlice = createSlice({
 
 })
 
-export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, placeOrder } = shoppingCartSlice.actions;
+export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, toggleCart, closeCart, placeOrder } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;
