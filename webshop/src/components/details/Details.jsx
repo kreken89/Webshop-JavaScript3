@@ -11,7 +11,9 @@ import { getProducts } from '../../store/features/products/productListSlice'
 import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 
 
+
 /* const QuantityButton = () => {
+
   const [quantity, setQuantity] = useState(1)
 
   const increment = () => {
