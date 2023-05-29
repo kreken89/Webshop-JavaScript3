@@ -1,13 +1,16 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import ShoppingCart from '../../components/shoppingCart/ShoppingCart'
 import {addOrder, addToCart, placeOrder, clearCart} from '../../store/features/shoppingCart/shoppingCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+
 // import { getFirestore } from 'firebase/firestore';
 
 
 
 
 const Checkout = () => {
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
   
@@ -51,6 +54,7 @@ const Checkout = () => {
      
         //  productId: product.id
       }
+
  
    console.log(cart[0].product.id)
     dispatch(addOrder(data))
@@ -76,6 +80,11 @@ const Checkout = () => {
   //     });
   // };
 
+  useEffect(() => {
+    if (user === null) {
+      navigate('/login')
+    }
+  }, [user])
 
 
   return (
