@@ -31,7 +31,7 @@ const ShoppingCart = ({ checkout }) => {
                 Clear cart
               </button>
               <Link to="/checkout" className="btn btn-success ms-2">
-                Checkout
+                Continue to Checkout
               </Link>
             </>
           )}
