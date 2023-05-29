@@ -30,7 +30,7 @@ const MyAccountOrders = () => {
   
   return (
     <div>
-      <h1>My Account Orders</h1>
+      <h4>My Account Orders</h4>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
@@ -40,7 +40,7 @@ const MyAccountOrders = () => {
               <div className="orderContainer" key={order.id}>
                 <p className="fat">Order Status: {order.status}</p>
                 <p></p>
-                <h3>Items:</h3>
+                <h5>Items:</h5>
                 <ul>
                   {order.item.map((item) => (
                     <li key={item.id}>
