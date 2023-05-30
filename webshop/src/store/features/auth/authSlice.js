@@ -154,7 +154,7 @@ export const authSlice = createSlice({
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null
-        state.authIsReady = false // Reset authIsReady state on logout
+         // Reset authIsReady state on logout
       })
 
       .addCase(update.fulfilled, (state, action) => {

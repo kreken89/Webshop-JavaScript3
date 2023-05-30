@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import ShoppingCart from '../../components/shoppingCart/ShoppingCart'
+import ShoppingCart from '../../components/ShoppingCart/ShoppingCart'
 import {addOrder, addToCart, placeOrder, clearCart} from '../../store/features/shoppingCart/shoppingCartSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'

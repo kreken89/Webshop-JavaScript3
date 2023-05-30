@@ -65,10 +65,11 @@ const Header = () => {
               <span
                 className="nav-link"
                 role="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#cartDropdown"
-                aria-expanded={isCartOpen ? 'true' : 'false'}
-                onClick={toggleCart}>
+                data-bs-toggle="dropdown"
+                // data-bs-target="#cartDropdown"
+                aria-expanded='false'
+                // onClick={toggleCart}
+                >
                 <FaShoppingCart />
                 {totalQuantity > 0 && (
                   <span className="position-absolut start-100 translate-middle badge rounded-pill bg-danger">
@@ -78,9 +79,7 @@ const Header = () => {
               </span>
               <div
                 id="cartDropdown"
-                className={`dropdown-menu dropdown-menu-end custom-dropdown-menu shopping-cart ${
-                  isCartOpen ? 'show' : ''
-                }`}>
+                className={`dropdown-menu dropdown-menu-end custom-dropdown-menu shopping-cart `}>
                 <ShoppingCart />
               </div>
             </li>
