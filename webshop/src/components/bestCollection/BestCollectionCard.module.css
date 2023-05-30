@@ -1,0 +1,48 @@
+.product_name {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.product_item {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+.product_item h3.product_name {
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.product_category {
+  margin-top: 0;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: grey;
+}
+
+.product_card-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product_btn {
+  padding: 0.5rem 0;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  color: var(--white-color);
+  font-size: 1.5rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+.product_btn:hover {
+  background-color: var(--dark-color);
+}
+
+.loader {
+  margin-left: 0.2rem;
+}/*# sourceMappingURL=BestCollectionCard.module.css.map */

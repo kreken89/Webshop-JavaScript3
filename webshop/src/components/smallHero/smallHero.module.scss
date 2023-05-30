@@ -1,0 +1,16 @@
+.smallHero{
+    text-align: center;
+    
+    background-position: -150px -1320px;
+    background-image: url("https://i.etsystatic.com/25385324/r/il/c37c52/4060113823/il_fullxfull.4060113823_6lpt.jpg");
+    width: 100vw;
+    height: 25vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 2rem;
+    *{
+        font-weight: bold;
+        
+    }
+}
