@@ -45,10 +45,15 @@ export const handleLogout = async () => {
 const Logout = () => {
   const navigate = useNavigate()
 
-  const handleLogoutClick = () => {
-    handleLogout().then(() => {
+  const handleLogoutClick = async () => {
+    
+    try {
+      await auth.signOut()
+      // Redirect to the homepage after logging out
       navigate('/')
-    })
+    } catch (err) {
+      console.log(err.message)
+    }
   }
 
   return <button onClick={handleLogoutClick}>Logout</button>

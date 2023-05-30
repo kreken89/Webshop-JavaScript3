@@ -11,7 +11,9 @@ import { getProducts } from '../../store/features/products/productListSlice'
 import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 
 
+
 /* const QuantityButton = () => {
+
   const [quantity, setQuantity] = useState(1)
 
   const increment = () => {
@@ -51,9 +53,18 @@ import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
       </label>
       <select value={selectedSize} id="size" onChange={handleSizeChange}>
         <option value="">Select</option>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
+        <option value="36">EUR 36</option>
+        <option value="37">EUR 37</option>
+        <option value="38">EUR 38</option>
+        <option value="39">EUR 39</option>
+        <option value="40">EUR 40</option>
+        <option value="41">EUR 41</option>
+        <option value="42">EUR 42</option>
+        <option value="43">EUR 43</option>
+        <option value="44">EUR 44</option>
+        <option value="45">EUR 45</option>
+        <option value="46">EUR 46</option>
+        
       </select>
       <p className={'size-selector'}>{selectedSize}</p>
     </>

@@ -50,7 +50,7 @@ const App = () => {
 
       dispatch(authReady(user))
     })
-  }, [dispatch])
+  }, [dispatch, onAuthStateChanged])
 
   return (
     <>
