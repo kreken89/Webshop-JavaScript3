@@ -69,7 +69,7 @@ const Details = () => {
           <div className='text-box'>
             <p className='detailsTextInfo'>{data.description}</p>
           </div>
-          <p className='price'>{data.price}</p>
+          <p className='price'>{data.price} kr</p>
           <div className='dropDown-box'>
             <label htmlFor="size" className={styles['selector']}>
               Select Size:
