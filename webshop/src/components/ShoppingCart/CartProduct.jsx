@@ -24,7 +24,7 @@ const CartProduct = ({ item }) => {
             <img src={item.product.imageURL} alt={item.product.name} className='img-fluid cart-image' />
             <div>
                 <p className='m-0'>{item.product.name} - {item.product.selectedSize}</p>
-                <p className='cartProduct-price '>{item.quantity} x {item.product.price}</p>
+                <p className='cartProduct-price '>{item.quantity} x {item.product.price} kr</p>
                 
             </div>
         </Link>

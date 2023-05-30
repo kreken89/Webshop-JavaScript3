@@ -9,7 +9,7 @@ const ShoppingCart = ({ checkout }) => {
     const dispatch = useDispatch()
     const cartRef = useRef(null)
 
-    const handleClickOutsideCart = event => {
+    /* const handleClickOutsideCart = event => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
         // Close the shopping cart here
         // Implement the necessary logic to close the cart
@@ -21,7 +21,7 @@ const ShoppingCart = ({ checkout }) => {
       return () => {
         document.removeEventListener('click', handleClickOutsideCart)
       }
-    }, [])
+    }, []) */
 
 
   return (
@@ -34,14 +34,14 @@ const ShoppingCart = ({ checkout }) => {
             <div className="dropdown-divider"></div>
             <div className="d-flex justify-content-between align-items-center p-2"> 
             <div>
-                <p className='m-0'>Total Price: { totalAmount }</p>
+                <p className='m-0'>Total Price: { totalAmount } kr</p>
                 <p className='text-muted'> Ink. vat</p>
             </div>
             <div>
                 {!checkout &&
                 <>
                 <button className='btn btn-warning' onClick={() => dispatch(clearCart())}>Clear cart</button>
-                <Link to='/checkout' className='btn btn-success ms-2'>Checkout</Link>
+                <Link to='/checkout' className='btn btn-success ms-2'>To Checkout</Link>
                 </>
                 }
                 

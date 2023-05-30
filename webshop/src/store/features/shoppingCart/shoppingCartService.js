@@ -9,7 +9,7 @@ const createOrder = async (orderData) => {
 
     if(!docRef.id) throw new Error('Something went wrong')
 
-    console.log(docRef) // VI FÅR IN::: 
+    
     const order = { uid: userCredential.user.uid, id: docRef.id, ...orderData}
     return order
     
@@ -44,7 +44,7 @@ try {
       quantity: orderData.quantity, 
       status: orderData.status
     })
-    console.log(orderData)
+    
    return orderData
 
 } catch (error) {

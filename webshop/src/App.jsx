@@ -34,11 +34,11 @@ const App = () => {
   const { authIsReady, user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
-  // const isAdmin = user && user.isAdmin
+
 
   useEffect(() => {
     onAuthStateChanged(auth, (_user) => {
-      console.log(_user)
+      
       let user = null
 
       if (_user) {

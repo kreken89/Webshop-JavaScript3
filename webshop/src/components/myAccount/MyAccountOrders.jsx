@@ -16,7 +16,7 @@ const MyAccountOrders = () => {
       try {
         const response = await dispatch(getOrders(user.uid));
         const ordersData = response.payload;
-        console.log(ordersData);
+       
         setOrders(ordersData);
         setIsLoading(false);
       } catch (error) {

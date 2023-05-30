@@ -12,64 +12,6 @@ import { addToCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 
 
 
-/* const QuantityButton = () => {
-
-  const [quantity, setQuantity] = useState(1)
-
-  const increment = () => {
-    setQuantity(quantity + 1)
-  }
-
-  const decrement = () => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1)
-    }
-  }
-
-  return (
-    <div className={styles['quantity-group']}>
-      <button className={styles['quantity-decrement']} onClick={decrement}>
-        -
-      </button>
-      <span className={styles['quantity']}>{quantity}</span>
-      <button className={styles['quantity-increment']} onClick={increment}>
-        +
-      </button>
-    </div>
-  )
-} */
-
-/* const SizeDropdown = () => {
-  const [selectedSize, setSelectedSize] = useState('')
-
-  const handleSizeChange = (e) => {
-    setSelectedSize(e.target.value)
-  }
-
-  return (
-    <>
-      <label htmlFor="size" className={styles['selector']}>
-        Select Size:
-      </label>
-      <select value={selectedSize} id="size" onChange={handleSizeChange}>
-        <option value="">Select</option>
-        <option value="36">EUR 36</option>
-        <option value="37">EUR 37</option>
-        <option value="38">EUR 38</option>
-        <option value="39">EUR 39</option>
-        <option value="40">EUR 40</option>
-        <option value="41">EUR 41</option>
-        <option value="42">EUR 42</option>
-        <option value="43">EUR 43</option>
-        <option value="44">EUR 44</option>
-        <option value="45">EUR 45</option>
-        <option value="46">EUR 46</option>
-        
-      </select>
-      <p className={'size-selector'}>{selectedSize}</p>
-    </>
-  )
-} */
 
 
 const Details = () => {
@@ -79,7 +21,7 @@ const Details = () => {
   const productList = useSelector((state) => state.productList)
   const { products } = productList
   const [quantity, setQuantity] = useState(1)
-  const [selectedSize, setSelectedSize] = useState('M')
+  const [selectedSize, setSelectedSize] = useState('size 36')
 
   useEffect(() => {
     dispatch(getProducts())
@@ -133,9 +75,16 @@ const Details = () => {
               Select Size:
             </label>
             <select value={selectedSize} id="size" onChange={handleSizeChange}>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
+              <option value="size 36">36</option>
+              <option value="size 37">37</option>
+              <option value="size 38">38</option>
+              <option value="size 39">39</option>
+              <option value="size 40">40</option>
+              <option value="size 41">41</option>
+              <option value="size 42">42</option>
+              <option value="size 43">43</option>
+              <option value="size 44">44</option>
+              <option value="size 45">45</option>
             </select>
             <p className={'size-selector'}>{selectedSize}</p>
           </div>

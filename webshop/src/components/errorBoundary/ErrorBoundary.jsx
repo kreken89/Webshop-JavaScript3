@@ -16,15 +16,15 @@ class ErrorBoundary extends Component {
       error: error,
       errorInfo: errorInfo,
     })
-    // You can also log the error to an error tracking service here
+   
   }
 
   render() {
     if (this.state.hasError) {
-      // You can customize the error message or render a fallback UI
+      
       return <div>Error: {this.state.error.toString()}</div>
     }
-    // Render the wrapped component as normal
+    
     return this.props.children
   }
 }

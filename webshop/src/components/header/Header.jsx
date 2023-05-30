@@ -66,9 +66,7 @@ const Header = () => {
                 className="nav-link"
                 role="button"
                 data-bs-toggle="dropdown"
-                // data-bs-target="#cartDropdown"
-                aria-expanded='false'
-                // onClick={toggleCart}
+                aria-expanded='false'              
                 >
                 <FaShoppingCart />
                 {totalQuantity > 0 && (
