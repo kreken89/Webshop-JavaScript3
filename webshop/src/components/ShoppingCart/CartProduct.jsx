@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { addToCart, removeFromCart, deleteAllFromCart } from '../../store/features/shoppingCart/shoppingCartSlice'
+import { addOneToCart, removeFromCart, deleteAllFromCart } from '../../store/features/shoppingCart/shoppingCartSlice'
 import { Link } from 'react-router-dom'
 import { FaTrash } from 'react-icons/fa'
 
@@ -10,13 +10,13 @@ const CartProduct = ({ item }) => {
     const dispatch = useDispatch()
 
     const add = () => {
-        dispatch(addToCart(item.product))
+        dispatch(addOneToCart(item.product))
     }
     const remove = () => {
-        dispatch(removeFromCart(item.product.id))
+        dispatch(removeFromCart({id: item.product.id, selectedSize: item.product.selectedSize}))
     }
     const deleteAll = () => {
-        dispatch(deleteAllFromCart(item.product.id))
+        dispatch(deleteAllFromCart({id: item.product.id, selectedSize: item.product.selectedSize}))
     }
   return (
     <div className="d-flex justify-content-between align-items-center p-2 gap-3">

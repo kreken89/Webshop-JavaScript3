@@ -78,6 +78,15 @@ export const shoppingCartSlice = createSlice({
     name: 'order',
     initialState,
     reducers: {
+        addOneToCart: (state, action) => {
+          const itemRef = state.cart.find(item => item.product.id === action.payload.id && item.product.selectedSize === action.payload.selectedSize);
+            itemRef
+            ? itemRef.quantity += 1
+            : state.cart = [...state.cart, { product: action.payload, quantity: 1 }];
+
+          state.totalAmount = getTotalAmount(state.cart);
+          state.totalQuantity = getTotalQuantity(state.cart);
+        },
         addToCart: (state, action) => {
            
             const itemRef = state.cart.find(item => item.product.id === action.payload.id);
@@ -89,16 +98,21 @@ export const shoppingCartSlice = createSlice({
             state.totalQuantity = getTotalQuantity(state.cart);
         },
         removeFromCart: (state, action) => {
-            const itemRef = state.cart.find(item => item.product.id === action.payload);
+            const itemRef = state.cart.find(item => item.product.id === action.payload.id && item.product.selectedSize === action.payload.selectedSize);
             itemRef.quantity <= 1
-            ? state.cart = state.cart.filter(item => item.product.id !== action.payload)
+            ? state.cart = state.cart.filter(item.product.id === action.payload.id && item.product.selectedSize === action.payload.selectedSize)
             : itemRef.quantity -= 1;
 
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
         },
         deleteAllFromCart: (state, action) => {
-            state.cart = state.cart.filter(item => item.product.id !== action.payload);
+          state.cart = state.cart.filter(item => {
+            if(item.product.id === action.payload.id && item.product.selectedSize === action.payload.selectedSize){
+              return 
+            }
+            return item
+          });
 
             state.totalAmount = getTotalAmount(state.cart);
             state.totalQuantity = getTotalQuantity(state.cart);
@@ -174,5 +188,5 @@ export const shoppingCartSlice = createSlice({
 
 })
 
-export const { addToCart, removeFromCart, deleteAllFromCart, clearCart, toggleCart, closeCart, placeOrder } = shoppingCartSlice.actions;
+export const { addOneToCart, addToCart, removeFromCart, deleteAllFromCart, clearCart, toggleCart, closeCart, placeOrder } = shoppingCartSlice.actions;
 export default shoppingCartSlice.reducer;

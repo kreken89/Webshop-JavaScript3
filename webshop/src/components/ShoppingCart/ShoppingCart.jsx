@@ -9,19 +9,7 @@ const ShoppingCart = ({ checkout }) => {
     const dispatch = useDispatch()
     const cartRef = useRef(null)
 
-    /* const handleClickOutsideCart = event => {
-      if (cartRef.current && !cartRef.current.contains(event.target)) {
-        // Close the shopping cart here
-        // Implement the necessary logic to close the cart
-      }
-    }
-  
-    useEffect(() => {
-      document.addEventListener('click', handleClickOutsideCart)
-      return () => {
-        document.removeEventListener('click', handleClickOutsideCart)
-      }
-    }, []) */
+    
 
 
   return (
@@ -30,7 +18,7 @@ const ShoppingCart = ({ checkout }) => {
 
             <div className="p-2 text-center"> Your cart is empty</div>
             )}
-            {cart.map(item => <CartProduct key={'cart' + item.product.id} item={item} />)}
+            {cart.map(item => <CartProduct key={`${item.product.id}+${item.product.size}`} item={item} />)}
             <div className="dropdown-divider"></div>
             <div className="d-flex justify-content-between align-items-center p-2"> 
             <div>
