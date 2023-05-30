@@ -18,7 +18,7 @@ const ShoppingCart = ({ checkout }) => {
 
             <div className="p-2 text-center"> Your cart is empty</div>
             )}
-            {cart.map(item => <CartProduct key={`${item.product.id}+${item.product.size}`} item={item} />)}
+            {cart.map(item => <CartProduct key={item.product.id+item.product.selectedSize} item={item} />)}
             <div className="dropdown-divider"></div>
             <div className="d-flex justify-content-between align-items-center p-2"> 
             <div>
