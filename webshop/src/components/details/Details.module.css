@@ -1,8 +1,74 @@
+.description_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 1224px;
+  margin: 2rem auto;
+}
+
+.description_box {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(250, 49, 80);
+  color: #fff;
+  border: 1px solid rgb(250, 49, 80);
+  margin: 1rem 0;
+}
+.description_box .description_title {
+  font-size: 1rem;
+  padding: 0.5rem 2rem;
+  width: 50%;
+}
+.description_box .related_product_btn {
+  font-size: 1rem;
+  text-decoration: none;
+  text-align: left;
+  border: none;
+  padding: 0.5rem 2rem;
+  background: #fff;
+  color: #333;
+  width: 50%;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.description_box .related_product_btn:hover {
+  background: rgb(250, 49, 80);
+  color: #fff;
+}
+
+.description_info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+.description_info .description_info_box {
+  width: 50%;
+}
+.description_info .description_info_title {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+.description_info .description_info_text {
+  color: #888;
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  padding-right: 3rem;
+}
+.description_info .description_img img {
+  max-width: 469px;
+  width: 50%;
+}
+
 .container-details {
   display: flex;
   justify-content: space-between;
   max-width: 1224px;
   margin: 2rem auto;
+  gap: 5rem;
 }
 
 .textContainer {
@@ -62,6 +128,12 @@
   line-height: 1.2;
 }
 
+.imgBox img {
+  max-width: 501px;
+  height: 430px;
+  margin: 3rem;
+}
+
 .price {
   font-weight: 600;
   font-size: 1.5rem;
@@ -70,6 +142,14 @@
 
 .dropDown-box {
   margin-bottom: 2rem;
+}
+
+#size {
+  width: 80px;
+}
+
+.size-selector {
+  display: none;
 }
 
 .selector {

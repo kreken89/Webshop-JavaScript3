@@ -1,5 +1,6 @@
 .top_selling-container {
-  margin: 3rem 0;
+  max-width: 1224px;
+  margin: 3rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,11 +30,6 @@
   font-size: 1.5rem;
   cursor: pointer;
   transition: all 0.3s ease-in-out;
-  z-index: 10;
-}
-.top_selling-container .slider-control .left_arrow:hover {
-  color: #fff;
-  background-color: #111;
 }
 .top_selling-container .slider-control .right_arrow {
   background-color: #efefef;
@@ -42,10 +38,9 @@
   position: absolute;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  z-index: 10;
+  transition: all 0.1s ease-in-out;
 }
-.top_selling-container .slider-control .right_arrow:hover {
+.top_selling-container .slider-control button:hover {
   color: #fff;
   background-color: #111;
 }/*# sourceMappingURL=Carousel.module.css.map */

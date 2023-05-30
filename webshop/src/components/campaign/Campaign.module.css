@@ -4,8 +4,25 @@
   display: flex;
   justify-content: center;
 }
+.container_campaign .campaign_sale {
+  margin-right: 2rem;
+}
+.container_campaign .campaign_sale img {
+  height: 466px;
+  width: 310px;
+}
 .container_campaign .campaign_image1 {
   margin-right: 2rem;
+}
+.container_campaign .campaign_image1 p {
+  background-color: white;
+  color: #ff0000;
+  margin-top: -1rem;
+  padding: 1rem;
+}
+.container_campaign .campaign_image1 img {
+  height: 369px;
+  width: 310px;
 }
 .container_campaign .campaign_text {
   background-color: white;
