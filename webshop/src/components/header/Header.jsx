@@ -43,7 +43,7 @@ const Header = () => {
             {user ? (
               <>
                 <li>
-                  <Link onClick={() => dispatch(logoutUser())}>
+                  <Link to="/" onClick={() => dispatch(logoutUser())}>
                     Logout
                   </Link>
                 </li>

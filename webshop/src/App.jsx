@@ -14,7 +14,6 @@ import Contact from './pages/contact/Contact'
 import ProductDetails from './pages/productDetails/ProductDetails'
 import Login from './pages/login/Login'
 import Register from './pages/register/Register'
-import LogOut from './pages/login/LogOut'
 import MyAccount from './pages/myAccount/MyAccount'
 import Checkout from './pages/checkout/Checkout'
 
@@ -42,6 +41,7 @@ const App = () => {
       let user = null
 
       if (_user) {
+        
         user = {
           uid: _user.uid,
           email: _user.email,
@@ -64,7 +64,6 @@ const App = () => {
             <Route path="/productDetails/:id" element={<ProductDetails />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/logout" element={<LogOut />} />
             <Route path="/my-account" element={<MyAccount />} />
             <Route path="/checkout" element={<Checkout />} />
           </Routes>

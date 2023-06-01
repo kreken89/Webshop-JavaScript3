@@ -7,6 +7,9 @@ import {
 import { auth, db, googleProvider } from '../../../firebase/config'
 import { collection, addDoc, doc, getDoc } from 'firebase/firestore'
 
+
+
+
 let currentUserData = null
 
 const setUserData = (userData) => {
@@ -72,8 +75,10 @@ const login = async (email, password) => {
 }
 
 const logout = async () => {
+  
   await signOut(auth)
   clearUserData()
+  
 }
 
 /* const subscribeToNewsletter = async (email) => {

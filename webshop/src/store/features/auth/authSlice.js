@@ -1,3 +1,4 @@
+
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import authService from './authService'
 
@@ -37,8 +38,12 @@ export const loginUser = createAsyncThunk(
 export const logoutUser = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
+    
     try {
+      
       await authService.logout()
+      window.location.reload()
+      
       thunkAPI.dispatch(authReady(null)) 
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message)
